@@ -1,0 +1,270 @@
+<!--Mastering CSS positioning is essential for creating visually appealing and responsive web layouts. Learn about how to work with absolute positioning, the z-index property, and the transform property.-->
+<!DOCTYPE html><!--Learn Intermediate CSS by Building a Cat Head Painting-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Head Painting</title>
+  <style>
+    * {box-sizing: border-box;}/*This ensures elements include padding and border in their specified width and height.*/
+
+    body {background-color: #c9d2fc;}/*Sets color to the HTML body*/
+
+    .cat-head {
+      background: linear-gradient(#5e5e5e 85%, #45454f 100%);
+      width: 205px;
+      height: 180px;
+      border: 1px solid #000;
+      border-radius: 46%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+    }/*CSS positioning sets how an element to be positioned in the browser. It has a position property that can be set to static, absolute, relative, sticky or fixed. Once sets position property of the element, it can be move the element around by setting a pixel or a percentage value for one or more of the top, right, left, or bottom properties.
+    
+    Static is the default positioning for all elements. If assigned it to an element, it won't be able to move around with top, right, left, or bottom.
+
+    When the relative is the value, the element is still positioned according to the normal flow of the document, but the top, left, bottom, and right values become active.
+
+    When the absolute value is the position property, the element is taken out of the normal flow of the document, and then its position is determined by the top, right, bottom, and left properties.
+    
+    When fixed is the position property value that lets an element fixed to the page no matter where the user scrolls to on the page. Have to do some more markups to see how fixed positioning works.
+    
+    The last position property value is sticky. The sticky positioning is a hybrid of relative and fixed positioning. It allows an element to stick to a specific position within its containing element or viewport, based on the scroll position. Note that to see how sticky works, you have to place a couple of texts before and after your .cat-head div element. When scrolling down after that, you'll see that the .cat-head gets stuck to the top and remains there.
+    
+    Set .cat-head element a position property set to absolute. Set a value of 0 for the right, left, top, bottom properties, then set its margin property on all sides to auto. That's one way to center an element vertically and horizontally using CSS positioning.*/
+
+    .cat-left-ear {
+      position: absolute;
+      top: -26px;
+      left: -31px;
+      z-index: 1;/*The ears should always be placed above the part of the head it overlaps. It can be done with the z-index property. The z-index is a property is use to define the order of overlapping HTML elements. Any element with a higher z-index will always be positioned over an element with a lower z-index*/
+      border-top-left-radius: 90px;
+      border-top-right-radius: 10px;
+      transform: rotate(-45deg);/*The transform property allows to modify the shape, position, and size of an element without changing the layout or affecting the surrounding elements. It has functions such as translate(), rotate(), scale(), skew(), and matrix().*/
+      border-left: 35px solid transparent;
+      border-right: 35px solid transparent;
+      border-bottom: 70px solid #5e5e5e;
+    }
+
+    .cat-right-ear {
+      position: absolute;
+      top: -26px;
+      left: 163px;/*Move the right ear into position with a position property set to absolute, a top of -26px, and a left of 163px*/
+      z-index: 1;/*The ears should always be placed above the part of the head it overlaps. The z-index is a property use to define the order of overlapping HTML elements. Any element with a higher z-index will always be positioned over an element with a lower z-index.*/
+      transform: rotate(45deg);/*As with the left ear, rotate the right ear at 45 degrees.*/
+      border-top-right-radius: 10px;
+      border-top-left-radius: 90px;
+      /*Remove the sharp border of the right ear by setting the border-top-left-radius to 90px and the border-top-right-radius to 10px*/
+      border-right: 35px solid transparent;
+      border-left: 35px solid transparent;
+      border-bottom: 70px solid #5e5e5e;
+    }
+
+    .cat-left-inner-ear {
+      position: absolute;
+      top: 22px;
+      left: -20px;
+      border-bottom-left-radius: 40%;
+      border-bottom-right-radius: 40%;
+      border-top-left-radius: 90px;
+      border-top-right-radius: 10px;
+      /*To remove all the pointed edges of the ear, set a bottom-right and bottom-left border radius of 40% each, a top-left border radius of 90px, and a top-right border radius of 10px*/
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 40px solid #3b3b4f;
+      /*Most cats have different colors in their ear and the inner part of the same ear. It can be implemented the same too. That's why a class of div element for both right and left inner ears is needed. Using a class selector, set .cat-left-inner-ear element a left and right border of 20px solid transparent each. Also set it a bottom border of 40px solid #3b3b4f*/
+    }
+
+    .cat-right-inner-ear {
+      position: absolute;
+      top: 22px;
+      left: -20px;/*Move the right inner ear into position with a position property set to absolute, a top of 22px and a left of -20px*/
+      border-bottom-right-radius: 40%;
+      border-bottom-left-radius: 40%;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 90px;/*To remove the sharp edges of the right inner ear by setting a bottom-right and bottom-left border radius of 40%, a top-left border radius of 90px, and a top-right border radius of 10px*/
+      border-right: 20px solid transparent;
+      border-left: 20px solid transparent;
+      border-bottom: 40px solid #3b3b4f;
+    }
+
+    .cat-left-eye {
+      position: absolute;
+      top: 54px;
+      left: 39px;/*Move the left eye into position with a position property of absolute, a top of 54px, and a left of 39px*/
+      border-radius: 60%;
+      transform: rotate(25deg);/*To make the left eye look like an eye, give it a border radius of 60%. Also, using the transform property, rotate it at 25 degrees.*/
+      width: 30px;
+      height: 40px;
+      background-color: #000;
+    }
+
+    .cat-right-eye {
+      position: absolute;
+      top: 54px;
+      left: 134px;/*Move the right eye into position with a position property of absolute a top of 54px, and a left of 134px*/
+      border-radius: 60%;
+      transform: rotate(-25deg);/*To make the right eye look like an eye, set it a border radius of 60%. Also, using the transform property, rotate it at -25 degrees.*/
+      width: 30px;
+      height: 40px;
+      background-color: #000;
+    }
+
+    .cat-left-inner-eye {
+      position: absolute;
+      top: 8px;
+      left: 2px;
+      border-radius: 60%;
+      transform: rotate(10deg);/*Move the left inner eye into position with a position property of absolute, a top of 8px, and a left of 2px. Also, set it a border radius of 60% and rotate it at 10 degrees.*/
+      width: 10px;
+      height: 20px;
+      background-color: #fff;
+    }
+
+    .cat-right-inner-eye {
+      position: absolute;
+      top: 8px;
+      left: 18px;
+      border-radius: 60%;
+      transform: rotate(-5deg);/*Move the right inner eye into position with a position of absolute, a top of 8px, and a left of 18px. Also, set it a border radius of 60% and rotate it at -5deg*/
+      width: 10px;
+      height: 20px;
+      background-color: #fff;
+    }
+
+    .cat-nose {
+      position: absolute;
+      top: 108px;
+      left: 85px;/*Move the nose into position with a position property of absolute, a top of 108px, and a left of 85px*/
+      border-top-left-radius: 50%;
+      border-bottom-right-radius: 50%;
+      border-bottom-left-radius: 50%;
+      transform: rotate(180deg);/*Remove the sharp edges of the nose with border radius of 50% each on the top-left, bottom-right, and bottom-left corners. Also, rotate it at 180 degrees.*/
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 20px solid #442c2c;
+    }
+
+    .cat-mouth div /*Descendant selector to target the two div elements inside the div with class cat-mouth*/
+    {
+      width: 30px;
+      height: 50px;
+      border: 2px solid #000;
+      border-color: black transparent transparent transparent;
+      border-radius: 190%/190px 150px 0 0;
+    }/*Make the two mouth lines into an elliptical shape. Set the .cat-mouth div selector a border color of black transparent transparent transparent and a border radius of 190%/190px 150px 0 0*/
+
+    .cat-mouth-line-left {
+      position: absolute;
+      top: 88px;
+      left: 74px;/*Set the position of absolute, a top of 88px and a left of 74px. This would move it into the correct position.*/
+      transform: rotate(170deg);/*To rotate in the correct orientation*/
+    }
+
+    .cat-mouth-line-right {
+      position: absolute;
+      top: 88px;
+      left: 91px;/*Move it into the correct position with a position of absolute, a top of 88px and a left of 91px*/
+      transform: rotate(165deg);/*To rotate in the correct orientation*/
+    }
+
+    .cat-whiskers-left div /*Descendant selector to target the three div elements inside the class cat-whiskers-left element.*/
+    {
+      width: 40px;
+      height: 1px;
+      background-color: #000;
+    }
+
+    .cat-whiskers-right div /*Descendant selector to target the three div elements inside the class cat-whiskers-right element.*/
+    {
+      width: 40px;
+      height: 1px;
+      background-color: #000;
+    }
+
+    .cat-whisker-left-top {
+      position: absolute;/*Move the .cat-whisker-left-top element into place with a position of absolute*/
+      top: 120px;/*Move the .cat-whisker-left-top element into place with a top of 120px*/
+      left: 52px;/*Move the .cat-whisker-left-top element into place with a left of 52px*/
+      transform: rotate(10deg);/*To rotate in the correct orientation*/
+    }
+
+    .cat-whisker-left-middle {
+      position: absolute;/*Move it into place with a position property set to absolute*/
+      top: 127px;/*Move it into place with a top of 127px*/
+      left: 52px;/*Move it into place with a left of 52px*/
+      transform: rotate(3deg);/*To rotate in the correct orientation*/
+    }
+
+    .cat-whisker-left-bottom {
+      position: absolute;/*Move the .cat-whisker-left-bottom into position with a position of absolute*/
+      top: 134px;/*Move the .cat-whisker-left-bottom into position with a top of 134px*/
+      left: 52px;/*Move the .cat-whisker-left-bottom into position with a left of 52px*/
+      transform: rotate(-3deg);/*To rotate in the correct orientation*/
+    }
+
+    .cat-whisker-right-top {
+      position: absolute;/*Set it a position of absolute*/
+      top: 120px;/*Set it a top of 120px*/
+      left: 109px;/*Set it a left of 109px*/
+      transform: rotate(-10deg);/*To rotate in the correct orientation*/
+    }
+
+    .cat-whisker-right-middle {
+      position: absolute;/*Move into position with a position of absolute*/
+      top: 127px;/*Move into position with a top of 127px*/
+      left: 109px;/*Move into position with a left of 109px*/
+      transform: rotate(-3deg);/*To rotate in the correct orientation*/
+    }
+
+    .cat-whisker-right-bottom {
+      position: absolute;/*Move it into place with a position of absolute*/
+      top: 134px;/*Move it into place with a top of 134px*/
+      left: 109px;/*Move it into place with a left of 109px*/
+      transform: rotate(3deg);/*To rotate in the correct orientation*/
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="cat-head">
+      <div class="cat-ears">
+        <div class="cat-left-ear">
+          <div class="cat-left-inner-ear"></div>
+        </div>
+        <div class="cat-right-ear">
+          <div class="cat-right-inner-ear"></div>
+        </div>
+      </div>
+      <div class="cat-eyes">
+        <div class="cat-left-eye">
+          <div class="cat-left-inner-eye"></div>
+        </div>
+        <div class="cat-right-eye">
+          <div class="cat-right-inner-eye"></div>
+        </div>
+      </div>
+      <div class="cat-nose"></div>
+      <div class="cat-mouth">
+        <div class="cat-mouth-line-left"></div>
+        <div class="cat-mouth-line-right"></div>
+      </div>
+      <div class="cat-whiskers">
+        <div class="cat-whiskers-left">
+          <div class="cat-whisker-left-top"></div>
+          <div class="cat-whisker-left-middle"></div>
+          <div class="cat-whisker-left-bottom"></div>
+        </div>
+        <div class="cat-whiskers-right">
+          <div class="cat-whisker-right-top"></div>
+          <div class="cat-whisker-right-middle"></div>
+          <div class="cat-whisker-right-bottom"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
