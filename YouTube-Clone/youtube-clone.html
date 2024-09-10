@@ -12,6 +12,7 @@
       height: 55px;
       display: flex;
       flex-direction: row;
+      position: fixed;
       justify-content: space-between;
       position: fixed;
       top: 0;
@@ -30,11 +31,10 @@
     .hamburger_menu {
       height: 24px;
       margin: 24px;
-    }
-    .hamburger_menu:hover, .search_button:hover, .voice_search_button:hover, .upload_icon:hover, .youtube_apps_icon:hover, .notifications_icon:hover  {
-      cursor: pointer;
+      padding: 6px;
     }
     .hamburger_menu:hover, .voice_search_button:hover, .upload_icon:hover, .youtube_apps_icon:hover, .notifications_icon:hover {
+      cursor: pointer;
       background: rgb(235, 235, 235);
       border-radius: 50%;
     }
@@ -74,7 +74,10 @@
       margin-left: -1px;
       margin-right: 10px;
     }
-    .search_button:hover {background: rgb(235, 235, 235);}
+    .search_button:hover {
+      cursor: pointer;
+      background: rgb(235, 235, 235);
+    }
     .search_button, .voice_search_button, .upload_icon_container, .youtube_apps {
       display: flex;
       justify-content: center;
@@ -93,13 +96,16 @@
       border-radius: 2px;
       font-size: 12px;
       bottom: -30px;
-      display: none;
-      transition: display 0.15s;
-      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
       white-space: nowrap;
+      animation-delay: 0.5s;
     }
     .search_button:hover .tooltip, .voice_search_button:hover .tooltip, .upload_icon_container:hover .tooltip, .youtube_apps:hover .tooltip, .notifications_icon_container:hover .tooltip {
-      display: block;
+      visibility: visible;
+      opacity: 1;
+      animation: fadeIn 0.3s forwards;
     }
     .search_icon {
       height: 25px;
@@ -122,10 +128,10 @@
       margin-right: 20px;
       flex-shrink: 0;
     }
-    .upload_icon {
+    .upload_icon, .youtube_apps_icon, .notifications_icon {
       height: 24px;
+      padding: 6px;
     }
-    .youtube_apps, .youtube_apps_icon, .notifications_icon {height: 24px;}
     .notifications_icon_container {
       position: relative;
     }
@@ -147,7 +153,6 @@
       height: 32px;
       border-radius: 16px;
     }
-    .user_picture:hover {cursor: pointer;}
     p, a {
       font-family: Roboto, Arial;
       margin-top: 0;
