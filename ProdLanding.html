@@ -1,0 +1,213 @@
+<!--Build an app that is functionally similar to https://product-landing-page.freecodecamp.rocks/-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Landing Page</title>
+  <link rel="icon" href="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: block;
+      position: relative;
+      background-color: ghostwhite;
+    }
+
+    #header {
+      width: 100%;
+      display: flex;
+      position: fixed;
+      top: 0;
+      min-height: 75px;
+      padding: 0 20px;
+      justify-content: space-around;
+      align-items: center;
+      background-color: ghostwhite;
+    }
+
+    img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-left: 20px;
+      height: 40px;
+      background: blueviolet;
+    }
+
+    nav {font-weight: 400;}
+
+    a {text-decoration: none;}
+
+    nav a:hover { color: brown; background: turquoise;}
+
+    ul {
+      width: 35vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      list-style: none;
+    }
+
+    #info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 200px;
+      margin-top: 50px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      word-wrap: break-word;
+    }
+
+    #email {
+      max-width: 275px;
+      width: 100%;
+      padding: 5px;
+    }
+
+    #submit {
+      max-width: 150px;
+      width: 100%;
+      height: 30px;
+      margin: 15px 0;
+      border: 0;
+      background-color: yellowgreen;
+      padding: 0 20px;
+      font-size: 1em;
+      font-weight: 900;
+      border-radius: 2px;
+    }
+
+    #submit:hover {color: brown; background: darkturquoise;}
+
+    .spacer {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    #features {margin-top: 30px;}
+
+    .grid {display: flex;}
+
+    #features .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 125px;
+      width: 20vw;
+      color: thistle;
+    }
+
+    #features .desc {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 125px;
+      width: 80vw;
+      padding: 5px;
+    }
+
+    iframe {
+      max-width: 560px;
+      max-height: 500px;
+      width: 100%;
+    }
+
+    #prices {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .prod {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: calc(100%/3);
+      margin: 10px;
+      border: 1px solid #000;
+      border-radius: 3px;
+    }
+
+    footer {
+      margin-top: 30px;
+      background-color: #ddd;
+      padding: 20px;
+    }
+
+    footer ul {
+      display: flex;
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="logo"><img id="header-img" src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" alt="Logo"></div>
+    <nav id="nav-bar">
+      <ul>
+        <li><a class="nav-link" href="#info" title="link">Form sign</a></li>
+        <li><a class="nav-link" href="#watch-video" title="link">Watch video</a></li>
+        <li><a class="nav-link" href="#footer" title="link">Information</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section id="info">
+    <h2>Product Landing Page</h2>
+    <form action="https://www.freecodecamp.com/email-submit" method="post" id="form">
+      <input type="email" id="email" name="email" title="Please fill out this field." placeholder="Input your email" required>
+      <input id="submit" type="submit" value="LET'S GO" title="Submit">
+    </form>
+  </section>
+  <div class="spacer">
+    <section id="features">
+      <div class="grid">
+        <div class="icon"><i></i></div>
+        <div class="desc">
+          <h2></h2>
+          <p></p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="icon"><i></i></div>
+        <div class="desc">
+          <h2></h2>
+          <p></p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="icon"><i></i></div>
+        <div class="desc">
+          <h2></h2>
+          <p></p>
+        </div>
+      </div>
+    </section>
+    <section id="watch-video">
+      <iframe[allow] id="video" src="https://youtu.be/ozdR21PQZSY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+    <section id="prices">
+      <div class="prod"></div>
+      <div class="prod"></div>
+      <div class="prod"></div>
+    </section>
+    <footer id="footer">
+      <a href="https://www.freecodecamp.org/">freeCodeCamp</a>
+    </footer>
+  </div>
+</body>
+</html>
