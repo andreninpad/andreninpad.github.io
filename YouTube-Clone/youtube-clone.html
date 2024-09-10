@@ -74,9 +74,8 @@
       margin-left: -1px;
       margin-right: 10px;
     }
-    .search_button,
-    .voice_search_button,
-    .upload_icon_container, .youtube_apps {
+    .search_button:hover {background: rgb(235, 235, 235);}
+    .search_button, .voice_search_button, .upload_icon_container, .youtube_apps {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -94,13 +93,13 @@
       border-radius: 2px;
       font-size: 12px;
       bottom: -30px;
-      opacity: 0;
-      transition: opacity 0.15s;
+      display: none;
+      transition: display 0.15s;
       pointer-events: none;
       white-space: nowrap;
     }
     .search_button:hover .tooltip, .voice_search_button:hover .tooltip, .upload_icon_container:hover .tooltip, .youtube_apps:hover .tooltip, .notifications_icon_container:hover .tooltip {
-      opacity: 1;
+      display: block;
     }
     .search_icon {
       height: 25px;
