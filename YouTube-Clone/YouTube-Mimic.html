@@ -9,21 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="shortcut icon" href="icons/youtube_icon.svg" type="image/x-icon">
 <style>
+body {
+  margin: 0;
+  padding: 80px 24px 0 96px;
+}
 .header {
   height: 55px;
   display: flex;
   flex-direction: row;
   position: fixed;
   justify-content: space-between;
-  position: fixed;
   top: 0;
-  left: 0;
+  left: 6px;
   right: 0;
-  z-index: 100;
+  z-index: 1;
   background-color: white;
-  border: bottom width 1px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(228, 228, 228);
 }
 .left_section {
   display: flex;
@@ -40,6 +40,10 @@
   border-radius: 50%;
 }
 .youtube_logo {
+  margin: 0;
+  border: 0;
+  vertical-align: bottom;
+  align-self: baseline;
   height: 20px;
 }
 .middle_section {
@@ -154,67 +158,41 @@
   height: 32px;
   border-radius: 16px;
 }
+.sidebar {
+  position: fixed;
+  left: 10px;
+  bottom: 0;
+  top: 55px;
+  background-color: white;
+  width: 72px;
+  padding-top: 5px;
+}
+.sidebar_link {
+  height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+.sidebar_link:hover {
+  background-color: rgb(235, 235, 235);
+  border-radius: 14px;
+}
+.sidebar_link img {
+  height: 24px;
+  margin-bottom: 4px;
+}
+.sidebar_link p {
+  font-family: Roboto, Arial;
+  font-size: 10px;
+}
 p, a {
   font-family: Roboto, Arial;
   margin-top: 0;
   margin-bottom: 0;
   text-decoration: none;
   color: black;
-}
-body {
-  margin: 0;
-  padding-top: 80px;
-  padding-left: 96px;
-  padding-right: 24px;
-  background-color: rgb(248, 248, 248);
-}
-.subscribe_button {
-  background-color: rgb(200, 0, 0);
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 2px;
-  margin-right: 8px;
-  transition: opacity 0.15s;
-}
-.subscribe_button:hover {
-  opacity: 0.8;
-}
-.subscribe_button:active {
-  opacity: 0.5;
-}
-.join_button {
-  background-color: white;
-  color: rgb(41, 118, 211);
-  border-color: rgb(41, 118, 211);
-  border-style: solid;
-  border-width: 1px;
-  padding: 10px;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: background-color 0.15s, color 0.15s;
-}
-.join_button:hover {
-  background-color: rgb(41, 118, 211);
-  color: white;
-}
-.join_button:active {
-  opacity: 0.7;
-}
-.tweet_button {
-  background-color: rgb(2, 137, 255);
-  color: white;
-  border: none;
-  height: 36px;
-  width: 74px;
-  border-radius: 18px;
-  font-weight: bold;
-  font-size: 15px;
-  margin-left: 8px;
-  transition: box-shadow 0.15s;
-}
-.tweet_button:hover {
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
 }
 .video_title {
   font-size: 18px;
@@ -238,57 +216,15 @@ body {
   color: rgb(96, 96, 96);
   line-height: 20px;
 }
-.apple_text {
-  margin-bottom: 50px;
-  font-size: 14px;
-  background-color: rgb(227, 65, 64);
-  color: white;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.shop_now:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-.sidebar {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  top: 55px;
-  background-color: white;
-  width: 72px;
-  z-index: 200;
-  padding-top: 5px;
-}
-.sidebar_link {
-  height: 74px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  cursor: pointer;
-}
-.sidebar_link:hover {
-  background-color: rgb(235, 235, 235);
-}
-.sidebar_link img {
-  height: 24px;
-  margin-bottom: 4px;
-}
-.sidebar_link p {
-  font-family: Roboto, Arial;
-  font-size: 10px;
-}
 .thumbnail {
   width: 100%;
+  border-radius: 14px;
 }
 .video_title {
-  margin-top: 0;
+  margin: 0 0 10px 0;
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
-  margin-bottom: 10px;
 }
 .video_info_grid {
   display: grid;
@@ -302,32 +238,16 @@ body {
   margin-bottom: 8px;
   position: relative;
 }
-.video_author,
-.video_stats {
+.video_author, .video_stats {
   font-size: 12px;
   color: (96, 96, 96);
   margin: 0;
 }
 .video_grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1f 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 16px;
   row-gap: 40px;
-}
-@media (max-width: 786px) {
-.video_grid {
-grid-template-columns: 1fr;
-}
-}
-@media (max-width: 1134px) {
-.video_grid {
-grid-template-columns: 1fr 1fr;
-}
-}
-@media (min-width: 1135px) and (max-width: 1432px) {
-.video_grid {
-grid-template-columns: 1fr 1fr 1fr;
-}
 }
 .video_time {
   font-family: Roboto, Arial;
@@ -340,6 +260,26 @@ grid-template-columns: 1fr 1fr 1fr;
   position: absolute;
   bottom: 8px;
   right: 5px;
+}
+@media (min-width: 300px) and (max-width: 788px) {
+  .video_grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 789px) {
+  .video_grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1432px) {
+  .video_grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1433px) {
+  .video_grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 </style>
 </head>
