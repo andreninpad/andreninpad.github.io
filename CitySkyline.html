@@ -1,358 +1,301 @@
-<!--CSS variables helps organize styles and reuses them.
-Learn how to configure CSS variables so it can be reuse them whenever it needs to be.-->
 <!DOCTYPE html>
 <html lang="en">
-<head><!--Learn CSS Variables by Building a City Skyline-->
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="Images/anp.svg" type="image/x-icon">
   <title>City Skyline</title>
-  <style>
-    :root {
-      /*Variables are often declared in the :root selector. This is the highest level selector in CSS; putting the variables here will make them usable everywhere. Variable declarations begin with two dashes (-) and are given a name and a value like this: --variable-name: value;*/
-      --building-color1: #aa80ff;
-      --building-color2: #66cc99;
-      --building-color3: #cc6699;
-      --building-color4: #538cc6;
-      --window-color1: #bb99ff;/*This will be a secondary color for bb1*/
-      --window-color2: #8cd9b3;/*This will be a secondary color for bb2*/
-      --window-color3: #d98cb3;/*This will be the secondary color for bb3.*/
-      --window-color4: #8cb3d9;/*This will be the secondary color for final building.*/
-      --sky-background: radial-gradient(closest-corner circle at 15% 15%,/*This will move the start of the gradient to 15% from the top and left. It will make it end at the closest-corner and it will maintain a circle shape. These are some keywords built into gradients to describe how it behaves.*/
-      #ffcf33, #ffcf33 20%, #ffff66 21%, #bbeeff 100%);/*This will add circular gradient to the background that will be the sun.*/
-    }/*To use a variable, put the variable name in parentheses with var in front of them like this:
-    var(--variable-name). Whatever value it have, the variable will be applied to whatever property is use it on. A fallback value to a variable by putting it as the second value of where to use the variable like this: var(--variable-name, fallback-value). The property will use the fallback value if there's a problem with the variable.*/
+<style>
+:root {
+  --building-color1: #aa80ff;
+  --building-color2: #66cc99;
+  --building-color3: #cc6699;
+  --building-color4: #538cc6;
+  --window-color1: #bb99ff;
+  --window-color2: #8cd9b3;
+  --window-color3: #d98cb3;
+  --window-color4: #8cb3d9;
+  --sky-background: radial-gradient(closest-corner circle at 15% 15%, #ffcf33, #ffcf33 20%, #ffff66 21%, #bbeeff 100%);
+}
+* {box-sizing: border-box;}
+.sky {background: var(--sky-background);}
+.night-mode {
+  --building-color1: #000;
+  --building-color2: #000;
+  --building-color3: #000;
+  --building-color4: #000;
+  --window-color1: #777;
+  --window-color2: #777;
+  --window-color3: #777;
+  --window-color4: #777;
+  --sky-background: radial-gradient(closest-corner circle at 15% 15%, #ccc, #ccc 20%, #445 21%, #223 100%);
+}
+body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+.background-buildings, .foreground-buildings {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
 
-    * {box-sizing: border-box;}/*Asterisk(*) targets everything. box-sizing: border-box any border added will not add any size to the elements.*/
+.building-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .sky {background: var(--sky-background);}
-
-    .night-mode {
-      --building-color1: #000;
-      --building-color2: #000;
-      --building-color3: #000;
-      --building-color4: #000;
-      --window-color1: #777;
-      --window-color2: #777;
-      --window-color3: #777;
-      --window-color4: #777;
-      --sky-background: radial-gradient(closest-corner circle at 15% 15%, #ccc, #ccc 20%, #445 21%, #223 100%);
-    }
-
-    body {
-      height: 100vh;/*Make HTML body fill the whole viewport*/
-      margin: 0;/*Removes the default margin from the body*/
-      overflow: hidden;/*To hide scroll bars that appear when something extends past the viewport.*/
-    }
-
-    .background-buildings, .foreground-buildings {
-      /*Set the .foreground-buildings container to sit directly on top of the .background-buildings element. Set the values of width, height, position, and the top below. This will make it the same size as the body and move the start of it to the top left corner.*/
-      width: 100%;/*To make it the full width of its parent, the body.*/
-      height: 100%;/*To make it the full height of its parent, the body.*/
-      position: absolute;
-      top: 0;
-      display: flex;/*To align the buildings into a flexbox parent.*/
-      align-items: flex-end;/*Align across the bottom of the element*/
-      justify-content: space-evenly;/*To evenly space the buildings.*/
-    }
-
-    .building-wrap {
-      display: flex;/*Center the parts of the building*/
-      flex-direction: column;/*Center the parts of the building*/
-      align-items: center;/*Center the parts of the building*/
-    }
-
-    .window-wrap {
-      display: flex;/*Center the parts of the windows*/
-      align-items: center;/*To center it vertically in the parent container*/
-      justify-content: space-evenly;/*To space evenly in the parent container*/
-    }
-
-    /*BACKGROUND BUILDINGS — "bb" stands for "background building"*/
-    .bb1 {/*"bb" stands for "background building".*/
-      width: 10%;
-      height: 70%;
-    }
-
-    .bb1-window {
-      height: 10%;/*The percentage is relative to the parent and note that the height will add up to 100% vertically filling the container.*/
-      background: linear-gradient(var(--building-color1), var(--window-color1));/*Gradients in CSS are a way to transition between colors across the distance of an element. Gradients can use as many colors like this: gradient-type(color1, color2, ...);
-      In the example, color1 is solid at the top, color2 is solid at the bottom, and in between it transitions evenly from one to the next.*/
-    }
-
-    .bb1a {
-      width: 70%;/*The percentage are relative to the parent and note that the width will add up to 100% horizontally filling the container.*/
-    }
-
-
-    .bb1b {
-      width: 80%;/*The percentage are relative to the parent and note that the width will add up to 100% horizontally filling the container.*/
-    }
-
-    .bb1c {        
-      width: 90%;/*The percentage are relative to the parent and note that the width will add up to 100% horizontally filling the container.*/
-    }
-
-    .bb1d {
-      /*These percentages are relative to the parent and note that the heights will add up to 100% vertically filling the container.*/
-      width: 100%;
-      height: 70%;
-      background: linear-gradient(var(--building-color1) 50%, var(--window-color1));/*Specifying where a gradient transition to complete by adding it to the color like this: gradient-type(color1, color2 20%, color3, ...);
-      Here, it will transition from color1 to color2 between 0% and 20% of the element and then transition to color3 for the rest.*/
-    }
-
-    .bb2 {
-      width: 10%;
-      height: 50%;
-    }
-
-    .bb2a {
-      border-bottom: 5vh solid var(--building-color2);
-      border-left: 5vw solid transparent;
-      border-right: 5vw solid transparent;
-    }
-
-    .bb2b {
-      width: 100%;/*To make it fill the building container.*/
-      height: 100%;/*To make it fill the building container.*/
-      background: repeating-linear-gradient(var(--building-color2) 0, var(--building-color2) 6%, var(--window-color2) 6%, var(--window-color2) 9%);/*Gradient transitions often gradually change from one color to another. When a more abrupt change is required, the transition can be made with a hard stop like this:
-      linear-gradient(var(--first-color) 0%, var(--first-color) 40%, var(--second-color) 40%, var(--second-color) 80%);
-      See the hard color change at the top of the section. Change the gradient type from linear-gradient to repeating-linear-gradient for this section. This will make the four colors of the gradient repeat until it gets to the bottom of the element; giving some stripes, and not need have to add a bunch of elements to create them.*/
-    }
-
-    .bb3 {
-      width: 10%;
-      height: 55%;
-      background: repeating-linear-gradient(90deg, var(--building-color3), var(--building-color3), var(--window-color3) 15%)/*Specifying another direction by adding it before the colors like this: gradient-type(direction, color1, color2);*/
-    }
-
-    .bb4 {
-      width: 11%;
-      height: 58%;
-    }
-
-    .bb4a {
-      width: 3%;
-      height: 10%;
-      background-color: var(--building-color4);
-    }
-
-    .bb4b {
-      width: 80%;
-      height: 5%;
-      background-color: var(--building-color4);
-    }
-
-    .bb4c {
-      width: 100%;
-      height: 85%;
-      background-color: var(--building-color4);
-    }
-
-    .bb4-window {
-      width: 18%;
-      height: 90%;
-      background-color: var(--window-color4);
-    }
-    
-    /*FOREGROUND BUILDINGS — "fb" stands for "foreground building"*/
-    .fb1 {
-      width: 10%;
-      height: 60%;
-    }
-
-    .fb1b {
-      width: 60%;
-      height: 10%;
-      background-color: var(--building-color4);
-    }
-
-    .fb1c {
-      width: 100%;
-      height: 80%;
-      background: repeating-linear-gradient(90deg, var(--building-color4) 0, var(--building-color4) 10%, transparent 10%, transparent 15%), repeating-linear-gradient(var(--building-color4) 0, var(--building-color4) 10%, var(--window-color4) 10%, var(--window-color4) 90%);/*To add multiple gradients to an element by separating them with a comma (,) like this: gradient1(colors), gradient2(colors);*/
-    }
-
-    .fb1a {
-      border-bottom: 7vh solid var(--building-color4);/*This will put a 7vh height border on the bottom. But since the element has zero size, it only shows up as a 2px wide line from the 1px border that is on all the elements.*/
-      border-left: 2vw solid transparent;/*It's invisible, but it will make the border on the left 2vw wide.*/
-      border-right: 2vw solid transparent;/*It's invisible, but it will make the border on the right 2vw wide.*/
-    }
-    
-    .fb2 {
-      width: 10%;
-      height: 40%;        
-    }
-
-    .fb2a {
-      width: 100%;
-      border-bottom: 10vh solid var(--building-color3);
-      border-left: 1vw solid transparent;/*The border trick will create a trapezoid shape.*/
-      border-right: 1vw solid transparent;/*The border trick will create a trapezoid shape.*/
-    }
-
-    .fb2b {
-      width: 100%;
-      height: 75%;
-      background-color: var(--building-color3);
-    }
-
-    .fb2-window {
-      width: 22%;
-      height: 100%;
-      background-color: var(--window-color3);
-    }
-
-    .fb3 {
-      width: 10%;
-      height: 35%;        
-    }
-
-    .fb3a {
-      width: 80%;
-      height: 15%;
-      background-color: var(--building-color1);
-    }
-
-    .fb3b {
-      width: 100%;
-      height: 35%;
-      background-color: var(--building-color1);
-    }
-
-    .fb3-window {
-      width: 25%;
-      height: 80%;
-      background-color: var(--window-color1);
-    }
-    
-    .fb4 {
-      width: 8%;
-      height: 45%;
-      position: relative;/*Move the position of .fb4 relative to where it is*/
-      left: 10%;
-    }
-
-    .fb4a {
-      border-top: 5vh solid transparent;
-      border-left: 8vw solid var(--building-color1);
-    }
-
-    .fb4b {
-      width: 100%;
-      height: 89%;
-      background-color: var(--building-color1);
-      display: flex;
-      flex-wrap: wrap;/*Put the windows side by side, and push them down to a new row when they don't fit.*/
-    }
-
-    .fb4-window {
-      width: 30%;
-      height: 10%;
-      border-radius: 50%;/*These will make some circular windows for this building.*/
-      background-color: var(--window-color1);
-      margin: 10%;
-    }
-    
-    .fb5 {
-      width: 10%;
-      height: 33%;
-      position: relative;/*Move the position of .fb5 relative to where it is*/
-      right: 10%;
-      background: repeating-linear-gradient(var(--building-color2) 0, var(--building-color2) 5%, transparent 5%, transparent 10%), repeating-linear-gradient(90deg, var(--building-color2) 0, var(--building-color2) 12%, var(--window-color2) 12%, var(--window-color2) 44%);/*This will make a bunch of rectangle windows.*/
-    }
-    
-    .fb6 {
-      width: 9%;
-      height: 38%;
-      background: repeating-linear-gradient(90deg, var(--building-color3) 0, var(--building-color3) 10%, transparent 10%, transparent 30%), repeating-linear-gradient(var(--building-color3) 0, var(--building-color3) 10%, var(--window-color3) 10%, var(--window-color3) 30%);
-    }
-  </style>
+.window-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.bb1 {
+  width: 10%;
+  height: 70%;
+}
+.bb1-window {
+  height: 10%;
+  background: linear-gradient(var(--building-color1), var(--window-color1));
+}
+.bb1a {
+  width: 70%;
+}
+.bb1b {
+  width: 80%;
+}
+.bb1c {        
+  width: 90%;
+}
+.bb1d {
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(var(--building-color1) 50%, var(--window-color1));
+}
+.bb2 {
+  width: 10%;
+  height: 50%;
+}
+.bb2a {
+  border-bottom: 5vh solid var(--building-color2);
+  border-left: 5vw solid transparent;
+  border-right: 5vw solid transparent;
+}
+.bb2b {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(var(--building-color2) 0, var(--building-color2) 6%, var(--window-color2) 6%, var(--window-color2) 9%);
+}
+.bb3 {
+  width: 10%;
+  height: 55%;
+  background: repeating-linear-gradient(90deg, var(--building-color3), var(--building-color3), var(--window-color3) 15%)
+}
+.bb4 {
+  width: 11%;
+  height: 58%;
+}
+.bb4a {
+  width: 3%;
+  height: 10%;
+  background-color: var(--building-color4);
+}
+.bb4b {
+  width: 80%;
+  height: 5%;
+  background-color: var(--building-color4);
+}
+.bb4c {
+  width: 100%;
+  height: 85%;
+  background-color: var(--building-color4);
+}
+.bb4-window {
+  width: 18%;
+  height: 90%;
+  background-color: var(--window-color4);
+}
+.fb1 {
+  width: 10%;
+  height: 60%;
+}
+.fb1b {
+  width: 60%;
+  height: 10%;
+  background-color: var(--building-color4);
+}
+.fb1c {
+  width: 100%;
+  height: 80%;
+  background: repeating-linear-gradient(90deg, var(--building-color4) 0, var(--building-color4) 10%, transparent 10%, transparent 15%), repeating-linear-gradient(var(--building-color4) 0, var(--building-color4) 10%, var(--window-color4) 10%, var(--window-color4) 90%);
+}
+.fb1a {
+  border-bottom: 7vh solid var(--building-color4);
+  border-left: 2vw solid transparent;
+  border-right: 2vw solid transparent;
+}
+.fb2 {
+  width: 10%;
+  height: 40%;        
+}
+.fb2a {
+  width: 100%;
+  border-bottom: 10vh solid var(--building-color3);
+  border-left: 1vw solid transparent;
+  border-right: 1vw solid transparent;
+}
+.fb2b {
+  width: 100%;
+  height: 75%;
+  background-color: var(--building-color3);
+}
+.fb2-window {
+  width: 22%;
+  height: 100%;
+  background-color: var(--window-color3);
+}
+.fb3 {
+  width: 10%;
+  height: 35%;        
+}
+.fb3a {
+  width: 80%;
+  height: 15%;
+  background-color: var(--building-color1);
+}
+.fb3b {
+  width: 100%;
+  height: 35%;
+  background-color: var(--building-color1);
+}
+.fb3-window {
+  width: 25%;
+  height: 80%;
+  background-color: var(--window-color1);
+}
+.fb4 {
+  width: 8%;
+  height: 45%;
+  position: relative;
+  left: 10%;
+}
+.fb4a {
+  border-top: 5vh solid transparent;
+  border-left: 8vw solid var(--building-color1);
+}
+.fb4b {
+  width: 100%;
+  height: 89%;
+  background-color: var(--building-color1);
+  display: flex;
+  flex-wrap: wrap;
+}
+.fb4-window {
+  width: 30%;
+  height: 10%;
+  border-radius: 50%;
+  background-color: var(--window-color1);
+  margin: 10%;
+}
+.fb5 {
+  width: 10%;
+  height: 33%;
+  position: relative;
+  right: 10%;
+  background: repeating-linear-gradient(var(--building-color2) 0, var(--building-color2) 5%, transparent 5%, transparent 10%), repeating-linear-gradient(90deg, var(--building-color2) 0, var(--building-color2) 12%, var(--window-color2) 12%, var(--window-color2) 44%);
+}
+.fb6 {
+  width: 9%;
+  height: 38%;
+  background: repeating-linear-gradient(90deg, var(--building-color3) 0, var(--building-color3) 10%, transparent 10%, transparent 30%), repeating-linear-gradient(var(--building-color3) 0, var(--building-color3) 10%, var(--window-color3) 10%, var(--window-color3) 30%);
+}
+</style>
 </head>
 <body>
-
-  <div class="background-buildings sky"><!--Container for a group of buildings. Add sky as a second class for background of the skyline.-->
-    <div></div>
-    <div></div>
-    <div class="bb1 building-wrap"><!--Adding building-wrap class will apply the styling properties to it.-->
-      <div class="bb1a bb1-window"></div><!--Add bb1-window class element to apply the gradient to it.-->
-      <div class="bb1b bb1-window"></div><!--Add bb1-window class element to apply the gradient to it.-->
-      <div class="bb1c bb1-window"></div><!--Add bb1-window class element to apply the gradient to it.-->
-      <div class="bb1d"></div>
-    </div>
-    <div class="bb2">
-      <div class="bb2a"></div>
-      <div class="bb2b"></div>
-    </div>
-    <div class="bb3"></div>
-    <div></div>
-    <div class="bb4 building-wrap"><!--Add building-wrap class to apply the styling properties to it.-->
-      <div class="bb4a"></div>
-      <div class="bb4b"></div>
-      <div class="bb4c window-wrap"><!--Add windows-wrap class to apply the styling properties to it.-->
-        <div class="bb4-window"></div>
-        <div class="bb4-window"></div>
-        <div class="bb4-window"></div>
-        <div class="bb4-window"></div>
-      </div>
-    </div>
-    <div></div>
-    <div></div>
+<div class="background-buildings sky">
+  <div></div>
+  <div></div>
+  <div class="bb1 building-wrap">
+    <div class="bb1a bb1-window"></div>
+    <div class="bb1b bb1-window"></div>
+    <div class="bb1c bb1-window"></div>
+    <div class="bb1d"></div>
   </div>
-  <div class="foreground-buildings"><!--Container for a group of buildings.-->
-    <div></div>
-    <div></div>
-    <div class="fb1 building-wrap">
-      <div class="fb1a"></div>
-      <div class="fb1b"></div>
-      <div class="fb1c"></div>
-    </div>
-    <div class="fb2">
-      <div class="fb2a"></div>
-      <div class="fb2b window-wrap"><!--Add window-wrap class to position the new window elements.-->
-        <div class="fb2-window"></div><!--Window for this section of the building.-->
-        <div class="fb2-window"></div><!--Window for this section of the building.-->
-        <div class="fb2-window"></div><!--Window for this section of the building.-->
-      </div>
-    </div>
-    <div></div>
-    <div class="fb3 building-wrap"><!--Add building-wrap class element to center the sections.-->
-      <div class="fb3a window-wrap"><!--The top two will be almost the same as the bottom two. Add window-wrap class to the .fb3a element to center and space the windows.-->
-        <div class="fb3-window"></div><!--fb3-window will be window for this section.-->
-        <div class="fb3-window"></div><!--fb3-window will be window for this section.-->
-        <div class="fb3-window"></div><!--fb3-window will be window for this section.-->
-      </div>
-      <div class="fb3b"></div><!--The top two will be almost the same as the bottom two.-->
-      <div class="fb3a"></div><!--The top two will be almost the same as the bottom two.-->
-      <div class="fb3b"></div><!--The top two will be almost the same as the bottom two.-->
-    </div>
-    <div class="fb4">
-      <div class="fb4a"></div>
-      <div class="fb4b">
-        <div class="fb4-window"></div>
-        <div class="fb4-window"></div>
-        <div class="fb4-window"></div>
-        <div class="fb4-window"></div>
-        <div class="fb4-window"></div>
-        <div class="fb4-window"></div>
-      </div>
-    </div>
-    <div class="fb5"></div>
-    <div class="fb6"></div>
-    <div></div>
-    <div></div>
+  <div class="bb2">
+    <div class="bb2a"></div>
+    <div class="bb2b"></div>
   </div>
+  <div class="bb3"></div>
+  <div></div>
+  <div class="bb4 building-wrap">
+    <div class="bb4a"></div>
+    <div class="bb4b"></div>
+    <div class="bb4c window-wrap">
+      <div class="bb4-window"></div>
+      <div class="bb4-window"></div>
+      <div class="bb4-window"></div>
+      <div class="bb4-window"></div>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+</div>
+<div class="foreground-buildings">
+  <div></div>
+  <div></div>
+  <div class="fb1 building-wrap">
+    <div class="fb1a"></div>
+    <div class="fb1b"></div>
+    <div class="fb1c"></div>
+  </div>
+  <div class="fb2">
+    <div class="fb2a"></div>
+    <div class="fb2b window-wrap">
+      <div class="fb2-window"></div>
+      <div class="fb2-window"></div>
+      <div class="fb2-window"></div>
+    </div>
+  </div>
+  <div></div>
+  <div class="fb3 building-wrap">
+    <div class="fb3a window-wrap">
+      <div class="fb3-window"></div>
+      <div class="fb3-window"></div>
+      <div class="fb3-window"></div>
+    </div>
+    <div class="fb3b"></div>
+    <div class="fb3a"></div>
+    <div class="fb3b"></div>
+  </div>
+  <div class="fb4">
+    <div class="fb4a"></div>
+    <div class="fb4b">
+      <div class="fb4-window"></div>
+      <div class="fb4-window"></div>
+      <div class="fb4-window"></div>
+      <div class="fb4-window"></div>
+      <div class="fb4-window"></div>
+      <div class="fb4-window"></div>
+    </div>
+  </div>
+  <div class="fb5"></div>
+  <div class="fb6"></div>
+  <div></div>
+  <div></div>
+</div>
 </body>
 <script>
   const sky = document.body;
   const buildings = document.querySelectorAll('.bb1, .bb2, .bb3, .bb4, .fb1, .fb2, .fb3, .fb4, .fb5, .fb6');
-
-  // Toggle between day and night mode
   sky.addEventListener('click', function() {
     sky.classList.toggle('night-mode');
   });
-
-  // Toggle building lights on/off
   buildings.forEach(building => {
     building.addEventListener('click', function() {
     building.classList.toggle('lights-off');
