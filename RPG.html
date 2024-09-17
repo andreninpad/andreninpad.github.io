@@ -1,5 +1,3 @@
-<!--JavaScript is a powerful scripting language that can be use to make web pages interactive. It's one of the core technologies of the web, along with HTML and CSS. All modern browsers support JavaScript.
-Learn fundamental programming concepts in JavaScript by coding a Role Playing Game. Learn how to work with arrays, strings, objects, functions, loops, if/else statements, and more.-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,10 +99,6 @@ button:active {background: radial-gradient(#ffffff, #ffac33);}
 </div>
 </body>
 <script>
-/*JavaScript interacts with the HTML using the Document Object Model, or DOM. The DOM is a tree of objects that represents the HTML. HTML can be accessed using the document object, which represents the entire HTML document.
-One method for finding specific elements in the HTML is using the querySelector() method. The querySelector() method takes a CSS selector as an argument and returns the first element that matches that selector. For example, to find the <h1> element in the HTML, write as the example code:
-let h1 = document.querySelector("h1");
-Note that h1 is a string and matches the CSS selector you would use.*/
 let xp = 0;
 let health = 100;
 let gold = 50;
@@ -112,7 +106,6 @@ let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["stick"];
-/*Variables that is not going to be reassigned. If a variable is not going to be reassigned to a new value, it is best practice to use the const keyword to declare it instead of the let keyword. This will tell JavaScript to throw an error if accidentally reassigning it.*/
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
 const button3 = document.querySelector('#button3');
@@ -122,57 +115,15 @@ const healthText = document.querySelector('#healthText');
 const goldText = document.querySelector('#goldText');
 const monsterStats = document.querySelector('#monsterStats');
 const monsterName = document.querySelector('#monsterName');
-const monsterHealthText = document.querySelector('#monsterHealth');/*Use querySelector() to get the #monsterHealth element. Because #monsterHealth variable has already been declared earlier, it needs to use a different variable name for this element. Declare a new variable with the const keyword and name it monsterHealthText.*/
-const weapons = [
-{ name: 'stick', power: 5 },
-{ name: 'dagger', power: 30 },
-{ name: 'claw hammer', power: 50 },
-{ name: 'sword', power: 100 }
-  /*Objects are non primitive data types that store key-value pairs. Non primitive data types are mutable data types that are not undefined, null, boolean, number, string, or symbol. Mutable means that the data can be changed after it is created. Objects are similar to arrays, except that instead of using indexes to access and modify their data, access the data in objects through properties. Properties consist of a key and a value. The key is the name of the property, and the value is the data stored in the property. If the property name (key) of an object has a space in it, use single or double quotes around the name.
-  Here is the basic syntax for an object:
-  {
-    key: value,
-    "Space Name": "Kirk"
-  };
-  There are two ways to access the properties of an object: dot notation (.) and bracket notation ([]), similar to an array. Example Code: object.property;
-  Here is a sample of using dot notation (.) to read the name property of the developer object:
-  Example Code:
-  const developer = {
-    name: "Jessica",
-  };
-  //Output: Jessica
-  console.log(developer.name);
-  The second way to access the properties of an object is bracket notation ([]). If the property of the object you are trying to access has a space in its name, you will need to use bracket notation. Example Code: objectName["property name"];
-  Here is a sample of using bracket notation to read an object's property: Example Code:
-  const spaceObj = {
-    "Space Name": "Kirk",
-  };
-  spaceObj["Space Name"]; //"Kirk"
-  */
-];
-const monsters = [
-  {
-    name: "slime",
-    level: 2,
-    health: 15
-  },
-  {
-    name: "fanged beast",
-    level: 8,
-    health: 60
-  },
-  {
-    name: "dragon",
-    level: 20,
-    health: 300
-  }
-];
+const monsterHealthText = document.querySelector('#monsterHealth');
+const weapons = [{ name: 'stick', power: 5 }, { name: 'dagger', power: 30 }, { name: 'claw hammer', power: 50 }, { name: 'sword', power: 100 }];
+const monsters = [{name: "slime", level: 2, health: 15}, {name: "fanged beast", level: 8, health: 60}, { name: "dragon", level: 20, health: 300}];
 const locations = [
   {
     name: "town square",
     "button text": ["Go to store", "Go to cave", "Fight dragon"],
     "button functions": [goStore, goCave, fightDragon],
-    text: "You are in the town square. You see a sign that says \"Store\"."/*Wrap the text Store in double quotes. Because the string is already wrapped in double quotes, it must escape the quotes around Store. To escape them use a backslash \. Here is an example code: const escapedString = "Naomi likes to play \"Zelda\" sometimes.";*/
+    text: "You are in the town square. You see a sign that says \"Store\"."
   },
   {
     name: "store",
@@ -217,52 +168,26 @@ const locations = [
     text: "You found a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
   }
 ];
-
-// initialize buttons
 button1.onclick = goStore;
 button2.onclick = goCave;
-button3.onclick = fightDragon;/*button1, button2, and button3 represents the first, second, and third button elements. These elements have a special property called onclick, which can be use to determine what happens when someone clicks it. Access properties in JavaScript in a couple of different ways. The first is with dot notation. Here is an example of using dot notation to set the onclick property of a button to a function reference. Example Code: button.onclick = myFunction;
-In this example, button is the button element, and myFunction is a reference to a function. When the button is clicked, myFunction will be called.*/
+button3.onclick = fightDragon;
 
 function update(location) {
   monsterStats.style.display = "none";
-  button1.innerText = location["button text"][0];/*location["button text"][0] which represents the first element of the array.*/
+  button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
-  button3.innerText = location["button text"][2];/*The innerText property controls the text that appears in an HTML element. For example code: <p id="info">Demo content</p>
-  const info = document.querySelector("#info");
-  info.innerText = "Hello World";
-  The following example would change the text of the p element from Demo content to Hello World.*/
+  button3.innerText = location["button text"][2];
   button1.onclick = location["button functions"][0];
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
-  text.innerHTML = location.text;/*The innerHTML property allows you to access or modify the content inside an HTML element using JavaScript. The innerHTML property sets or returns the HTML content inside an element.
-  Here is a form element with a label and input element nested inside.
-  Example Code:
-  <form id="form">
-    <label for="first-name">First name</label>
-    <input id="first-name" type="text">
-  </form>
-  If you want to add another label and input element inside the form, then you can use the innerHTML property as shown below:    
-  Example Code:
-  const formElement = document.getElementById("form");
-  const formContent = `<label for="last-name">Last name</label>
-  <input id="last-name" type="text">`;
-  formElement.innerHTML += formContent;*/
+  text.innerHTML = location.text;
 };
 
-function goTown() {
-  update(locations[0]);/*To pass arguments by including them within the parentheses of the function call. For example, calling myFunction with an arg argument would look like: myFunction(arg)
-  The locations array contains two locations: the "town square" and the "store". Currently it's passing that entire array into the update function. Pass in only the first element of the locations array by adding [0] at the end of the variable. For example: myFunction(arg[0]);
-  This is called bracket notation. Values in an array are accessed by index. Indices are numerical values and start at 0, this is called zero-based indexing. An arg[0] would be the first element in the arg array.*/
-};
+function goTown() {update(locations[0]);};
 
-function goStore() {
-  update(locations[1]);
-};
+function goStore() {update(locations[1]);};
 
-function goCave() {
-  update(locations[2]);
-};
+function goCave() {update(locations[2]);};
 
 function buyHealth() {
   if (gold >= 10) {
@@ -329,7 +254,7 @@ function fightDragon() {
 function goFight() {
   update(locations[3]);
   monsterHealth = monsters[fighting].health;
-  monsterStats.style.display = "block";/*The style property is used to access the inline style of an element & the display property is used to set the visibility of an element.*/
+  monsterStats.style.display = "block";
   monsterName.innerText = monsters[fighting].name;
   monsterHealthText.innerText = monsterHealth;
 };
@@ -339,7 +264,7 @@ function attack() {
   text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {
-    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1; /*The Math object in JavaScript contains static properties and methods for mathematical constants and functions. One of those is Math.random(), which generates a random number from 0 (inclusive) to 1 (exclusive). Math.floor(), which rounds a given number down to the nearest integer. Using these, you can generate a random number within a range. For example, this generates a random number between 1 and 5: Math.floor(Math.random() * 5) + 1;.*/
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
   }
   else {
     text.innerText += " You miss.";
@@ -357,21 +282,20 @@ function attack() {
       defeatMonster();
     };
   };
-  if (Math.random() <= .1 && inventory.length !== 1) { //The logical AND operator (&&) to make both conditions the same.
+  if (Math.random() <= .1 && inventory.length !== 1) {
     text.innerText += " Your " + inventory.pop() + " breaks.";
-    currentWeapon--; //A decrement operator -- that can be used to decrease a variable's value by 1
+    currentWeapon--;
   };
 };
 
 function getMonsterAttackValue(level) {
-  const hit = (level * 5) - (Math.floor(Math.random() * xp)); //This will set the monster's attack to five times their level minus a random number between 0 and the player's xp.
+  const hit = (level * 5) - (Math.floor(Math.random() * xp)); 
   console.log(hit);
-  return hit > 0 ? hit : 0; //The ternary operator is a conditional operator and can be used as a one-line if-else statement. The syntax is: condition ? expressionIfTrue : expressionIfFalse
+  return hit > 0 ? hit : 0;
 };
 
 function isMonsterHit() {
-  return Math.random() > .2 || health < 20; //Player should hit if either Math.random() > 0.2 or if the player's health is less than 20
-  /*The logical OR operator (||) will use the first value if it is truthy, that is, anything apart from NaN, null, undefined, 0, -0, 0n, "", and false. Otherwise, it will use the second value.*/
+  return Math.random() > .2 || health < 20;
 };
 
 function dodge() {
@@ -379,20 +303,16 @@ function dodge() {
 };
 
 function defeatMonster() {
-  gold += Math.floor(monsters[fighting].level * 6.7); //Use Math.floor() to round the result down to the nearest integer.
+  gold += Math.floor(monsters[fighting].level * 6.7);
   xp += monsters[fighting].level;
   goldText.innerText = gold;
   xpText.innerText = xp;
   update(locations[4]);
 };
 
-function lose() {
-  update(locations[5]);
-};
+function lose() {update(locations[5]);};
 
-function winGame() {
-  update(locations[6]);
-};
+function winGame() {update(locations[6]);};
 
 function restart() {
   xp = 0;
@@ -406,33 +326,22 @@ function restart() {
   goTown();
 };
 
-function easterEgg() {
-  update(locations[7]);
-};
+function easterEgg() {update(locations[7]);};
 
-function pickTwo() {
-  pick(2);
-};
+function pickTwo() {pick(2);};
 
-function pickEight() {
-  pick(8);
-};
+function pickEight() {pick(8);};
 
 function pick(guess) {
   const numbers = [];
   while (numbers.length < 10) {
-    numbers.push(Math.floor(Math.random() * 11)); //To push a random number between 0 and 10 to the end of the numbers array.
+    numbers.push(Math.floor(Math.random() * 11));
   };
-  text.innerText = "You picked " + guess + ". Here are the random numbers:\n";  //\n => to escape from string quotes then proceeds to a new line.
+  text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
   for (let i = 0; i < 10; i++) {
     text.innerText += numbers[i] + "\n";
   };
-  if (numbers.includes(guess)) { /*The .includes() method determines if an array contains an element and will return either true or false. Here is an example of the .includes() syntax:
-    const numbersArray = [1, 2, 3, 4, 5]
-    const number = 3      
-    if (numbersArray.includes(number)) {
-      console.log("The number is in the array.")
-    }*/
+  if (numbers.includes(guess)) {
     text.innerText += "Right! You win 20 gold!";
     gold += 20;
     goldText.innerText = gold;
@@ -441,12 +350,8 @@ function pick(guess) {
     text.innerText += "Wrong! You lose 10 health!";
     health -= 10;
     healthText.innerText = health;
-    if (health <= 0) { //If health is less than or equal to zero, player loses.
-      lose();
-    }
+    if (health <= 0) {lose();}
   };
 };
 </script>
 </html>
-<!--One of the most powerful tools is the developer console. Depending on the browser, this might be opened by pressing F12 or Ctrl + Shift + I. On Mac, press Option + ⌘ + C and select "Console".
-The developer console will include errors that are produced by the code, but it can also be use to see values of variables in the code, which is helpful for debugging.-->
