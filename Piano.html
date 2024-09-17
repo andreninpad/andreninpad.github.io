@@ -1,87 +1,63 @@
-<!--Responsive Design tells the webpage how it should look on different-sized screens.
-Use CSS and Responsive Design to code a piano. Learn more about media queries and pseudo selectors.-->
-<!DOCTYPE html><!--Learn Responsive Web Design by Building a Piano-->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="Images/anp.svg" type="image/x-icon">
-  <title>Piano</title>
-  <style>
-    html {box-sizing: border-box;}
-    /*Browsers can apply default margin and padding values to specific elements. To make sure the piano looks correct, need to reset the box model.*/
-    
-    *, ::before, ::after {box-sizing: inherit;}
-    /*Now that it resets the html box model, it need to pass that on to the elements within as well. To do this, set the box-sizing property to inherit, which will tell the targeted elements to use the same value as the parent element.
-    
-    To target the pseudo-elements, which are special keywords that follow a selector. The two pseudo-elements will be the ::before and ::after pseudo-elements.
-    
-    The ::before selector creates a pseudo-element which is the first child of the selected element, while the ::after selector creates a pseudo-element which is the last child of the selected element. These pseudo-elements are often used to create cosmetic content.*/
-
-    #piano {
-      position: relative;
-      background-color: #00471b;
-      width: 992px;
-      height: 290px;
-      margin: 80px auto;
-      padding: 90px 20px 0 20px;/*Moves the keys into position*/
-      border-radius: 10px;/*To smooth the sharp edges of the piano*/
-    }
-
-    .keys {
-      background-color: #040404;
-      width: 949px;
-      height: 180px;
-      padding-left: 2px;
-      overflow: hidden;/*Noticed the keys collapse when the browser window is smaller than 768px. Set overflow to hidden in the first .keys selector, to take care of this issue. This property will hide any element that is pushed outside the set width value of .keys*/
-    }
-
-    .key {/*Styling for the individual key*/
-      background-color: #ffffff;
-      position: relative;
-      width: 41px;
-      height: 175px;
-      margin: 2px;
-      float: left;
-      border-radius: 0 0 3px 3px;/*To smooth the sharp edges of the piano keys*/
-    }
-
-    .key.black--key::after {
-      /*Now to create the black keys, add a new .key.black--key::after selector. This will target the elements with the class key black--key, and select the pseudo-element after these elements in the HTML.
-      The content property is used to set or override the content of the element. By default, the pseudo-elements created by the ::before and ::after pseudo-selectors are empty, and the elements will not be rendered to the page.
-      If you would like to experiment, try removing the background-color property and setting different values for the content property, such as "♥"*/
-      background-color: #1d1e22;
-      content: "";/*Setting the content property to an empty string "" will ensure the element is rendered to the page while still being empty.*/
-      position: absolute;
-      left: -18px;
-      width: 32px;
-      height: 100px;
-      border-radius: 0 0 3px 3px;/*To smooth the sharp edges of the piano black keys*/
-    }
-
-    .logo {
-      position: absolute;
-      width: 65px;
-      height: 65px;
-      top: 18px;
-    }
-
-    @media (max-width: 768px) {
-      #piano {width: 358px;}
-      .keys {width: 318px;}
-      .logo {width: 65px; height: 65px;}
-    }/*The @media at-rule, also known as a media query, is used to conditionally apply CSS. Media queries are commonly used to apply CSS based on the viewport width using the max-width and min-width properties. Can be used to change styles based on certain conditions.      
-    In the below example the padding is applied to the .card class when the viewport is 960px wide and below.
-    Example Code: @media (condition) { }
-    @media (max-width: 960px) {
-      .card {padding: 2rem;}
-      }Styles added will take effect when the document size is 960px wide or less.*/
-
-    @media (min-width: 769px) and (max-width: 1199px){
-      #piano {width: 675px;}
-      .keys {width: 633px;}
-    }/*Logical operators can be used to construct more complex media queries. The and logical operator is used to query two media conditions. For example, a media query that targets a display width between 500px and 1000px would be: @media (min-width: 500px) and (max-width: 1000px){}*/
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="Images/anp.svg" type="image/x-icon">
+<title>Piano</title>
+<style>
+html {box-sizing: border-box;}
+*, ::before, ::after {box-sizing: inherit;}
+#piano {
+  position: relative;
+  background-color: #00471b;
+  width: 992px;
+  height: 290px;
+  margin: 80px auto;
+  padding: 90px 20px 0 20px;
+  border-radius: 10px;
+}
+.keys {
+  background-color: #040404;
+  width: 949px;
+  height: 180px;
+  padding-left: 2px;
+  overflow: hidden;
+}
+.key {
+  background-color: #ffffff;
+  position: relative;
+  width: 41px;
+  height: 175px;
+  margin: 2px;
+  float: left;
+  border-radius: 0 0 3px 3px;
+}
+.key.black--key::after {
+  background-color: #1d1e22;
+  content: "";
+  position: absolute;
+  left: -18px;
+  width: 32px;
+  height: 100px;
+  border-radius: 0 0 3px 3px;
+}
+.logo {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  top: 18px;
+}
+@media (max-width: 768px) {
+  #piano {width: 358px;}
+  .keys {width: 318px;}
+  .logo {width: 65px; height: 65px;}
+}
+@media (min-width: 769px) and (max-width: 1199px){
+  #piano {width: 675px;}
+  .keys {width: 633px;}
+}
+</style>
 </head>
 <body>
   <div id="piano">
