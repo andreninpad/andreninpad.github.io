@@ -71,13 +71,14 @@ select[id="dropdown"], select[id="resources"] {
 label[id="comments"] {font-weight: bold;}
 a {color: crimson;}
 a:hover {color: lightblue;}
-input:hover[type='submit'] {color: crimson;}
+input:hover[type='submit'] {cursor: pointer; color: crimson;}
+#fundamentals:checked ~ #fundamental {display: block;}
 </style>
 </head>
 <body>
 <h1 id="title">My Coding Survey Form</h1>
 <p id="description">Thank you for your participation in the survey to improve my coding skills</p>
-<form id="survey-form">
+<form action="" id="survey-form">
   <fieldset><legend>Personal Details</legend>
     <label for="name" id="name-label">
       Full Name: <input name="name" type="text" id="name" placeholder="Fill in your Full Name" required>
@@ -89,24 +90,24 @@ input:hover[type='submit'] {color: crimson;}
       Age (optional): <input name="age" type="number" id="age" min="15" max="100" placeholder="Age" title="You may input your age between 15 to 100 only">
     </label>
 
-    <label for="dropdown">What is your current profession?
-      <select name="dropdown" id="dropdown" title="Select one from the list">
+    <label for="education">What is your current profession?
+      <select name="education" id="education" title="Select one from the list">
         <option value="" selected disabled>(Select one)</option>
-        <option value="1" title="Uneducated">No Formal Education</option>
-        <option value="2" title="Student">Student</option>
-        <option value="3" title="Primary Education">Primary Education</option>
-        <option value="4" title="Lower Secondary Education">Lower Secondary Education</option>
-        <option value="5" title="Upper Secondary Education">Upper Secondary Education</option>
-        <option value="6" title="Post-Secondary Non-Tertiary Education">Post-Secondary Non-Tertiary Education</option>
-        <option value="7" title="Associate Degree">Associate Degree</option>
-        <option value="8" title="Bachelor's Degree">Bachelor's Degree</option>
-        <option value="9" title="Postgraduate Diploma/Certificate">Postgraduate Diploma/Certificate</option>
-        <option value="10" title="Master's Degree">Master's Degree</option>
-        <option value="11" title="Doctorate (Ph.D.)">Doctorate (Ph.D.)</option>
-        <option value="12" title="Professional Degree">Professional Degree</option>
-        <option value="13" title="Post-Doctoral Education">Post-Doctoral Education</option>
-        <option value="14" title="If you prefer not to say">Prefer not to say</option>
-        <option value="15" title="Please specify other education">Other Education</option>
+        <option value="uneducated" title="Uneducated">No Formal Education</option>
+        <option value="student" title="Student">Student</option>
+        <option value="primary" title="Primary Education">Primary Education</option>
+        <option value="lower" title="Lower Secondary Education">Lower Secondary Education</option>
+        <option value="upper" title="Upper Secondary Education">Upper Secondary Education</option>
+        <option value="postsec" title="Post-Secondary Non-Tertiary Education">Post-Secondary Non-Tertiary Education</option>
+        <option value="associate" title="Associate Degree">Associate Degree</option>
+        <option value="bachelor" title="Bachelor's Degree">Bachelor's Degree</option>
+        <option value="postgrad" title="Postgraduate Diploma/Certificate">Postgraduate Diploma/Certificate</option>
+        <option value="master" title="Master's Degree">Master's Degree</option>
+        <option value="doctorate" title="Doctorate (Ph.D.)">Doctorate (Ph.D.)</option>
+        <option value="profdeg" title="Professional Degree">Professional Degree</option>
+        <option value="postdoc" title="Post-Doctoral Education">Post-Doctoral Education</option>
+        <option value="nosay" title="If you prefer not to say">Prefer not to say</option>
+        <option value="specific" title="Please specify other education">Other Specific Education</option>
       </select>
       <p id="uneducated" hidden>Individuals who have not received any formal schooling.</p>
       <p id="student" hidden>Still a student and studying.</p>
@@ -121,7 +122,7 @@ input:hover[type='submit'] {color: crimson;}
       <p id="doctorate" hidden>The highest academic degree awarded after several years of original research, typically requiring the completion of a dissertation.</p>
       <p id="profdeg" hidden>A degree that prepares individuals for specific professions, such as law (J.D.), medicine (M.D.), or pharmacy (Pharm.D.). These degrees often require advanced study beyond a bachelor`s or master's degree.</p>
       <p id="postdoc" hidden>Research or specialized study undertaken after the completion of a doctoral degree.</p>
-      <input type="text" id="otherEd" name="otherEd" title="Specify the educational details" placeholder="Input other education here..." hidden>
+      <input type="text" id="specify" name="specify" title="Specify the educational details" placeholder="Input other education here..." hidden>
     </label>
   </fieldset>
 
@@ -144,16 +145,16 @@ input:hover[type='submit'] {color: crimson;}
     <label for="resources"><b>Best resources for web development:</b>
       <select name="resources" id="resources" title="Select one from the list">
         <option value="" selected disabled>(select one)</option>
-        <option value="1">Online Learning Platform</option>
-        <option value="2">Documentation and Official Guides</option>
-        <option value="3">Books</option>
-        <option value="4">YouTube Channels</option>
-        <option value="5">Coding Challenges and Practices</option>
-        <option value="6">Developer Communities</option>
-        <option value="7">News and Blogs</option>
-        <option value="8">Specialized Tools</option>
-        <option value="9">All of the resources</option>
-        <option value="10">Give specific resource</option>
+        <option value="online">Online Learning Platform</option>
+        <option value="guides">Documentation and Official Guides</option>
+        <option value="books">Books</option>
+        <option value="youtube">YouTube Channels</option>
+        <option value="codingpractices">Coding Challenges and Practices</option>
+        <option value="devcom">Developer Communities</option>
+        <option value="newsblogs">News and Blogs</option>
+        <option value="tools">Specialized Tools</option>
+        <option value="all">All of the resources</option>
+        <option value="specific">Give specific or other resource</option>
       </select>
       <p id="online" hidden>
         <a href="https://www.freecodecamp.org"><b>freeCodeCamp:</b></a> Offers a comprehensive, free curriculum covering HTML, CSS, JavaScript, front-end libraries, data visualization, APIs, and more. It's highly practical and project-based.<br><br>
@@ -176,7 +177,7 @@ input:hover[type='submit'] {color: crimson;}
         <a href="https://www.youtube.com/@netninja"><b>The Net Ninja:</b></a> Provides extensive tutorials on various web development topics, including JavaScript, React, Node.js, and more.<br><br>
         <a href="https://www.youtube.com/@academind"><b>Academind:</b></a> Focuses on web development with courses on JavaScript, React, Node.js, and more.
       </p>
-        <p id="codingprac" hidden>
+        <p id="codingpractices" hidden>
         <a href="https://leetcode.com"><b>LeetCode:</b></a> Great for practicing algorithms and data structures, which are essential for web developers, especially when preparing for technical interviews.<br><br>
         <a href="https://www.hackerrank.com"><b>HackerRank:</b></a> Offers challenges in various programming languages, including those relevant to web development.<br><br>
         <a href="https://codepen.io"><b>CodePen:</b></a> A social development environment for front-end designers and developers, where you can build, test, and showcase your projects.
@@ -186,17 +187,19 @@ input:hover[type='submit'] {color: crimson;}
         <a href="https://www.reddit.com"><b>Reddit (r/webdev):</b></a> A community for discussing all things web development, from newbie questions to advanced topics.<br><br>
         <a href="https://github.com"><b>GitHub:</b></a> Explore open-source projects, contribute to repositories, and showcase your own work.
       </p>
-      <p id="newsblog" hidden>
+      <p id="newsblogs" hidden>
         <a href="https://www.smashingmagazine.com/"><b>Smashing Magazine:</b></a> Offers articles on web design and development, including UX, CSS, JavaScript, and more.<br><br>
         <a href="https://css-tricks.com/"><b>CSS-Tricks:</b></a> A go-to blog for CSS, but it also covers a broad range of front-end development topics.<br><br>
-        <a href="https://alistapart.com/"><b>A List Apart:</b></a> Focuses on web standards and best practices in web design and development.</p>
-        <p id="tools" hidden><a href="https://code.visualstudio.com"><b>Visual Studio Code:</b></a> A highly popular code editor with extensive extensions for web development.<br><br>
+        <a href="https://alistapart.com/"><b>A List Apart:</b></a> Focuses on web standards and best practices in web design and development.
+      </p>
+      <p id="tools" hidden>
+        <a href="https://code.visualstudio.com"><b>Visual Studio Code:</b></a> A highly popular code editor with extensive extensions for web development.<br><br>
         <a href="https://www.figma.com"><b>Figma:</b></a> An excellent tool for UI/UX design, which is increasingly important for web developers.<br><br>
         <a href="https://www.postman.com/"><b>Postman:</b></a> Great for API development and testing, making it easier to work with back-end services.
       </p>
       <p id="all" hidden>
         It's best to do all resources. Each of these resources is valuable depending on where you are in your web development journey. Start with a few that match your current needs and gradually expand to others as you advance.
-      </p><input type="text" id="otherResource" name="otherResource" title="Specify other resouce." placeholder="Input other resources here..." hidden>
+      </p><input type="text" id="specific" name="specific" title="Specify other resouce." placeholder="Input other resources here..." hidden>
     </label><br>
 
     <legend class="tips"><b>Give advices on best practices for web developement:</b></legend>
@@ -286,9 +289,9 @@ input:hover[type='submit'] {color: crimson;}
     Any comments or suggestions:<textarea name="comments" id="comments" placeholder="Your comments or suggestions here..." title="Input your comments or suggestions" rows="3" cols="30"></textarea>
   </label><input type="submit" value="Submit" id="submit" title="Click to complete and submit the survey!">
 </form>
-</body>
 <script>
-const education = document.getElementById('dropdown');
+//This script shows the other input textbox once selected then hides it once deselected
+const education = document.getElementById('education');
 const uneducated = document.getElementById('uneducated');
 const student = document.getElementById('student');
 const primary = document.getElementById('primary');
@@ -302,422 +305,423 @@ const master = document.getElementById('master');
 const doctorate = document.getElementById('doctorate');
 const profdeg = document.getElementById('profdeg');
 const postdoc = document.getElementById('postdoc');
-const otherEd = document.getElementById('otherEd');
+const specific = document.getElementById('specify');
 education.addEventListener('change', function() {
-if (this.value === '1') {
-  uneducated.style.display = 'block';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';          
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '2') {
-  uneducated.style.display = 'none';
-  student.style.display = 'block';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '3') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'block';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '4') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'block';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '5') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'block';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '6') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'block';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '7') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'block';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '8') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'block';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '9') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'block';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '10') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'block';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '11') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'block';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '12') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none'
-  profdeg.style.display = 'block';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '13') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none'
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'block';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
-}
-else if (this.value === '15') {
-  uneducated.style.display = 'none';
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'block';
-  otherEd.value = '';
-} 
-else {
-  uneducated.style.display = 'none'
-  student.style.display = 'none';
-  primary.style.display = 'none';
-  lower.style.display = 'none';
-  upper.style.display = 'none';
-  postsec.style.display = 'none';
-  associate.style.display = 'none';
-  bachelor.style.display = 'none';
-  postgrad.style.display = 'none';
-  master.style.display = 'none';
-  doctorate.style.display = 'none';
-  profdeg.style.display = 'none';
-  postdoc.style.display = 'none';
-  otherEd.style.display = 'none';
-  otherEd.value = '';
+  if (this.value === 'uneducated') {
+    uneducated.style.display = 'block'; //Shows the texts for Option 1, hides the rest
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';          
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
   }
-});
+  else if (this.value === 'student') {
+    uneducated.style.display = 'none';
+    student.style.display = 'block'; //Shows the texts for Option 2, hides the rest
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'primary') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'block'; //Shows the texts for Option 3, hides the rest
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'lower') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'block'; //Shows the texts for Option 4, hides the rest
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'upper') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'block'; //Shows the texts for Option 5, hides the rest
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'postsec') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'block'; //Shows the texts for Option 6, hides the rest
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'associate') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'block'; //Shows the texts for Option 7, hides the rest
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'bachelor') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'block'; //Shows the texts for Option 8, hides the rest
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'postgrad') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'block'; //Shows the texts for Option 9, hides the rest
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'master') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'block'; //Shows the texts for Option 10, hides the rest
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'doctorate') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'block'; //Shows the texts for Option 11, hides the rest
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'profdeg') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none'
+    profdeg.style.display = 'block'; //Shows the texts for Option 12, hides the rest
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'postdoc') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none'
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'block';//Shows the texts for Option 13, hides the rest
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'specific') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'block'; //Shows the input box for Option 15, hides the rest
+    specific.value = ''; //Clears the input's content
+  } 
+  else {
+    uneducated.style.display = 'none'
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    otherEd.style.display = 'none';
+    otherEd.value = ''; //Clears the input's content and hides all texts
+    }
+  });
 
+//Best resources for web development
 const resources = document.getElementById('resources');
 const online = document.getElementById('online');
 const guides = document.getElementById('guides');
 const books = document.getElementById('books');
 const youtube = document.getElementById('youtube');
-const codingprac = document.getElementById('codingprac');
-const devcom = document.getElementById('devcom');
-const newsblog = document.getElementById('newsblog');
+const codingPractices = document.getElementById('codingpractices');
+const devCom = document.getElementById('devcom');
+const newsBlogs = document.getElementById('newsblogs');
 const tools = document.getElementById('tools');
 const all = document.getElementById('all');
-const otherResource = document.getElementById('otherResource');
+const specify = document.getElementById('specific');
 resources.addEventListener('change', function() {
-if (this.value === '1') {
-  online.style.display = 'block';
+if (this.value === 'online') {
+  online.style.display = 'block'; //Shows the texts of Option 1, hides the rest
   guides.style.display = 'none';
   books.style.display = 'none';
   youtube.style.display = 'none';
-  codingprac.style.display = 'none';
-  devcom.style.display = 'none';
-  newsblog.style.display = 'none';
+  codingPractices.style.display = 'none';
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
   tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
 }
-else if (this.value === '2') {
+else if (this.value === 'guides') {
   online.style.display = 'none';
-  guides.style.display = 'block';
+  guides.style.display = 'block'; //Shows the texts of Option 2, hides the rest
   books.style.display = 'none';
   youtube.style.display = 'none';
-  codingprac.style.display = 'none';
-  devcom.style.display = 'none';
-  newsblog.style.display = 'none';
+  codingPractices.style.display = 'none';
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
   tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
 }
-else if (this.value === '3') {
+else if (this.value === 'books') {
   online.style.display = 'none';
   guides.style.display = 'none'
-  books.style.display = 'block';
+  books.style.display = 'block'; //Shows the texts of Option 3, hides the rest
   youtube.style.display = 'none';
-  codingprac.style.display = 'none';
-  devcom.style.display = 'none';
-  newsblog.style.display = 'none';
+  codingPractices.style.display = 'none';
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
   tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
 }
-else if (this.value === '4') {
-  online.style.display = 'none';
-  guides.style.display = 'none'
-  books.style.display = 'none';
-  youtube.style.display = 'block';
-  codingprac.style.display = 'none';
-  devcom.style.display = 'none';
-  newsblog.style.display = 'none';
-  tools.style.display = 'none';
-  all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
-}
-else if (this.value === '5') {
+else if (this.value === 'youtube') {
   online.style.display = 'none';
   guides.style.display = 'none'
   books.style.display = 'none';
-  youtube.style.display = 'none';
-  codingprac.style.display = 'block';
-  devcom.style.display = 'none';
-  newsblog.style.display = 'none';
+  youtube.style.display = 'block'; //Shows the texts of Option 4, hides the rest
+  codingPractices.style.display = 'none';
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
   tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
 }
-else if (this.value === '6') {
+else if (this.value === 'codingpractices') {
   online.style.display = 'none';
   guides.style.display = 'none'
   books.style.display = 'none';
   youtube.style.display = 'none';
-  codingprac.style.display = 'none'
-  devcom.style.display = 'block';
-  newsblog.style.display = 'none';
+  codingPractices.style.display = 'block'; //Shows the texts of Option 5, hides the rest
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
   tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
 }
-else if (this.value === '7') {
+else if (this.value === 'devcom') {
   online.style.display = 'none';
   guides.style.display = 'none'
   books.style.display = 'none';
   youtube.style.display = 'none';
-  codingprac.style.display = 'none'
-  devcom.style.display = 'none'
-  newsblog.style.display = 'block';
+  codingPractices.style.display = 'none'
+  devCom.style.display = 'block'; //Shows the texts of Option 6, hides the rest
+  newsBlogs.style.display = 'none';
   tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
 }
-else if (this.value === '8') {
+else if (this.value === 'newsblogs') {
   online.style.display = 'none';
   guides.style.display = 'none'
   books.style.display = 'none';
   youtube.style.display = 'none';
-  codingprac.style.display = 'none'
-  devcom.style.display = 'none'
-  newsblog.style.display = 'none'
-  tools.style.display = 'block';
+  codingPractices.style.display = 'none'
+  devCom.style.display = 'none'
+  newsBlogs.style.display = 'block'; //Shows the texts of Option 7, hides the rest
+  tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
 }
-else if (this.value === '9') {
+else if (this.value === 'tools') {
+  online.style.display = 'none';
+  guides.style.display = 'none'
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none'
+  devCom.style.display = 'none'
+  newsBlogs.style.display = 'none'
+  tools.style.display = 'block'; //Shows the texts of Option 8, hides the rest
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'all') {
   online.style.display = 'block';
   guides.style.display = 'block'
   books.style.display = 'block';
   youtube.style.display = 'block';
-  codingprac.style.display = 'block'
-  devcom.style.display = 'block'
-  newsblog.style.display = 'block'
+  codingPractices.style.display = 'block'
+  devCom.style.display = 'block'
+  newsBlogs.style.display = 'block'
   tools.style.display = 'block'
-  all.style.display = 'block';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  all.style.display = 'block'; //Shows all the Options texts, hides the rest
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
 }
-else if (this.value === '10') {
+else if (this.value === 'specific') {
   online.style.display = 'none';
   guides.style.display = 'none';
   books.style.display = 'none';
   youtube.style.display = 'none';
-  codingprac.style.display = 'none'
+  codingPractices.style.display = 'none'
   devcom.style.display = 'none';
-  newsblog.style.display = 'none';
+  newsBlogs.style.display = 'none';
   tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'block';
-  otherResource.value = '';
+  specify.style.display = 'block'; //Shows the input of Option 10, hides the rest
+  specify.value = ''; //Clears the input box content
 }
 else {
   online.style.display = 'none';
   guides.style.display = 'none';
   books.style.display = 'none';
   youtube.style.display = 'none';
-  codingprac.style.display = 'none'
-  devcom.style.display = 'none';
-  newsblog.style.display = 'none';
+  codingPractices.style.display = 'none'
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
   tools.style.display = 'none';
   all.style.display = 'none';
-  otherResource.style.display = 'none';
-  otherResource.value = '';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content and hides all texts
 }
 });
-
+// Array of checkbox-content pairs. Advices on best practices for web developement
 const practices = [
 { checkbox:document.getElementById('fundamentals'), content:document.getElementById('fundamental') },
 { checkbox:document.getElementById('technologies'), content:document.getElementById('tech') },
@@ -730,15 +734,13 @@ const practices = [
 { checkbox:document.getElementById('needs'), content:document.getElementById('need') },
 { checkbox:document.getElementById('work'), content:document.getElementById('life') }
 ];
+// Loop through each pair to add the event listener
 practices.forEach(pair => {
 pair.checkbox.addEventListener('change', function() {
-  if (pair.checkbox.checked) {
-    pair.content.style.display = 'block';
-  }
-  else {
-    pair.content.style.display = 'none';
-  }
+  if (pair.checkbox.checked) {pair.content.style.display = 'block';} // Show content when the checkbox is checked
+  else {pair.content.style.display = 'none';} // Hide content when the checkbox is unchecked
   });
 });
 </script>
+</body>
 </html>
