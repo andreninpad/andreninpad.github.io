@@ -1,0 +1,99 @@
+<!--The flexbox design the webpage so that it looks good on any screen size. Use flexbox to build a responsive photo gallery webpage.-->
+<!DOCTYPE html><!--Learn CSS flexbox by Building a Photo Gallery-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="Images/anp.svg" type="image/x-icon">
+  <title>Projects</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: dodgerblue;
+    }
+    header {
+      text-align: center;
+      padding: 32px;
+      background: #0A0A23;
+      color: #FFF;
+      border-bottom: 4px solid #165e08;
+    }
+    a img {
+      position: relative;
+      width: 50px;
+    }
+    a {text-decoration: none;}
+    .projects-gallery {
+      display: flex;
+      flex-direction: row;
+      flex-flow: wrap;
+      justify-content: center;
+      text-align: center;
+      margin: 0 auto 80px auto;
+      padding: 20px 10px;
+      gap: 80px 40px;
+    }
+    .project {
+      height: 300px;
+      width: 400px;
+    }
+    iframe {
+      height: 100%;
+      width: 100%;
+      font-size: 2rem;
+      border-radius: 10px;
+      transition: border-color 0.3s ease-out;
+    }
+    iframe:hover {
+      border-color: indigo;
+      border-radius: 10px;
+    }
+    .project p {
+      color: #FFF;
+      transition: color 0.3s ease-out;
+    }
+    .project:hover p {color: paleturquoise;}
+    code {
+      color: dodgerblue;
+      transition: color 0.3s ease-out;
+    }
+    .project:hover code {color: orangered;}
+    a {text-decoration: none;}
+  </style>
+</head>
+<body>
+  <main>
+    <header class="header">
+      <a href="/FreeCodeCamp/index.html"><img src="/FreeCodeCamp/HTML&CSS/Images/anp.svg" alt="My logo"></a>
+      <h1>PROJECT GALLERY</h1>
+    </header>
+    <div class="projects-gallery">
+      <a class="project" href="/FreeCodeCamp/HTML&CSS/18–FerrisWheel.html" target="_blank">
+        <iframe src="/FreeCodeCamp/HTML&CSS/18–FerrisWheel.html" title="Ferris Wheel"></iframe>
+        <p><code>&lt;/</code>Colorful Ferris Wheel<code>></code></p>
+      </a>
+      <a class="project" href="/FreeCodeCamp/HTML&CSS/19–Penguin.html" target="_blank">
+        <iframe src="/FreeCodeCamp/HTML&CSS/19–Penguin.html" title="Penguin"></iframe>
+        <p><code>&lt;/</code>Happy Flappy Penguin<code>></code></p>
+      </a>
+      <a class="project" href="/FreeCodeCamp/JavaScript/03–RPG_Basic_JS.html" target="_blank">
+        <iframe src="/FreeCodeCamp/JavaScript/03–RPG_Basic_JS.html" title="Role playing Game"></iframe>
+        <p><code>&lt;/</code>Role Playing Game<code>></code></p>
+      </a>
+      <a class="project" href="/FreeCodeCamp/HTML&CSS/YouTube-Clone/youtube-clone.html" target="_blank">
+        <iframe src="/FreeCodeCamp/HTML&CSS/YouTube-Clone/youtube-clone.html" title="YouTube Clone"></iframe>
+        <p><code>&lt;/</code>YouTube Clone<code>></code></p>
+      </a>
+      <a class="project" href="/FreeCodeCamp/JavaScript/06–RockPaperScissors.html" target="_blank">
+        <iframe src="/FreeCodeCamp/JavaScript/06–RockPaperScissors.html" title="Rock Paper Scissors"></iframe>
+        <p><code>&lt;/</code>Rock Paper Scissors<code>></code></p>
+      </a>
+      <a class="project" href="/FreeCodeCamp/JavaScript/TodoApp.html" target="_blank">
+        <iframe src="/FreeCodeCamp/JavaScript/TodoApp.html" title="Todo App"></iframe>
+        <p><code>&lt;/</code>Todo App<code>></code></p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
