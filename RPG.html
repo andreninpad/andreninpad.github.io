@@ -33,7 +33,6 @@ body {background-color: #0a0a23; display: flex;}
   gap: 10px;
 }
 #monsterStats {
-  display: none;
   border: 1px solid #0a0a23;
   padding: 5px;
   color: #ffffff;
@@ -89,7 +88,7 @@ button:active {background: radial-gradient(#ffffff, #ffac33);}
     <button id="button2">Go to cave</button>
     <button id="button3">Fight dragon</button>
   </div>
-  <div id="monsterStats">
+  <div id="monsterStats" hidden>
     <span class="stat">Monster Name: <strong><span id="monsterName"></span></strong></span>
     <span class="stat">Health: <strong><span id="monsterHealth"></span></strong></span>
   </div>
@@ -144,9 +143,9 @@ const locations = [
     text: "You are fighting a monster."
   },
   {
-    name: "kill monster",
+    name: "defeat monster",
     "button text": ["Go to town square", "Go to town square", "Go to town square"],
-    "button functions": [goTown, goTown, easterEgg], //The button for easterEgg.
+    "button functions": [goTown, goTown, goTown], //The button for easterEgg.
     text: 'The monster screams "Arg!" as it is defeated and vanishes. You gain experience points and finds gold.'
   },
   {
@@ -162,7 +161,7 @@ const locations = [
     text: "You defeated the dragon! YOU WON THE GAME! &#x1F389;"
   },
   {
-    name: "easter egg",
+    name: "bonus",
     "button text": ["2", "8", "Go to town square?"],
     "button functions": [pickTwo, pickEight, goTown],
     text: "You found a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
@@ -308,7 +307,16 @@ function defeatMonster() {
   goldText.innerText = gold;
   xpText.innerText = xp;
   update(locations[4]);
+  const buttons = [button1, button2, button3];
+  const randomIndex = Math.floor(Math.random() * buttons.length);
+  buttons[randomIndex].innerText = 'Go to town square';
+  buttons[randomIndex].onclick = triggerBonus;
 };
+
+function triggerBonus() {
+  alert("You found a bonus game!");
+  bonusRound();
+}
 
 function lose() {update(locations[5]);};
 
@@ -326,7 +334,7 @@ function restart() {
   goTown();
 };
 
-function easterEgg() {update(locations[7]);};
+function bonusRound() {update(locations[7]);};
 
 function pickTwo() {pick(2);};
 
