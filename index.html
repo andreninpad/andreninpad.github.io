@@ -65,21 +65,35 @@
       position: fixed;
       left: 0;
       width: 100%;
-      background: transparent;
     }
-    .nav-list {
+    li {position: relative;}
+    ul {
+      list-style: none;
+      margin: 10px;
       display: flex;
+      justify-content: space-around;
       margin-right: 2rem;
     }
-    .nav-list a:hover {
-      background-color: var(--color4);
-    }
-    .nav-list a {
-      display: block;
+    ul a {
       font-size: 2.2rem;
-      padding: 2rem;
-      transition: background-color 0.3s ease-out;
-      border-radius: 10px;
+      padding: 2rem;;
+    }
+    ul a:hover::after {
+      width: 100%;
+      left: 0;
+      transform: translateX(0);
+      background-color: white;
+    }
+    ul a::after {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 3px;
+      transition: all 0.4s ease-in-out;
+      transform: translateX(-50%);
     }
     #welcome-section {
       display: flex;
