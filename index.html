@@ -346,7 +346,8 @@ function handleScroll() {
     };
   };
 };
-window.onbeforeunload = function() {window.scrollTo(0, 0);};
+if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';};
+window.addEventListener('load', function() {window.scrollTo(0, 0);});
 window.addEventListener('scroll', handleScroll);
 </script>
 </html>
