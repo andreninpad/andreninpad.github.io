@@ -78,12 +78,6 @@
       font-size: 2.2rem;
       padding: 2rem;;
     }
-    ul a:hover::after {
-      width: 100%;
-      left: 0;
-      transform: translateX(0);
-      background-color: white;
-    }
     ul a::after {
       display: block;
       content: '';
@@ -94,7 +88,20 @@
       height: 3px;
       transition: all 0.4s ease-in-out;
       transform: translateX(-50%);
+      background-color: white;
     }
+    ul a:hover::after {
+      width: 100%;
+      left: 0;
+      transform: translateX(0);
+    }
+    ul a.hovering-active::after {width: 0;}
+    ul a.active::after {
+      width: 100%;
+      left: 0;
+      transform: translateX(0);
+    }
+    ul a.active {color: white;}
     #welcome-section {
       display: flex;
       flex-direction: column;
@@ -167,7 +174,7 @@
       transform: translateX(0);
       transition: transform 0.3s ease-out;
     }
-    .profile-section {
+    #profile-section {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -218,9 +225,9 @@
   </style>
 </head>
 <body>
-  <nav id="navbar">
+  <nav>
     <a href="https://andreninpad.github.io/portfolio"><img src="Images/anp.svg" alt="My logo"></a>
-    <ul class="nav-list">
+    <ul>
       <li><a href="#welcome-section">Profile</a></li>
       <li><a href="#projects-section">Projects</a></li>
       <li><a href="#profile-links">Info</a></li>
@@ -260,7 +267,7 @@
     </div>
     <a href="projects.html" class="show-all"><i class="fa fa-chevron-right"> View More</i></a>
   </section>
-  <section class="profile-section">
+  <section id="profile-section">
       <h2 class="profile-header">We work together...</h2>
       <p><i>We flourish together!</i></p>
     </div>
@@ -290,4 +297,56 @@
     <p>&copy; Andre Niño Padayhag</p>
   </footer>
 </body>
+<script>
+const navLinks = document.querySelectorAll('nav ul li a');
+const sections = document.querySelectorAll('section');
+let currentActiveLink = document.querySelector('a.active');
+
+function removeActiveClass() {
+  navLinks.forEach(link => link.classList.remove('active'));
+};
+
+navLinks.forEach(link => {
+  link.addEventListener('mouseenter', function() {
+    if (currentActiveLink && currentActiveLink !== this) {
+      currentActiveLink.classList.add('hovering-active');
+    };
+  });
+
+  link.addEventListener('mouseleave', function() {
+    if (currentActiveLink && currentActiveLink !== this) {
+      currentActiveLink.classList.remove('hovering-active');
+    };
+  });
+
+  link.addEventListener('click', function() {
+    removeActiveClass();
+    this.classList.add('active');
+    currentActiveLink = this;
+  });
+});
+
+function handleScroll() {
+  let currentSection = null;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    if (window.scrollY >= sectionTop - sectionHeight / 3) {
+      currentSection = section;
+    };
+  });
+
+  if (currentSection) {
+    const currentLink = document.querySelector(`nav ul li a[href="#${currentSection.id}"]`);
+    if (currentLink !== currentActiveLink) {
+      removeActiveClass();
+      currentLink.classList.add('active');
+      currentActiveLink = currentLink;
+    };
+  };
+};
+window.onbeforeunload = function() {window.scrollTo(0, 0);};
+window.addEventListener('scroll', handleScroll);
+</script>
 </html>
