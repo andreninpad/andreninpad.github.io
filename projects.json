@@ -1,18 +1,18 @@
 [
   {
-    "url": "/FreeCodeCamp/HTML&CSS/05–SurveyForm.html",
+    "url": "SurveyForm.html",
     "title": "Survey Form"
   },
   {
-    "url": "/FreeCodeCamp/HTML&CSS/10–TributePage.html",
+    "url": "TributePage.html",
     "title": "Tribute Page"
   },
   {
-    "url": "/FreeCodeCamp/HTML&CSS/12–CatPainting.html",
+    "url": "CatPainting.html",
     "title": "Cat Head Painting"
   },
   {
-    "url": "/FreeCodeCamp/HTML&CSS/13–Piano.html",
+    "url": "Piano.html",
     "title": "Piano"
   },
   {
@@ -20,43 +20,43 @@
     "title": "Technical Documentation"
   },
   {
-    "url": "/FreeCodeCamp/HTML&CSS/15–CitySkyline.html",
+    "url": "CitySkyline.html",
     "title": "Interactive City Skyline"
   },
   {
-    "url": "/FreeCodeCamp/HTML&CSS/18–FerrisWheel.html",
+    "url": "FerrisWheel.html",
     "title": "Colorful Ferris Wheel"
   },
   {
-    "url": "/FreeCodeCamp/HTML&CSS/19–Penguin.html",
+    "url": "Penguin.html",
     "title": "Happy Flappy Penguin"
   },
   {
-    "url": "/FreeCodeCamp/JavaScript/03–RPG_Basic_JS.html",
+    "url": "RPG.html",
     "title": "Role Playing Game"
   },
   {
-    "url": "/FreeCodeCamp/HTML&CSS/YouTube-Clone/youtube-clone.html",
-    "title": "YouTube Clone"
+    "url": "YouTube-Clone/YouTube-Mimic.html",
+    "title": "YouTube Mimic"
   },
   {
-    "url": "/FreeCodeCamp/JavaScript/06–RockPaperScissors.html",
+    "url": "RockPaperScissors.html",
     "title": "Rock Paper Scissors"
   },
   {
-    "url": "/FreeCodeCamp/JavaScript/11–TodoApp.html",
+    "url": "TodoApp.html",
     "title": "Todo App"
   },
   {
-    "url": "/FreeCodeCamp/JavaScript/19–ShoppingCart.html",
+    "url": "ShoppingCart.html",
     "title": "Shopping Cart"
   },
   {
-    "url": "/FreeCodeCamp/JavaScript/20–PlatformerGame.html",
+    "url": "PlatformerGame.html",
     "title": "Platformer Game"
   },
   {
-    "url": "/FreeCodeCamp/JavaScript/21–AdvancedDiceGame.html",
+    "url": "AdvancedDiceGame.html",
     "title": "Advanced Dice Game"
   }
 ]
