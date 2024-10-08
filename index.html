@@ -272,7 +272,7 @@
   <section id="projects-section">
     <h2 class="projects-header">Some of my Projects</h2>
     <div class="projects-grid"></div>
-    <a class="show-more"><i class="fa fa-chevron-down"> View More</i></a>
+    <a class="show-more"><i class="fa fa-chevron-down"></i> View More</a>
   </section>
   <section id="profile-section">
       <h2 class="profile-header">We work together...</h2>
@@ -357,11 +357,11 @@ function handleScroll() {
       currentActiveLink = currentLink;
     };
   };
-}; //Function to detect scroll and highlight the nav link corresponding to the visible section
+};
 
-if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';}; //Disable scroll restoration to force the browser to start at the top
-window.addEventListener('load', window.scrollTo(0, 0)); //Immediately scroll to the top after the page is fully loaded
-window.addEventListener('scroll', handleScroll); //Listen for the scroll event
+if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';};
+window.addEventListener('load', window.scrollTo(0, 0));
+window.addEventListener('scroll', handleScroll);
 
 fetch('projects.json').then(respond => respond.json()).then(data => {
   projectDataArr = data;
@@ -379,7 +379,7 @@ function fetchProjects() {
         allProjectsLoaded = false;
         viewMoreBtn.classList.remove('view-less');
         viewMoreBtn.classList.add('view-more');
-        viewMoreBtn.innerHTML = '<i class="fa fa-chevron-down"> View More</i>';
+        viewMoreBtn.innerHTML = '<i class="fa fa-chevron-down"></i> View More';
       };
     };
   } else {
@@ -390,7 +390,7 @@ function fetchProjects() {
       allProjectsLoaded = true;
       viewMoreBtn.classList.remove('view-more');
       viewMoreBtn.classList.add('view-less');
-      viewMoreBtn.innerHTML = '<i class="fa fa-chevron-up"> Show Less</i>';
+      viewMoreBtn.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
     };
   };
 };
