@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <link rel="shortcut icon" href="Images/anp.svg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="shortcut icon" href="HTML&CSS/Images/anp.svg" type="image/x-icon">
   <title>Andre Niño Portfolio</title>
   <style>
     :root {
@@ -50,7 +50,6 @@
     }
     h1 {font: 6rem;}
     h2 {font-size: 4.2rem;}
-    ul {list-style: none;}
     a img {
       position: absolute;
       width: 40px;
@@ -118,6 +117,7 @@
       color: var(--color2);
     }
     #projects-section {
+      height: auto;
       text-align: center;
       padding: 10rem 2rem;
       background: var(--color3);
@@ -156,21 +156,54 @@
     }
     .project:hover code {color: orangered;}
     a {
+      cursor: pointer;
       text-decoration: none;
       color: var(--color1);
     }
-    .show-all {
+    .show-more {
       font-size: 2rem;
       background: var(--color3);
       transition: 0.3s ease-out;
     }
-    .show-all:hover i {
+    .show-more:hover i {
       color: var(--color2);
-      transform: translateX(2px);
+      transform: translateY(2px);
     }
-    .show-all i {
+    .show-more i {
       margin-left: 10px;
-      transform: translateX(0);
+      transform: translateY(0);
+      transition: transform 0.3s ease-out;
+    }
+    .show-more.view-more {
+      font-size: 2rem;
+      background: var(--color3);
+      transition: 0.3s ease-out;
+    }
+    
+    .show-more.view-more:hover i {
+      color: var(--color2);
+      transform: translateY(2px);
+    }
+    
+    .show-more.view-more i {
+      margin-left: 10px;
+      transform: translateY(0);
+      transition: transform 0.3s ease-out;
+    }
+    .show-more.view-less {
+      font-size: 2rem;
+      background: var(--color3);
+      transition: 0.3s ease-out;
+    }
+    
+    .show-more.view-less:hover i {
+      color: var(--color2);
+      transform: translateY(-2px);
+    }
+    
+    .show-more.view-less i {
+      margin-left: 10px;
+      transform: translateY(0);
       transition: transform 0.3s ease-out;
     }
     #profile-section {
@@ -225,7 +258,7 @@
 </head>
 <body>
   <nav>
-    <a href="https://andreninpad.github.io/portfolio"><img src="Images/anp.svg" alt="My logo"></a>
+    <a href="index.html"><img src="HTML&CSS/Images/anp.svg" alt="My logo"></a>
     <ul>
       <li><a href="#welcome-section" class="active">Profile</a></li>
       <li><a href="#projects-section">Projects</a></li>
@@ -233,61 +266,36 @@
     </ul>
   </nav>
   <section id="welcome-section">
-    <h1>Hey I am Andre Niño</h1>
+    <h1>Hi, I am Andre Niño</h1>
     <p>web developer<br>data analyst</p>
   </section>
   <section id="projects-section">
     <h2 class="projects-header">Some of my Projects</h2>
-    <div class="projects-grid">
-      <a class="project" href="SurveyForm.html" target="_blank">
-        <iframe src="SurveyForm.html" alt="Survey Form" title="Survey Form"></iframe>
-        <p><code>&lt;/</code>Survey Form<code>></code></p>
-      </a>
-      <a class="project" href="TributePage.html" target="_blank">
-        <iframe src="TributePage.html" alt="Tribute Page" title="Tribute Page"></iframe>
-        <p><code>&lt;/</code>Tribute Page<code>></code></p>
-      </a>
-      <a class="project" href="CatPainting.html" target="_blank">
-        <iframe src="CatPainting.html" alt="Cat Head Painting" title="Cat Painting"></iframe>
-        <p><code>&lt;/</code>Cat Painting<code>></code></p>
-      </a>
-      <a class="project" href="Piano.html" target="_blank">
-        <iframe src="Piano.html" alt="Piano" title="Piano"></iframe>
-        <p><code>&lt;/</code>Piano<code>></code></p>
-      </a>
-      <a class="project" href="TechDocPage.html" target="_blank">
-        <iframe src="TechDocPage.html" alt="Technical Documentation" title="Technical Documentation"></iframe>
-        <p><code>&lt;/</code>Technical Documentation<code>></code></p>
-      </a>
-      <a class="project" href="CitySkyline.html" target="_blank">
-        <iframe src="CitySkyline.html" title="City Skyline"></iframe>
-        <p><code>&lt;/</code>Interactive City Skyline<code>></code></p>
-      </a>
-    </div>
-    <a href="projects.html" class="show-all"><i class="fa fa-chevron-right"> View More</i></a>
+    <div class="projects-grid"></div>
+    <a class="show-more"><i class="fa fa-chevron-down"> View More</i></a>
   </section>
   <section id="profile-section">
       <h2 class="profile-header">We work together...</h2>
-      <p><i>We flourish together!</i></p>
+      <p><i>We grow together!</i></p>
     </div>
     <div id="profile-links">
       <a href="https://www.facebook.com/andreninpad" title="Facebook" target="_blank">
-        <i class="fab fa-facebook">acebook</i>
+        <i class="fab fa-facebook"></i>acebook
       </a>
       <a href="https://www.linkedin.com/in/andreninpad" title="LinkedIn" target="_blank">
         Linked<i class="fab fa-linkedin-in"></i>
       </a>
       <a href="https://github.com/andreninpad" title="Github" target="_blank">
-        <i class="fab fa-github">Github</i>
+        <i class="fab fa-github"></i>Github
       </a>
       <a href="https://twitter.com/andreninpad" title="Twitter" target="_blank">
-        <i class="fab fa-twitter">Twitter</i>
+        <i class="fab fa-twitter"></i>Twitter
       </a>
       <a href="mailto:andreninpad@live.com.ph" title="Send a mail" target="_blank">
         Send <i class="fas fa-at"></i> mail
       </a>
       <a href="tel:+639954537928" title="Let's talk" target="_blank">
-        <i class="fas fa-mobile-alt"> Call me</i>
+        <i class="fas fa-mobile-alt"></i> Call me
       </a>
     </div>
   </section>
@@ -297,15 +305,22 @@
   </footer>
 </body>
 <script>
+//Get all navigation links and sections
 const navLinks = document.querySelectorAll('nav ul li a');
 const sections = document.querySelectorAll('section');
+const projectsContainer = document.querySelector('.projects-grid');
+const viewMoreBtn = document.querySelector('.show-more')
 let currentActiveLink = document.querySelector('a.active');
+let startingIndex = 0;
+let endingIndex = 6;
+let projectDataArr = [];
+let allProjectsLoaded = false;
 
-function removeActiveClass() {
+function removeActiveClass() { 
   navLinks.forEach(link => link.classList.remove('active'));
-};
+}; //Function to remove the 'active' class from all links
 
-navLinks.forEach(link => {
+navLinks.forEach(link => { //Function to add hover and click behavior to the links
   link.addEventListener('mouseenter', function() {
     if (currentActiveLink && currentActiveLink !== this) {
       currentActiveLink.classList.add('hovering-active');
@@ -327,7 +342,6 @@ navLinks.forEach(link => {
 
 function handleScroll() {
   let currentSection = null;
-
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
@@ -335,7 +349,6 @@ function handleScroll() {
       currentSection = section;
     };
   });
-
   if (currentSection) {
     const currentLink = document.querySelector(`nav ul li a[href="#${currentSection.id}"]`);
     if (currentLink !== currentActiveLink) {
@@ -344,9 +357,54 @@ function handleScroll() {
       currentActiveLink = currentLink;
     };
   };
+}; //Function to detect scroll and highlight the nav link corresponding to the visible section
+
+if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';}; //Disable scroll restoration to force the browser to start at the top
+window.addEventListener('load', window.scrollTo(0, 0)); //Immediately scroll to the top after the page is fully loaded
+window.addEventListener('scroll', handleScroll); //Listen for the scroll event
+
+fetch('projects.json').then(respond => respond.json()).then(data => {
+  projectDataArr = data;
+  displayProjects(projectDataArr.slice(startingIndex, endingIndex));
+}).catch(err => projectsContainer.innerHTML = `<p class="error-msg">There was an error loading the projects</p>`);
+
+function fetchProjects() {
+  if (allProjectsLoaded) {
+    if (startingIndex > 0) {
+      startingIndex -= 6;
+      endingIndex -= 6;    
+      projectsContainer.innerHTML = '';
+      displayProjects(projectDataArr.slice(0, endingIndex));
+      if (startingIndex === 0) {
+        allProjectsLoaded = false;
+        viewMoreBtn.classList.remove('view-less');
+        viewMoreBtn.classList.add('view-more');
+        viewMoreBtn.innerHTML = '<i class="fa fa-chevron-down"> View More</i>';
+      };
+    };
+  } else {
+    startingIndex += 6;
+    endingIndex += 6;  
+    displayProjects(projectDataArr.slice(startingIndex, endingIndex));  
+    if (projectDataArr.length <= endingIndex) {
+      allProjectsLoaded = true;
+      viewMoreBtn.classList.remove('view-more');
+      viewMoreBtn.classList.add('view-less');
+      viewMoreBtn.innerHTML = '<i class="fa fa-chevron-up"> View Less</i>';
+    };
+  };
 };
-if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';};
-window.addEventListener('load', function() {window.scrollTo(0, 0);});
-window.addEventListener('scroll', handleScroll);
+
+const displayProjects = projects => projects.forEach(({url, title}, index) => {
+  projectsContainer.innerHTML += `
+    <div id="${index}" class="projects-grid">
+      <a class="project" href="${url}" target="_blank">
+        <iframe src="${url}" alt="${title}" title="${title}"></iframe>
+        <p><code>&lt;/</code>${title}<code>></code></p>
+      </a>
+    </div>`;
+});
+
+viewMoreBtn.onclick = fetchProjects;
 </script>
 </html>
