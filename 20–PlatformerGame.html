@@ -1,0 +1,291 @@
+<!--Learn Intermediate OOP by Building a Platformer Game. Coding a game is a great way to grasp fundamental programming principles, while also creating an interactive gaming experience. Continue to learn about classes, objects, inheritance, and encapsulation. Also learn how to design and organize game elements efficiently and gain insights into problem-solving and code reusability.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../HTML&CSS/Images/anp.svg" type="image/x-icon">
+  <title>Platformer Game</title>
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      background-color: #0a0a23;
+      overflow: hidden;
+    }
+    .start-screen {
+      background-color: #ffffff;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      border-radius: 30px;
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .main-title {text-align: center;}
+    p:not(.checkpoint-screen p) {
+      text-align: center;
+      font-size: 1.2rem;
+      margin: 10px;
+      line-height: 2rem;
+    }
+    button {
+      cursor: pointer;
+      width: 100px;
+      margin: 10px;
+      color: #0a0a23;
+      font-size: 18px;
+      background-color: #feac32;
+      background-image: linear-gradient(#fecc4c, #ffac33);
+      border-color: #feac32;
+      border-width: 3px;
+    }
+    button:hover {background-image: linear-gradient(#ffcc4c, #f89808);}
+    .checkpoint-screen {
+      position: absolute;
+      top: 100px;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      text-align: center;
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 10px;
+    }
+    @media (min-width: 768px) {
+      body {width: fit-content; height: fit-content;}
+      .start-screen {width: 60%; max-width: 700px;}
+      .checkpoint-screen {max-width: 300px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="start-screen">
+    <h1 class="main-title">freeCodeCamp Code Warrior</h1>
+    <p>Help the main player navigate to the yellow checkpoints.</p>
+    <p>Use the keyboard arrows to move the player around.</p>
+    <p>Press the up arrow or the spacebar to jump.</p>
+    <button type="button" id="start-button">Start Game</button>
+  </div>
+  <div class="checkpoint-screen" hidden>
+    <h2>Congrats!</h2>
+    <p>You reached the last checkpoint.</p>
+  </div>
+  <canvas></canvas>
+</body>
+<script>
+const startBtn = document.getElementById('start-button');
+const canvas = document.querySelector('canvas');
+const startScreen = document.querySelector('.start-screen');
+const checkpointScreen = document.querySelector('.checkpoint-screen');
+const checkpointMessage = document.querySelector>('.checkpoint-screen > p'); //Use the child combinator > to target the paragraph element.
+const ctx = canvas.getContext('2d'); //The Canvas API can be used to create graphics in games using JavaScript and the HTML canvas element. Use the getContext method which will provide the context for where the graphics will be rendered. Example Code: canvas.getContext("2d");
+canvas.width = innerWidth; //The canvas element has a width property which is a positive number that represents the width of the canvas. Example Code: canvas.width; The innerWidth property is a number that represents the interior width of the browser window.
+canvas.height = innerHeight; //The innerHeight property is a number that represents the interior height of the browser window.
+const gravity = 0.5; //In platformer game, the main player will need to jump between the different platforms. When the player jumps, it has to apply gravity to bring them back down.
+let isCheckpointCollisionDetectionActive = true; //In the game, the player will have the opportunity to cross different checkpoints. Need to keep track of the status for the checkpoint collision detection.
+const proportionalSize = size => {return innerHeight < 500 ? Math.ceil((size / 500) * innerHeight) : size;}; //By designing the game, need to make sure that the size of the elements in the game are responsive and adapt to different screen sizes. The width and the height of the main player, platforms and checkpoints will be proportional sized relative to the innerHeight of the browser screen. The goal is to make the game responsive and visually consistent across different screen sizes.
+class Player {
+  constructor() {
+    this.position = {x: proportionalSize(10), y: proportionalSize(400)}; //Use the proportionalSize function here to make sure that the player's position is always proportional to the screen size. This is important because the player must to be able to move around the screen regardless of the screen size.
+    this.velocity = {x: 0, y: 0}; //The velocity property will be used to store the player's speed in the x and y directions.
+    this.width = proportionalSize(40); //Use proportionalSize() function to set the width properties of the class to be proportional to the height of the screen.
+    this.height = proportionalSize(40); //Use proportionalSize() function to set the height properties of the class to be proportional to the height of the screen.
+  };
+  draw() {
+    ctx.fillStyle = '#99c9ff'; //To set the color for the player.
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height); //To create the player's shape by calling the fillRect() method on the ctx object which was instantiated. Example Code: fillRect(x, y, width, height);
+  }; //A draw() method, which will be responsible for creating the player's width, height, position, and fill color.
+  update() {
+    this.draw(); //Call the draw() method to ensure that the player is continually drawn on the screen as the game updates.
+    this.position.x += this.velocity.x; //When the player moves, it need to adjust its velocity. Use the addition assignment operator to add the velocity's x coordinate to the player's x position.
+    this.position.y += this.velocity.y; //When the player jumps, it need to add the logic for adjusting its velocity. Use the addition assignment operator to add the velocity's y coordinate to the player's y position.
+    if (this.position.y + this.height + this.velocity.y <= canvas.height) {
+      if (this.position.y < 0) {
+        this.position.y = 0; //Set player's y position to 0
+        this.velocity.y = gravity; //Set gravity to the velocity's y position.
+      }; //Check if the player's y position is less than 0
+      this.velocity.y += gravity; //Use the addition assignment operator to add gravity to the y velocity.
+    } //When the player jumps, it is possible for it to move past the height of the canvas. To fix it, need to add a condition to stop the player from falling past the height of the canvas.
+    else {this.velocity.y = 0;};
+    if (this.position.x < this.width) {this.position.x = this.width;}; //To ensure that the player stays within the boundaries of the canvas screen and doesn't move too far off to the left.
+    if (this.position.x >= canvas.width - this.width * 2) {
+      this.position.x = canvas.width - this.width * 2 //This will ensure that the player's x position will never exceed the right edge of the canvas.
+    }; //To check if the player's x position has exceeded the right edge of the canvas. If it has, need to set the player's x position to the maximum value so the player does not accidentally go off screen to the right.
+  }; //An update() method which will be responsible for updating the player's position and velocity as it moves throughout the game.
+};
+
+class Platform {
+  constructor(x, y) {
+    this.position = {x, y}; //*When working with objects where the property name and value are the same, use the shorthand property name syntax. This syntax allows to omit the property value if it is the same as the property name. Example Code: obj = {a, b, c}; using shorthand property name syntax. The following code is the same as: obj = {a: a, b: b, c: c};
+    this.width = 200;
+    this.height = proportionalSize(40); //Use the proportionalSize() function to make sure the height is proportional to the screen size.
+  }; //A constructor that takes in the x and y coordinates.
+  draw() {
+    ctx.fillStyle = '#acd157';
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height); //Call the ctx.fillRect method and pass in the x and y coordinates, along with the width and height properties. Remember to include this before each property.
+  };
+};
+
+class CheckPoint {
+  constructor(x, y, z) {
+    this.position = {x, y};
+    this.width = proportionalSize(40); //To add the width to the CheckPoint class.
+    this.height = proportionalSize(70); //To add the height to the CheckPoint class.
+    this.claimed = false; //Use the this keyword to add a new claimed property and assign it the value of false. This property will be used to check if the player has reached the checkpoint.
+  }; //A constructor with x, y and z parameters.
+  draw() {
+    ctx.fillStyle = '#f1be32'; //Assign the fillStyle property on the ctx object the hex color "#f1be32".
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height); //Use the fillRect method on the ctx object and pass in the x, y, width, and height properties as arguments.
+  };
+  claim() {
+    this.width = 0;
+    this.height = 0;
+    this.position.y = Infinity;
+    this.claimed = true;
+  };
+}; //To add the logic for the checkpoints. When a player collides with a checkpoint, the checkpoint screen should appear.
+
+const player = new Player(); //Use the new keyword to create a new instance of the Player object and assign it to a new const variable called player.
+
+const platformPositions = [
+  {x: 500, y: proportionalSize(450)},
+  {x: 700, y: proportionalSize(400)},
+  {x: 850, y: proportionalSize(350)},
+  {x: 900, y: proportionalSize(350)},
+  {x: 1050, y: proportionalSize(150)},
+  {x: 2500, y: proportionalSize(450)},
+  {x: 2900, y: proportionalSize(400)},
+  {x: 3150, y: proportionalSize(350)},
+  {x: 3900, y: proportionalSize(450)},
+  {x: 4200, y: proportionalSize(400)},
+  {x: 4400, y: proportionalSize(200)},
+  {x: 4700, y: proportionalSize(150)}
+]; //List of positions for the platforms.
+
+const platforms = platformPositions.map(platform => new Platform(platform.x, platform.y)); //List of new platform instances using the Platform class. Will later reference this list to draw the platforms on the canvas. In the map callback function, pass in platform for the parameter and implicitly return the creation of a new Platform instance with the platform.x and platform.y values passed in as arguments.
+
+const checkpointPositions = [
+  {x: 1170, y: proportionalSize(80), z: 1},
+  {x: 2900, y: proportionalSize(330), z: 2},
+  {x: 4800, y: proportionalSize(80), z: 3}
+]; //List of positions for the checkpoints.
+
+const checkpoints = checkpointPositions.map(checkpoint => new CheckPoint(checkpoint.x, checkpoint.y, checkpoint.z)); //The map callback function, pass in checkpoint for the parameter and implicitly return the creation of a new CheckPoint instance with the checkpoint.x, checkpoint.y and checkpoint.z values passed in as arguments.
+
+function animate() {
+  requestAnimationFrame(animate); //The requestAnimationFrame() web API, takes in a callback and is used to update the animation on the screen. The animate function will be responsible for updating the player's position and continually drawing it on the canvas. Call the requestAnimationFrame() API and pass animate as the argument.
+  ctx.clearRect(0, 0, canvas.width, canvas.height); //As the player moves through the game, use the clearRect() Web API to clear the canvas before rendering the next frame of the animation. It takes in an x, y, width, and height arguments.
+  platforms.forEach(platform => platform.draw()); //A forEach loop that iterates through the platforms array. Inside the callback function, add a platform parameter and for the body of the function call the draw method on each platform.
+  checkpoints.forEach(checkpoint => checkpoint.draw()); //To draw each of the checkpoints onto the canvas. Add a forEach loop that iterates through the checkpoints array. Inside the callback function, add a checkpoint parameter and for the body of the function call the draw method on each checkpoint.
+  player.update(); //To update the player's position as it moves throughout the game.
+  if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {player.velocity.x = 5;} //To add the logic for increasing or decreasing a player's velocity based on its movement right of the screen. Use the proportionalSize function here to make sure the player's x position is always proportional to the screen size.
+  else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {player.velocity.x = -5;} //To add the logic for increasing or decreasing a player's velocity based on its movement left of the screen. Use the proportionalSize function here to make sure the player's x position is always proportional to the screen size.
+  else {
+    player.velocity.x = 0;
+    if (keys.rightKey.pressed && isCheckpointCollisionDetectionActive) {
+      platforms.forEach(platform => platform.position.x -= 5); //Add a forEach loop to iterate through the platforms array. Inside the loop, use the subtraction assignment operator to subtract 5 from the platform's x position.
+      checkpoints.forEach(checkpoint => checkpoint.position.x -= 5); //Add a forEach loop to iterate through the checkpoints array. Use checkpoint as the parameter name for the callback function. Inside the loop, use the subtraction assignment operator to subtract 5 from the checkpoints's x position.
+    } //Update the platform's x position as the player moves across the screen. A condition to check if the right key was pressed and if the isCheckpointCollisionDetectionActive is true.
+    else if (keys.leftKey.pressed && isCheckpointCollisionDetectionActive) {
+      platforms.forEach((platform) => platform.position.x += 5); //Add a forEach loop to iterate through the platforms array. Inside the loop, use the addition assignment operator to add 5 to the platform's x position.
+      checkpoints.forEach(checkpoint => checkpoint.position.x += 5); //Add a forEach loop to iterate through the checkpoints array. Use checkpoint as the parameter name for the callback function. Inside the loop, use the addition assignment operator to add 5 to the checkpoints's x position.
+    }; //Check if the left key was pressed and if isCheckpointCollisionDetectionActive is true.
+  };
+  platforms.forEach(platform => {
+    const collisionDetectionRules = [
+      player.position.y + player.height <= platform.position.y, //A boolean expression that checks whether the player's y position plus the player's height is less than or equal to the platform's y position.
+      player.position.y + player.height + player.velocity.y >= platform.position.y, //A boolean expression that checks if the sum of the player's y position, height, and y velocity is greater than or equal to the platform's y position.
+      player.position.x >= platform.position.x - player.width / 2, //A boolean expression that checks if the player's x position is greater than or equal to the platform's x position minus half of the player's width.
+      player.position.x <= platform.position.x + platform.width - player.width / 3 //A boolean expression that checks if the player's x position is less than or equal to the sum of the platform's x position plus the platform's width minus one-third of the player's width.
+    ]; //A const variable called collisionDetectionRules and assign it an array.
+    if (collisionDetectionRules.every(rule => rule)) {
+      player.velocity.y = 0; //Assign the number 0 to the player's y velocity.
+      return;
+    }; //Checks if every rule in the collisionDetectionRules array is truthy, use the every method.
+    const platformDetectionRules = [
+      player.position.x >= platform.position.x - player.width / 2, //A boolean expression that checks if the player's x position is greater than or equal to the platform's x position minus half of the player's width.
+      player.position.x <= platform.position.x + platform.width - player.width / 3, //A boolean expression that checks if the player's x position is less than or equal to the sum of the platform's x position plus the platform's width minus one-third of the player's width.
+      player.position.y + player.height >= platform.position.y, //A boolean expression that checks if the player's y position plus the player's height is greater than or equal to the platform's y position.
+      player.position.y <= platform.position.y + platform.height //A boolean expression that checks if the player's y position is less than or equal to the sum of the platform's y position plus the platform's height.
+    ]; //A const variable called platformDetectionRules and assign it an array.
+    if (platformDetectionRules.every(rule => rule)) {
+      player.position.y = platform.position.y + player.height;
+      player.velocity.y = gravity;
+    }; //Checks if every platform detection rule is true, use the every method.
+  }); //To add collision detection logic to the game.
+  checkpoints.forEach((checkpoint, index, checkpoints) => {
+    const checkpointDetectionRules = [
+      player.position.x >= checkpoint.position.x, //A boolean expression that checks if the player's position.x is greater than or equal to the checkpoint's position.x
+      player.position.y >= checkpoint.position.y, //A boolean expression that checks if the player's position.y is greater than or equal to the checkpoint's position.y
+      player.position.y + player.height <= checkpoint.position.y + checkpoint.height, //boolean expression that checks if the player's position.y plus the player's height is less than or equal to the checkpoint's position.y plus the checkpoint's height.
+      isCheckpointCollisionDetectionActive,
+      player.position.x - player.width <= checkpoint.position.x - checkpoint.width + player.width * 0.9, //To check if the player's x position minus the player's width is less than or equal to the checkpoint's x position minus the checkpoint's width plus the player's width multiplied by 0.9. This will ensure that the player is close enough to the checkpoint to claim it.
+      index === 0 || checkpoints[index - 1].claimed === true //To check if index is strictly equal to 0 or if the previous checkpoint(checkpoints[index - 1].claimed) is true. This will ensure that the player can only claim the first checkpoint or a checkpoint that has already been claimed.
+    ]; //A const variable called checkpointDetectionRules and assign it an array.
+    if (checkpointDetectionRules.every(rule => rule)) {
+      checkpoint.claim() //Call the claim method on the checkpoint object.
+      if (index === checkpoints.length - 1) {
+        isCheckpointCollisionDetectionActive = false;
+        showCheckpointScreen('You reached the final checkpoint!');
+        movePlayer('ArrowRight', 0, false); //Call the movePlayer function and pass in the string "ArrowRight" as the first argument, the number 0 as the second argument, and the boolean false as the third argument.
+      } //Checks if the player has reached the last checkpoint. If the index is equal to the length of the checkpoints array minus one.
+      else if (player.position.x >= checkpoint.position.x && player.position.x <= checkpoint.position.x + 40) {
+        showCheckpointScreen('You reached a checkpoint!'); //Call the showCheckpointScreen function and pass in the string "You reached a checkpoint!" as an argument.
+      }; //Checks if the player's x position is greater than or equal to the checkpoint's x position and less than or equal to the checkpoint's x position plus 40
+    }; //Checks if every rule in the checkpointDetectionRules array is true, use the every method.
+  }); //To update the animate function to display the checkpoint screen when the player reaches a checkpoint. Add a forEach to the checkpoints array. For the callback function, use checkpoint, index and checkpoints for the parameters.
+}; //The functionality for moving the player across the screen.
+
+const keys = {rightKey: {pressed: false}, leftKey: {pressed: false}}; //To manage the player's movement in the game, to monitor when the left and right arrow keys are pressed.
+
+const movePlayer = (key, xVelocity, isPressed) => {
+  if (!isCheckpointCollisionDetectionActive) {
+    player.velocity.x = 0; //Set the player's x velocity to 0
+    player.velocity.y = 0; //Set the player's y velocity to 0
+    return; //A return statement.
+  }; //In the game, the player will interact with different checkpoints. If the isCheckpointCollisionDetectionActive is false, then the player's movements on the x and y axes stops.
+  switch (key) {
+    case 'ArrowLeft': //Is when the left arrow key is pressed.
+    keys.leftKey.pressed = isPressed;
+    if (xVelocity === 0) {player.velocity.x = xVelocity};
+    player.velocity.x -= xVelocity; //Use the subtraction assignment operator to subtract the xVelocity from player.velocity.x
+    break;
+    case 'ArrowUp': case ' ': case 'Spacebar': //The player can jump by pressing the up arrow key or the spacebar.
+    player.velocity.y -= 8;
+    break;
+    case 'ArrowRight': //Is when the right arrow key is pressed.
+    keys.rightKey.pressed = isPressed;
+    if (xVelocity === 0) {player.velocity.x = xVelocity;};
+    player.velocity.x += xVelocity; //Use the addition assignment operator to assign the xVelocity to player.velocity.x
+  };
+}; //To add the functionality that will be responsible for moving the player across the screen.
+
+function startGame() {
+  canvas.hidden = false; //Unhide and show the canvas.
+  startScreen.style.visibility = 'hidden'; //Hide start screen.
+  animate();
+  player.draw(); //To visualize the player on the screen, need to draw it on the canvas by calling the .draw() method of the player object.
+};
+
+const showCheckpointScreen = msg => {
+  checkpointScreen.hidden = false; //Unhide and show the checkpoint screen.
+  checkpointMessage.textContent = msg;
+  if (isCheckpointCollisionDetectionActive) {
+    setTimeout(() => (checkpointScreen.hidden = true), 2000); //Add a setTimeout() that takes in a callback function and a delay of 2000 milliseconds. For the callback function, it should set the checkpointScreen style.display property to "none".
+  };
+}; //A function that will show the checkpoint message when the player reaches a checkpoint.
+
+startBtn.addEventListener('click', startGame);
+window.addEventListener('keydown', ({key}) => {movePlayer(key, 8, true);}); //The event listeners that will be responsible for calling the movePlayer function. The addEventListener to the global window object. Pass in the keydown event and an arrow function that uses the destructuring assignment to get the key property from the event object in the event listener parameter. Here is the syntax for using the destructuring assignment in the parameter list of the arrow function: btn.addEventListener('click', ({ target }) => { console.log(target); });
+window.addEventListener('keyup', ({key}) => {movePlayer(key, 0, false);}); //The addEventListener to the global window object and pass in the keyup event and use destructuring to pass in the key property from the event.
+</script>
+</html>
