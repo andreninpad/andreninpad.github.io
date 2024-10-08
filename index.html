@@ -312,7 +312,7 @@ const projectsContainer = document.querySelector('.projects-grid');
 const viewMoreBtn = document.querySelector('.show-more')
 let currentActiveLink = document.querySelector('a.active');
 let startingIndex = 0;
-let endingIndex = 6;
+let endingIndex = 3;
 let projectDataArr = [];
 let allProjectsLoaded = false;
 
@@ -371,8 +371,8 @@ fetch('projects.json').then(respond => respond.json()).then(data => {
 function fetchProjects() {
   if (allProjectsLoaded) {
     if (startingIndex > 0) {
-      startingIndex -= 6;
-      endingIndex -= 6;    
+      startingIndex -= 3;
+      endingIndex -= 3;    
       projectsContainer.innerHTML = '';
       displayProjects(projectDataArr.slice(0, endingIndex));
       if (startingIndex === 0) {
@@ -383,8 +383,8 @@ function fetchProjects() {
       };
     };
   } else {
-    startingIndex += 6;
-    endingIndex += 6;  
+    startingIndex += 3;
+    endingIndex += 3;  
     displayProjects(projectDataArr.slice(startingIndex, endingIndex));  
     if (projectDataArr.length <= endingIndex) {
       allProjectsLoaded = true;
