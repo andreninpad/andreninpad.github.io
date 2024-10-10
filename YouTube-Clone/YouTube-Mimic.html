@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YouTube Clone</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <link rel="shortcut icon" href="icons/youtube_icon.svg" type="image/x-icon">
 <style>
 body {
@@ -64,6 +65,7 @@ body {
   border-radius: 2px;
   box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
   width: 0;
+  border-radius: 20px 0 0 20px;
 }
 .search_bar:placeholder {
   font-family: Roboto, Arial;
@@ -79,6 +81,7 @@ body {
   border-color: rgb(192, 192, 192);
   margin-left: -1px;
   margin-right: 10px;
+  border-radius: 0 20px 20px 0;
 }
 .search_button:hover {
   cursor: pointer;
@@ -219,7 +222,8 @@ p, a {
   line-height: 20px;
 }
 .thumbnail {
-  width: 100%;
+  height: 238px;
+  width: 420px;
   border-radius: 14px;
 }
 .video_title {
@@ -257,11 +261,12 @@ p, a {
   font-weight: 500;
   padding: 4px;
   border-radius: 2px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   position: absolute;
-  bottom: 8px;
-  right: 5px;
+  bottom: 10px;
+  right: 6px;
+  border-radius: 4px;
 }
 @media (max-width: 788px) {
   .video_grid {
@@ -283,79 +288,82 @@ p, a {
 <body>
 <header class="header">
   <div class="left_section">
-    <img class="hamburger_menu" src="icons/hamburger_menu.svg" alt="Hamburger Menu"/>
-    <a href="https://www.youtube.com/" title="YouTube"><img class="youtube_logo" src="icons/youtube_logo.svg" alt=""/></a>
+    <figure class="hamburger_menu" alt="Hamburger Menu">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;"><path d="M21 6H3V5h18v1zm0 5H3v1h18v-1zm0 6H3v1h18v-1z"></path></svg>
+    </figure>
+    <a href="https://www.youtube.com/" title="YouTube"><img class="youtube_logo" src="icons/youtube_logo.svg" alt=""></a>
   </div>
   <div class="middle_section">
-    <input class="search_bar" type="text" placeholder="Search"/>
-    <button class="search_button" type="button">
-      <img class="search_icon" src="icons/search.svg" alt="Search Button"/>
+    <input class="search_bar" type="text" placeholder="Search">    
+    <button id="search-icon-legacy" class="search_button style-scope ytd-searchbox" aria-label="Search" type="button">
+      <yt-icon class="style-scope ytd-searchbox"><span class="yt-icon-shape style-scope yt-icon yt-spec-icon-shape"><div style="width: 100%; height: 100%; display: block; fill: currentcolor;"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;"><path clip-rule="evenodd" d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z" fill-rule="evenodd"></path></svg></div></span></yt-icon>
+      <tp-yt-paper-tooltip prefix="" class="style-scope ytd-searchbox" role="tooltip" tabindex="-1" style="left: 924.078px; top: 62px;">
       <p class="tooltip">Search</p>
     </button>
     <button class="voice_search_button" type="button">
-      <img class="voice_search_icon" src="icons/voice_search_icon.svg" alt="Voice Search"/>
+      <img class="voice_search_icon" src="icons/voice_search_icon.svg" alt="Voice Search">
       <p class="tooltip">Search with your voice</p>
     </button>
   </div>
   <div class="right_section">
     <div class="upload_icon_container">
-      <img class="upload_icon" src="icons/upload.svg" alt="Upload"/>
+      <img class="upload_icon" src="icons/upload.svg" alt="Upload">
       <p class="tooltip">Create</p>
     </div>
     <div class="youtube_apps">
-      <img class="youtube_apps_icon" src="icons/youtube_apps.svg" alt="Apps"/>
+      <img class="youtube_apps_icon" src="icons/youtube_apps.svg" alt="Apps">
       <p class="tooltip">Apps</p>
     </div>
     <div class="notifications_icon_container">
-      <img class="notifications_icon" src="icons/notifications.svg" alt="Notifications"/>
+      <img class="notifications_icon" src="icons/notifications.svg" alt="Notifications">
       <div class="notifications_count">3</div>
       <p class="tooltip">Notifications</p>
     </div>
-    <a href="https://andreninpad.github.io/portfolio/" title="My Profile"><img class="user_picture" src="channel-pictures/myself.jpg" alt="My Website"/></a>
+    <a href="https://andreninpad.github.io/portfolio/" title="My Profile"><img class="user_picture" src="channel-pictures/myself.jpg" alt="My Website"></a>
   </div>
 </header>
 <nav class="sidebar">
   <div class="sidebar_link" title="Home">
-    <img src="icons/home.svg" alt="Home" />
+    <img src="icons/home.svg" alt="Home">
     <p>Home</p>
   </div>
   <div class="sidebar_link" title="Explorer">
-    <img src="icons/explore.svg" alt="Explore" />
+    <img src="icons/explore.svg" alt="Explore">
     <p>Explore</p>
   </div>
   <div class="sidebar_link" title="Subscriptions">
-    <img src="icons/subscriptions.svg" alt="Subscriptions" />
+    <img src="icons/subscriptions.svg" alt="Subscriptions">
     <p>Subscriptions</p>
   </div>
   <div class="sidebar_link" title="Originals">
-    <img src="icons/originals.svg" alt="Originals" />
+    <img src="icons/originals.svg" alt="Originals">
     <p>Originals</p>
   </div>
   <div class="sidebar_link" title="Music">
-    <img src="icons/youtube_music.svg" alt="Music" />
+    <img src="icons/youtube_music.svg" alt="Music">
     <p>YouTube Music</p>
   </div>
   <div class="sidebar_link" title="Library">
-    <img src="icons/library.svg" alt="Library" />
+    <img src="icons/library.svg" alt="Library">
     <p>Library</p>
   </div>
 </nav>
 <main>
   <section class="video_grid">
     <div class="video_preview">
-      <div class="thumbnail_row">
-        <a href="https://youtu.be/n2RNcPRtAiY?si=gJKyNuDolHyItBlO" title="Tech and AI with Google CEO Sundar Pichai!"><img class="thumbnail" src="thumbnails/thumbnail1.webp" alt="Tech and AI with Google CEO Sundar Pichai!"/></a>
-        <p class="video_time">14:20</p>
+      <div class="thumbnail_row" videoid="n2RNcPRtAiY" pid="mb" >
+        <iframe class="thumbnail" src="https://www.youtube.com/embed/n2RNcPRtAiY" alt="Tech and AI with Google CEO Sundar Pichai!" title="Tech and AI with Google CEO Sundar Pichai!" allowfullscreen></iframe>
+        <p class="video_time">14:21</p>
       </div>
       <div class="video_info_grid">
         <div class="channel_picture">
           <a href="https://youtube.com/@mkbhd" title="Marques Brownlee">
-            <img class="profile_picture" src="channel-pictures/channel-1.jpeg" alt="Marques Brownlee"/>
+            <img class="profile_picture" src="https://yt3.googleusercontent.com/lkH37D712tiyphnu0Id0D5MwwQ7IRuwgQLVD05iMXlDWO-kDHut3uI4MgIEAQ9StK0qOST7fiA=s160-c-k-c0x00ffffff-no-rj" alt="Marques Brownlee"/>
           </a>
         </div>
         <div class="video_info">
           <p class="video_title">
-            <a href="https://youtu.be/n2RNcPRtAiY?si=gJKyNuDolHyItBlO" title="Tech and AI with Google CEO Sundar Pichai!">Tech and AI with Google CEO Sundar Pichai!</a>
+            <a href="https://www.youtube.com/watch?v=n2RNcPRtAiY" title="Tech and AI with Google CEO Sundar Pichai!">Tech and AI with Google CEO Sundar Pichai!</a>
           </p>
           <p class="video_author"><a href="https://youtube.com/@mkbhd" title="Marques Brownlee">Marques Brownlee</a></p>
           <p class="video_stats">3.4M views &#183; 6 months ago</p>
@@ -364,16 +372,16 @@ p, a {
     </div>
     <div class="video_preview">
       <div class="thumbnail_row">          
-        <a href="https://youtu.be/mP0RAo9SKZk?si=FmxnK1M0wDTi1p0D" title="Try Not to Laugh Challenge #9"><img class="thumbnail" src="thumbnails/thumbnail2.webp" alt="Try Not To Laugh Challenge #9"/></a>
-        <p class="video_time">8:22</p>
+        <iframe class="thumbnail" src="https://www.youtube.com/embed/-MUN67sKbBg" alt="Trombone Champ" title="Trombone Champ"></iframe>
+        <p class="video_time">14:01</p>
       </div>
       <div class="video_info_grid">
         <div class="channel_picture">
-          <a href="https://youtube.com/@markiplier" title="Markiplier"><img class="profile_picture" src="channel-pictures/channel-2.jpeg" alt="Markiplier"/></a>
+          <a href="https://youtube.com/@markiplier" title="Markiplier"><img class="profile_picture" src="https://yt3.googleusercontent.com/ytc/AIdro_kWaf09a_L_gCrR0Ty5hrWQNNnGBCG8W8qJTjBtYSL0bic=s160-c-k-c0x00ffffff-no-rj" alt="Markiplier"/></a>
         </div>
         <div class="video_info">
           <p class="video_title">
-            <a href="https://youtu.be/mP0RAo9SKZk?si=FmxnK1M0wDTi1p0D" title="Try Not To Laugh Challenge #9">Try Not To Laugh Challenge #9</a>
+            <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" title="Trombone Champ">Trombone Champ</a>
           </p>
           <p class="video_author">
             <a href="https://youtube.com/@markiplier" title="Markiplier">Markiplier</a>
@@ -384,20 +392,18 @@ p, a {
     </div>
     <div class="video_preview">
       <div class="thumbnail_row">
-        <a href="https://youtu.be/FgjPQQeTh1w?si=-a-zmhwQB8lNm7Hl" title="Crazy Tik Toks Taken Moments Before DISASTER">
-          <img class="thumbnail" src="thumbnails/thumbnail3.webp" alt="Crazy Tik Toks Taken Moments Before DISASTER"/>
-        </a>
-        <p class="video_time">9:13</p>
+        <iframe class="thumbnail" src="https://www.youtube.com/embed/FgjPQQeTh1w" title="Crazy Tik Toks Taken Moments Before DISASTER"></iframe>
+        <p class="video_time">9:12</p>
       </div>
       <div class="video_info_grid">
         <div class="channel_picture">
           <a href="https://youtube.com/@sssniperwolf" title="SSSniperWolf">
-            <img class="profile_picture" src="channel-pictures/channel-3.jpeg" alt="SSSniperWolf"/>
+            <img class="profile_picture" src="https://yt3.googleusercontent.com/aD2OsrWVzVaWSHbekmG6b4fWFbHw_32fQo9NZKJpfvUdRkScb5vksCfxCfL8UlCMQ4QhJp7gPw=s160-c-k-c0x00ffffff-no-rj" alt="SSSniperWolf"/>
           </a>
         </div>
         <div class="video_info">
           <p class="video_title">
-            <a href="https://youtu.be/FgjPQQeTh1w?si=-a-zmhwQB8lNm7Hl" title="Crazy Tik Toks Taken Moments Before DISASTER">Crazy Tik Toks Taken Moments Before DISASTER</a>
+            <a href="https://www.youtube.com/watch?v=FgjPQQeTh1w" title="Crazy Tik Toks Taken Moments Before DISASTER">Crazy Tik Toks Taken Moments Before DISASTER</a>
           </p>
           <p class="video_author">
             <a href="https://youtube.com/@sssniperwolf" title="SSSniperWolf">SSSniperWolf</a>
@@ -408,20 +414,18 @@ p, a {
     </div>
     <div class="video_preview">
       <div class="thumbnail_row">
-        <a href="https://youtu.be/094y1Z2wpJg?si=CpQ_Ht_yP9rUAInH" title="The Simplest Math Problem No One Can Solve - Collatz Conjecture">
-          <img class="thumbnail" src="thumbnails/thumbnail4.webp" alt="The Simplest Math Problem No One Can Solve - Collatz Conjecture"/>
-        </a>
+        <iframe class="thumbnail" src="https://www.youtube.com/embed/094y1Z2wpJg" title="The Simplest Math Problem No One Can Solve - Collatz Conjecture"></iframe>
         <p class="video_time">22:09</p>
       </div>
       <div class="video_info_grid">
         <div class="channel_picture">
           <a href="https://youtube.com/@veritasium" title="Veritasium">
-            <img class="profile_picture" src="channel-pictures/channel-4.jpeg" alt="Veritasium"/>
+            <img class="profile_picture" src="https://yt3.googleusercontent.com/ytc/AIdro_nSatGjGLZG1_O1ztYxuKvRazCbk9A0kPhtt2NxEH4ZKfA=s160-c-k-c0x00ffffff-no-rj" alt="Veritasium"/>
           </a>
         </div>
         <div class="video_info">
           <p class="video_title">
-            <a href="https://youtu.be/094y1Z2wpJg?si=CpQ_Ht_yP9rUAInH" title="The Simplest Math Problem No One Can Solve - Collatz Conjecture">
+            <a href="https://www.youtube.com/watch?v=094y1Z2wpJg" title="The Simplest Math Problem No One Can Solve - Collatz Conjecture">
               The Simplest Math Problem No One Can Solve - Collatz Conjecture
             </a>
           </p>
@@ -432,20 +436,18 @@ p, a {
     </div>
     <div class="video_preview">
       <div class="thumbnail_row">
-        <a href="https://youtu.be/86CQq3pKSUw?si=0yk8zthdoD8XSgSl" title="Kadane's Algorithm to Maximum Sum Subarray Problem">
-          <img class="thumbnail" src="thumbnails/thumbnail5.webp" alt="Kadane's Algorithm to Maximum Sum Subarray Problem"/>
-        </a>
+        <iframe class="thumbnail" src="https://www.youtube.com/embed/86CQq3pKSUw" title="Kadane's Algorithm to Maximum Sum Subarray Problem"></iframe>
         <p class="video_time">11:17</p>
       </div>
       <div class="video_info_grid">
         <div class="channel_picture">
           <a href="https://youtube.com/@csdojo" title="CS Dojo">
-            <img class="profile_picture" src="channel-pictures/channel-5.jpeg" alt="CS Dojo"/>
+            <img class="profile_picture" src="https://yt3.googleusercontent.com/ytc/AIdro_mxJvgrBjcgK94ZJQwDphl0UFkCKRL8AOa7UvmR__MIyg=s160-c-k-c0x00ffffff-no-rj" alt="CS Dojo"/>
           </a>
         </div>
         <div class="video_info">
           <p class="video_title">
-            <a href="https://youtu.be/86CQq3pKSUw?si=0yk8zthdoD8XSgSl" title="Kadane's Algorithm to Maximum Sum Subarray Problem">
+            <a href="https://www.youtube.com/watch?v=86CQq3pKSUw" title="Kadane's Algorithm to Maximum Sum Subarray Problem">
               Kadane's Algorithm to Maximum Sum Subarray Problem
             </a>
           </p>
@@ -456,20 +458,18 @@ p, a {
     </div>
     <div class="video_preview">
       <div class="thumbnail_row">
-        <a href="https://youtu.be/yXWw0_UfSFg?si=xoD6cr_pW-Z1jlXI" title="Anything You Can Fit In The Circle I'll Pay For">
-          <img class="thumbnail" src="thumbnails/thumbnail6.jpg" alt="Anything You Can Fit In The Circle I'll Pay For"/>
-        </a>
-        <p class="video_time">19:59</p>
+        <iframe class="thumbnail" src="https://www.youtube.com/embed/yXWw0_UfSFg" title="Anything You Can Fit In The Circle I'll Pay For"></iframe>
+        <p class="video_time">19:43</p>
       </div>
       <div class="video_info_grid">
         <div class="channel_picture" title="MrBeast">
           <a href="https://youtube.com/@mrbeast">
-            <img class="profile_picture" src="channel-pictures/channel-6.jpeg" alt="MrBeast"/>
+            <img class="profile_picture" src="https://yt3.googleusercontent.com/fxGKYucJAVme-Yz4fsdCroCFCrANWqw0ql4GYuvx8Uq4l_euNJHgE-w9MTkLQA805vWCi-kE0g=s160-c-k-c0x00ffffff-no-rj" alt="MrBeast"/>
           </a>
         </div>
         <div class="video_info">
           <p class="video_title">
-            <a href="https://youtu.be/yXWw0_UfSFg?si=xoD6cr_pW-Z1jlXI" title="Anything You Can Fit In The Circle I'll Pay For">
+            <a href="https://www.youtube.com/watch?v=yXWw0_UfSFg" title="Anything You Can Fit In The Circle I'll Pay For">
               Anything You Can Fit In The Circle I'll Pay For
             </a>
           </p>
