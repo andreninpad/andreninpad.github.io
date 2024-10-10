@@ -26,7 +26,7 @@
     @media (max-width: 75em) {html {font-size: 60%;}}
     @media (max-width: 61.25em) {html {font-size: 58%;}}
     @media (max-width: 30.625em) {
-      .projects-section {padding: 6rem 1rem;}
+      #projects-section {padding: 6rem 1rem;}
       .projects-grid {grid-template-columns: 1fr;}
     }
     @media (max-width: 28.75em) {
@@ -202,21 +202,16 @@
       border-bottom: 0.2rem solid var(--color1);
     }
     .da-container {
-      width: 100%;
       display: flex;
-      flex-direction: column;
-      margin: 0 auto;
-      margin-bottom: 6rem;
-      margin-top: 2rem;
-      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 20px;
     }
-    video {
-      height: 100%;
-      width: 600px;
-      border-radius: 10px;
+    .da-container a:hover {
+      box-shadow: 1px 1px 1px 2px rgba(185, 218, 226, 0.5);
+      color: var(--color2);
+      border-radius: 20px;
     }
-    .da-container a {margin-bottom: 2rem;}
-    .da-container a:hover {color: var(--color2);}
     #profile-section {
       display: flex;
       flex-direction: column;
@@ -269,7 +264,7 @@
 </head>
 <body>
   <nav>
-    <a href="https://andreninpad.github.io/portfolio"><img src="Images/anp.svg" alt="My logo"></a>
+    <a href="index.html"><img src="HTML&CSS/Images/anp.svg" alt="My logo"></a>
     <ul>
       <li><a href="#welcome-section" class="active">Main</a></li>
       <li><a href="#projects-section">Projects</a></li>
@@ -278,7 +273,7 @@
     </ul>
   </nav>
   <section id="welcome-section">
-    <h1>Hi, I am Andre Niño</h1>
+    <h1>Greetings, I am Andre Niño</h1>
     <p>web developer<br>data analyst</p>
   </section>
   <section id="projects-section">
@@ -289,10 +284,12 @@
   <section id="da-section">
     <h2 class="da-header">Data Analysis</h2>
     <div class="da-container">
-      <video src="DA/da-excel.mp4" alt="Microsoft Excel Data Analysis" title="Microsoft Excel Data Analysis" controls></video>
-        <a href="DA/da-excel.pdf" target="_blank">Microsoft Excel Data Analysis</a>
-      <video src="DA/mpbi.mp4" alt="Microsoft Power BI Dashboard" title="Microsoft Power BI Dashboard" controls></video>
-        <a href="DA/mpbi.pdf" target="_blank">Microsoft Power BI Dashboard</a>
+      <a href="https://drive.google.com/file/d/1QorGZuRK-IFSYhVttrIGGmkUUJvn4cGM/preview" target="_blank">
+        <iframe src="https://drive.google.com/file/d/1l1nJiVqNF-yGXk7sVuKWaphDInMxtRyy/preview" alt="Microsoft Excel Data Analysis" title="Microsoft Excel Data Analysis"></iframe>Microsoft Excel Data Analysis
+      </a>
+      <a href="https://drive.google.com/file/d/1N-943fnRO9TCDskVOki1y0yjB2TlLeMj/preview" target="_blank">
+        <iframe src="https://drive.google.com/file/d/1MjXbTBoBnBW7z4C8gHZ5BVLzYTLOthTG/preview" alt="Microsoft Power BI Dashboard" title="Microsoft Power BI Dashboard"></iframe>Microsoft Power BI Dashboard
+      </a>
     </div>
   </section>
   <section id="profile-section">
@@ -316,6 +313,7 @@
         Send <i class="fas fa-at"></i> mail
       </a>
       <a href="tel:+639954537928" title="Contact Me" target="_blank">Mobile<i class="fas fa-mobile"></i></a>
+      <a href="tel:+639090994280" title="Contact Me" target="_blank"><i class="fas fa-mobile-alt"></i>Or here</a>
     </div>
   </section>
   <footer>
@@ -376,7 +374,6 @@ function handleScroll() {
     };
   };
 };
-
 if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';};
 window.addEventListener('load', window.scrollTo(0, 0));
 window.addEventListener('scroll', handleScroll);
