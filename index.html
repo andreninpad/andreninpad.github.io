@@ -328,7 +328,9 @@ let currentActiveLink = document.querySelector('a.active');
 let startingIndex = 0;
 let endingIndex = 3;
 let projectDataArr = [];
+let displayedProjects = 3;
 let allProjectsLoaded = false;
+window.onload = initProjects;
 
 function removeActiveClass() { 
   navLinks.forEach(link => link.classList.remove('active'));
@@ -378,44 +380,73 @@ window.addEventListener('scroll', handleScroll);
 
 fetch('projects.json').then(respond => respond.json()).then(data => {
   projectDataArr = data;
-  displayProjects(projectDataArr.slice(startingIndex, endingIndex), startingIndex);
+  updateProjectsDisplay(projectDataArr.slice(startingIndex, endingIndex), startingIndex);
 }).catch(err => projectsContainer.innerHTML = `<p class="error-msg">There was an error loading the projects</p>`);
 
-function fetchProjects() {
-  if (allProjectsLoaded) {
-    if (startingIndex > 0) {
-      startingIndex -= 3;
-      endingIndex -= 3;    
-      projectsContainer.innerHTML = '';
-      displayProjects(projectDataArr.slice(0, endingIndex), 0);
-      if (startingIndex === 0) {
-        allProjectsLoaded = false;
-        viewMoreBtn.classList.remove('view-less');
-        viewMoreBtn.innerHTML = '<i class="fa fa-chevron-down"></i> View More';
-      };
-    };
-  } else {
-    startingIndex += 3;
-    endingIndex += 3;  
-    displayProjects(projectDataArr.slice(startingIndex, endingIndex), startingIndex);  
-    if (projectDataArr.length <= endingIndex) {
-      allProjectsLoaded = true;
-      viewMoreBtn.classList.remove('view-more');
-      viewMoreBtn.classList.add('view-less');
-      viewMoreBtn.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
-    };
+function initProjects() {
+  try {    
+    appendProjects(projectDataArr.slice(0, displayedProjects));
+  } catch (error) {
+    console.error('Error initializing projects:', error);
   };
 };
 
-const displayProjects = (projects, startingIndex) => projects.forEach(({url, title}, index) => {
-  const uniqueId = startingIndex + index;
-  projectsContainer.innerHTML += `<a id="${uniqueId}" class="project" href="${url}" target="_blank">
-      <iframe src="${url}" alt="${title}" title="${title}"></iframe>
-      <p><code>&lt;/</code>${title}<code>></code></p>
-    </a>
-  </div>`;
-});
+function fetchProjects() {
+  try {
+    if (allProjectsLoaded) {
+      if (displayedProjects > 3) {
+        displayedProjects -= 3;
+        updateProjectsDisplay();
 
+        if (displayedProjects <= 3) {
+          allProjectsLoaded = false;
+          viewMoreBtn.classList.remove('view-less');
+          viewMoreBtn.innerHTML = '<i class="fa fa-chevron-down"></i> View More';
+        };
+      };
+    } else {
+      if (displayedProjects + 3 <= projectDataArr.length) {
+        displayedProjects += 3;
+        appendProjects(projectDataArr.slice(displayedProjects - 3, displayedProjects));
+      };
+
+      if (displayedProjects >= projectDataArr.length) {
+        allProjectsLoaded = true;
+        viewMoreBtn.classList.add('view-less');
+        viewMoreBtn.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
+      };
+    };
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+  };
+};
+
+function appendProjects(projects) {
+  try {
+    projects.forEach(({ url, title }, index) => {
+      const projectElement = document.createElement('a');
+      projectElement.id = `${displayedProjects - 3 + index}`;
+      projectElement.classList.add('project');
+      projectElement.href = url;
+      projectElement.target = '_blank';
+      projectElement.innerHTML = `<iframe src="${url}" alt="${title}" title="${title}"></iframe>
+        <p><code>&lt;/</code>${title}<code>></code></p>`;
+      projectsContainer.appendChild(projectElement);
+    });
+  } catch (error) {
+    console.error('Error appending projects:', error);
+  };
+};
+
+function updateProjectsDisplay() {
+  try {
+    while (projectsContainer.lastChild && projectsContainer.childElementCount > displayedProjects) {
+      projectsContainer.removeChild(projectsContainer.lastChild);
+    }
+  } catch (error) {
+    console.error('Error updating project display:', error);
+  };
+};
 viewMoreBtn.onclick = fetchProjects;
 </script>
 </html>
