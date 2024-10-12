@@ -400,6 +400,7 @@ function fetchProjects() {
     displayProjects(projectDataArr.slice(startingIndex, endingIndex));  
     if (projectDataArr.length <= endingIndex) {
       allProjectsLoaded = true;
+      projectDataArr.push(endingIndex);
       viewMoreBtn.classList.remove('view-more');
       viewMoreBtn.classList.add('view-less');
       viewMoreBtn.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
@@ -408,13 +409,11 @@ function fetchProjects() {
 };
 
 const displayProjects = projects => projects.forEach(({url, title}, index) => {
-  projectsContainer.innerHTML += `
-    <div id="${index}" class="projects-grid">
-      <a class="project" href="${url}" target="_blank">
-        <iframe src="${url}" alt="${title}" title="${title}"></iframe>
-        <p><code>&lt;/</code>${title}<code>></code></p>
-      </a>
-    </div>`;
+  projectsContainer.innerHTML += `<a id="${index}" class="project" href="${url}" target="_blank">
+      <iframe src="${url}" alt="${title}" title="${title}"></iframe>
+      <p><code>&lt;/</code>${title}<code>></code></p>
+    </a>
+  </div>`;
 });
 
 viewMoreBtn.onclick = fetchProjects;
