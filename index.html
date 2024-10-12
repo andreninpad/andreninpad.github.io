@@ -380,7 +380,7 @@ window.addEventListener('scroll', handleScroll);
 
 fetch('projects.json').then(respond => respond.json()).then(data => {
   projectDataArr = data;
-  updateProjectsDisplay(projectDataArr.slice(startingIndex, endingIndex), startingIndex);
+  displayProjects(projectDataArr.slice(startingIndex, endingIndex), startingIndex);
 }).catch(err => projectsContainer.innerHTML = `<p class="error-msg">There was an error loading the projects</p>`);
 
 function initProjects() {
@@ -396,7 +396,7 @@ function fetchProjects() {
     if (allProjectsLoaded) {
       if (displayedProjects > 3) {
         displayedProjects -= 3;
-        updateProjectsDisplay();
+        displayProjects();
 
         if (displayedProjects <= 3) {
           allProjectsLoaded = false;
@@ -438,7 +438,7 @@ function appendProjects(projects) {
   };
 };
 
-function updateProjectsDisplay() {
+function displayProjects() {
   try {
     while (projectsContainer.lastChild && projectsContainer.childElementCount > displayedProjects) {
       projectsContainer.removeChild(projectsContainer.lastChild);
