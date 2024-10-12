@@ -369,7 +369,7 @@ fetch('channels.json').then(response => response.json()).then(data => {
 const displayChannels = channels => channels.forEach(({embed, title, videotime, channel, picurl, name, videourl, stats}) => {
   videoContainer.innerHTML += `<div class="video_preview">
     <div class="thumbnail_row">
-      <iframe class="thumbnail" src="${embed}" alt="${title}" allowfullscreen></iframe>
+      <iframe class="thumbnail" src="${embed}" title="${title}" alt="${title}" allowfullscreen></iframe>
       <p class="video_time">${videotime}</p>
     </div>
     <div class="video_info_grid">
