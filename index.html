@@ -397,7 +397,6 @@ function fetchProjects() {
       if (displayedProjects > 3) {
         displayedProjects -= 3;
         displayProjects();
-
         if (displayedProjects <= 3) {
           allProjectsLoaded = false;
           viewMoreBtn.classList.remove('view-less');
@@ -421,7 +420,7 @@ function fetchProjects() {
   };
 };
 
-function appendProjects(projects) {
+const appendProjects = projects => {
   try {
     projects.forEach(({ url, title }, index) => {
       const projectElement = document.createElement('a');
