@@ -378,7 +378,7 @@ window.addEventListener('scroll', handleScroll);
 
 fetch('projects.json').then(respond => respond.json()).then(data => {
   projectDataArr = data;
-  displayProjects(projectDataArr.slice(startingIndex, endingIndex));
+  displayProjects(projectDataArr.slice(startingIndex, endingIndex), startingIndex);
 }).catch(err => projectsContainer.innerHTML = `<p class="error-msg">There was an error loading the projects</p>`);
 
 function fetchProjects() {
@@ -387,7 +387,7 @@ function fetchProjects() {
       startingIndex -= 3;
       endingIndex -= 3;    
       projectsContainer.innerHTML = '';
-      displayProjects(projectDataArr.slice(0, endingIndex));
+      displayProjects(projectDataArr.slice(0, endingIndex), 0);
       if (startingIndex === 0) {
         allProjectsLoaded = false;
         viewMoreBtn.classList.remove('view-less');
@@ -397,10 +397,9 @@ function fetchProjects() {
   } else {
     startingIndex += 3;
     endingIndex += 3;  
-    displayProjects(projectDataArr.slice(startingIndex, endingIndex));  
+    displayProjects(projectDataArr.slice(startingIndex, endingIndex), startingIndex);  
     if (projectDataArr.length <= endingIndex) {
       allProjectsLoaded = true;
-      projectDataArr.push(endingIndex);
       viewMoreBtn.classList.remove('view-more');
       viewMoreBtn.classList.add('view-less');
       viewMoreBtn.innerHTML = '<i class="fa fa-chevron-up"></i> Show Less';
@@ -408,8 +407,9 @@ function fetchProjects() {
   };
 };
 
-const displayProjects = projects => projects.forEach(({url, title}, index) => {
-  projectsContainer.innerHTML += `<a id="${index}" class="project" href="${url}" target="_blank">
+const displayProjects = (projects, startingIndex) => projects.forEach(({url, title}, index) => {
+  const uniqueId = startingIndex + index;
+  projectsContainer.innerHTML += `<a id="${uniqueId}" class="project" href="${url}" target="_blank">
       <iframe src="${url}" alt="${title}" title="${title}"></iframe>
       <p><code>&lt;/</code>${title}<code>></code></p>
     </a>
