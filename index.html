@@ -430,9 +430,8 @@ function fetchProjects() {
 
 const appendProjects = projects => {
   try {
-    projects.forEach(({ url, title }, index) => {
+    projects.forEach(({ url, title }) => {
       const projectElement = document.createElement('a');
-      projectElement.id = `${displayedProjects - 3 + index}`;
       projectElement.classList.add('project-link');
       projectElement.href = url;
       projectElement.target = '_blank';
