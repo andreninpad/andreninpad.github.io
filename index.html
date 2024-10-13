@@ -1,4 +1,3 @@
-<!--Build an app that is functionally similar to https://personal-portfolio.freecodecamp.rocks. Do not copy this demo project.-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link rel="shortcut icon" href="Images/anp.svg" type="image/x-icon">
+  <link rel="shortcut icon" href="HTML&CSS/Images/anp.svg" type="image/x-icon">
   <title>Andre Niño Portfolio</title>
   <style>
     :root {
@@ -137,26 +136,26 @@
       margin: 0 auto;
       margin-bottom: 6rem;
     }
-    .project {
+    .project-link {
       border-radius: 10px;
     }
-    .project:hover {
+    .project-link:hover {
       box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
-    iframe {
+    .project {
       height: 300px;
       width: 100%;
       object-fit: cover;
       font-size: 2rem;
       padding: 2rem 0.5rem;
     }
-    .project p {transition: color 0.3s ease-out;}
-    .project:hover p {color: paleturquoise;}
+    .project-link p {transition: color 0.3s ease-out;}
+    .project-link:hover p {color: paleturquoise;}
     code {
       color: var(--color3);
       transition: color 0.3s ease-out;
     }
-    .project:hover code {color: orangered;}
+    .project-link:hover code {color: orangered;}
     a {
       cursor: pointer;
       text-decoration: none;
@@ -190,7 +189,7 @@
       transform: translateY(0);
       transition: transform 0.3s ease-out;
     }
-    #da-section {
+    #da-projects {
       height: auto;
       text-align: center;
       padding: 10rem 2rem;
@@ -206,10 +205,20 @@
       flex-wrap: wrap;
       justify-content: center;
       column-gap: 20px;
+      row-gap: 40px;
     }
-    .da-container a:hover {
+    .da-link {
+      height: 370px;
+      width: 605px;
+    }
+    .da-link:hover {
       box-shadow: -2px 2px rgba(185, 218, 226, 0.5);
       color: var(--color2);
+      border-radius: 20px;
+    }
+    .da-project {
+      height: 340px;
+      width: 590px;
       border-radius: 20px;
     }
     #info-section {
@@ -264,7 +273,7 @@
 </head>
 <body>
   <nav>
-    <a href="https://andreninpad.github.io/portfolio"><img src="Images/anp.svg" alt="logo"></a>
+    <a href="index.html"><img src="HTML&CSS/Images/anp.svg" alt="My logo"></a>
     <ul>
       <li><a href="#welcome-section" class="active">Main</a></li>
       <li><a href="#projects-section">Projects</a></li>
@@ -280,21 +289,20 @@
     <div class="projects-grid"></div>
     <a class="show-more"><i class="fa fa-chevron-down"></i> View More</a>
   </section>
-  <section id="da-section">
+  <div id="da-projects">
     <h2 class="da-header">Data Analysis</h2>
     <div class="da-container">
-      <a href="https://drive.google.com/file/d/1QorGZuRK-IFSYhVttrIGGmkUUJvn4cGM/preview" target="_blank">
-        <iframe src="https://drive.google.com/file/d/1l1nJiVqNF-yGXk7sVuKWaphDInMxtRyy/preview" alt="Microsoft Excel Data Analysis" title="Microsoft Excel Data Analysis"></iframe>Microsoft Excel Data Analysis
+      <a class="da-link" href="https://drive.google.com/file/d/1QorGZuRK-IFSYhVttrIGGmkUUJvn4cGM/preview" target="_blank">
+        <iframe class="da-project" src="https://drive.google.com/file/d/1l1nJiVqNF-yGXk7sVuKWaphDInMxtRyy/preview" alt="Microsoft Excel Data Analysis" title="Microsoft Excel Data Analysis"></iframe><br>Click here to view Microsoft Excel Data Analysis report
       </a>
-      <a href="https://drive.google.com/file/d/1N-943fnRO9TCDskVOki1y0yjB2TlLeMj/preview" target="_blank">
-        <iframe src="https://drive.google.com/file/d/1MjXbTBoBnBW7z4C8gHZ5BVLzYTLOthTG/preview" alt="Microsoft Power BI Dashboard" title="Microsoft Power BI Dashboard"></iframe>Microsoft Power BI Dashboard
+      <a class="da-link" href="https://drive.google.com/file/d/1N-943fnRO9TCDskVOki1y0yjB2TlLeMj/preview" target="_blank">
+        <iframe class="da-project" src="https://drive.google.com/file/d/1MjXbTBoBnBW7z4C8gHZ5BVLzYTLOthTG/preview" alt="Microsoft Power BI Dashboard" title="Microsoft Power BI Dashboard"></iframe><br>Click here to view Microsoft Power BI Dashboard report
       </a>
     </div>
-  </section>
+  </div>
   <section id="info-section">
-      <h2 class="info-header">We work together...</h2>
-      <p><i>We grow together!</i></p>
-    </div>
+    <h2 class="info-header">We work together...</h2>
+    <p><i>We grow together!</i></p>
     <div id="info-links">
       <a href="https://www.facebook.com/andreninpad" title="Facebook" target="_blank">
         <i class="fab fa-facebook"></i>acebook
@@ -311,7 +319,8 @@
       <a href="mailto:andreninpad@live.com.ph" title="Send a mail" target="_blank">
         Send <i class="fas fa-at"></i> mail
       </a>
-      <a href="tel:+639954537928" title="Contact Me" target="_blank">Call<i class="fas fa-mobile"></i></a>
+      <a href="tel:+639954537928" title="Contact Me" target="_blank">Mobile<i class="fas fa-mobile"></i></a>
+      <a href="tel:+639090994280" title="Contact Me" target="_blank"><i class="fas fa-mobile-alt"></i>Or here</a>
     </div>
   </section>
   <footer>
@@ -374,6 +383,7 @@ function handleScroll() {
     };
   };
 };
+
 if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';};
 window.addEventListener('load', window.scrollTo(0, 0));
 window.addEventListener('scroll', handleScroll);
@@ -408,7 +418,6 @@ function fetchProjects() {
         displayedProjects += 3;
         appendProjects(projectDataArr.slice(displayedProjects - 3, displayedProjects));
       };
-
       if (displayedProjects >= projectDataArr.length) {
         allProjectsLoaded = true;
         viewMoreBtn.classList.add('view-less');
@@ -425,10 +434,10 @@ const appendProjects = projects => {
     projects.forEach(({ url, title }, index) => {
       const projectElement = document.createElement('a');
       projectElement.id = `${displayedProjects - 3 + index}`;
-      projectElement.classList.add('project');
+      projectElement.classList.add('project-link');
       projectElement.href = url;
       projectElement.target = '_blank';
-      projectElement.innerHTML = `<iframe src="${url}" alt="${title}" title="${title}"></iframe>
+      projectElement.innerHTML = `<iframe class="project" src="${url}" alt="${title}" title="${title}"></iframe>
         <p><code>&lt;/</code>${title}<code>></code></p>`;
       projectsContainer.appendChild(projectElement);
     });
