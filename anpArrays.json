@@ -1,0 +1,611 @@
+{
+  "projects": [
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/05–SurveyForm.html",
+      "title": "Survey Form"
+    },
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/10–TributePage.html",
+      "title": "Tribute Page"
+    },
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/12–CatPainting.html",
+      "title": "Cat Head Painting"
+    },
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/13–Piano.html",
+      "title": "Piano"
+    },
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/14–TechDocPage.html",
+      "title": "Technical Documentation"
+    },
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/15–CitySkyline.html",
+      "title": "Interactive City Skyline"
+    },
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/18–FerrisWheel.html",
+      "title": "Colorful Ferris Wheel"
+    },
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/19–Penguin.html",
+      "title": "Happy Flappy Penguin"
+    },
+    {
+      "url": "/FreeCodeCamp/JavaScript/03–RPG_Basic_JS.html",
+      "title": "Role Playing Game"
+    },
+    {
+      "url": "/FreeCodeCamp/HTML&CSS/YouTube-Clone/YouTube-Mimic.html",
+      "title": "YouTube Clone"
+    },
+    {
+      "url": "/FreeCodeCamp/JavaScript/06–RockPaperScissors.html",
+      "title": "Rock Paper Scissors"
+    },
+    {
+      "url": "/FreeCodeCamp/JavaScript/11–TodoApp.html",
+      "title": "Todo App"
+    },
+    {
+      "url": "/FreeCodeCamp/JavaScript/19–ShoppingCart.html",
+      "title": "Shopping Cart"
+    },
+    {
+      "url": "/FreeCodeCamp/JavaScript/20–PlatformerGame.html",
+      "title": "Platformer Game"
+    },
+    {
+      "url": "/FreeCodeCamp/JavaScript/21–AdvancedDiceGame.html",
+      "title": "Advanced Dice Game"
+    }
+  ],
+  "colors": ["#16a085", "#27ae60", "#f39c12", "#e74c3c", "#9b59b6", "#FB6964", "#342224", "#472E32", "#BDBB99", "#77B1A9", "#73A857", "#34495E", "#2C2C2C", "#616A6B", "#4A235A", "#2F4F4F", "#0E4B5A", "#36454F", "#2C3E50", "#800020"],
+  "quotes": [
+    {
+      "quote": "It’s only by descending into the abyss that we recuperate the abundance of life. Where we stumble and fall, there lies our treasure. The very cave we are afraid to enter turns out to be the source of what we seek.",
+      "author": "Joseph Campbell"
+    },
+    {
+      "quote": "Life is worth living if you are doing the right thing!",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "Donʹt be too concerned about your LIFE or your FUTURE; hence, be more concerned of your SOUL.",
+      "author": "Jesus Christ in Matthew 6:25–34"
+    },
+    {
+      "quote": "A good attitude leads to a higher altitude.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "quote": "Do unto others what you want others do unto you. Don't do unto others what you don't want others do unto you.Golden Rule",
+      "author": "Jesus Christ in Matthew 7:12 and Confucius"
+    },
+    {
+      "quote": "Actions should be done by how you feel not how you think.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "The abundance of the heart, the mouth speaks.",
+      "author": "Jesus Christ in Luke 6:45"
+    },
+    {
+      "quote": "Hated for who I am than loved for who I am not.",
+      "author": "Kurt Cobain"
+    },
+    {
+      "quote": "The Creator knows His creations inside out and outside in. So don't mind what other people think; hence, mind the Creator of what He thinks throughout.",
+      "author": "1 Samuel 16:7"
+    },
+    {
+      "quote": "If you would rather live than die, all is in our hands.",
+      "author": "Tony Robbins or Napoleon Hill"
+    },
+    {
+      "quote": "Life is not lost by dying; life is lost minute by minute, day by dragging day, in all the thousand small uncaring, and wicked ways.",
+      "author": "Stephen Vincent Benét"
+    },
+    {
+      "quote": "Trust in the Lord with all your heart, with all your mind, with all your soul, and lean not on your own understanding; in all your ways submit to him, and He will make your paths straight.",
+      "author": "Proverbs 3:5-6"
+    },
+    {
+      "quote": "God answers our prayers, probably not with a yes but for what is best!",
+      "author": "Isaiah 55:8-9"
+    },
+    {
+      "quote": "Truth really hurts but it will definitely set you free!",
+      "author": "Jesus Christ in John 8:32"
+    },
+    {
+      "quote": "A goal or plan without action is just a wish.",
+      "author": "Antoine de Saint-Exupéry"
+    },
+    {
+      "quote": "Change is constant in life. So, change to be better, not for the worst.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "Life is like a piano. White keys happy moments. Black keys sad moments. But remember both keys are played together, to create sweet melodies & tremendous music. Life is a balance, balance everything in life. Because too much of anything is bad.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "Uniqueness, in a way that is pleasant to God and others. Bad attitudes or unpleasantness is not considered unique, it's wickedness.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "Go to church not just because of being religious, but rather go to church because of being sinners. God does not look at the religion or being religious, but the heart and deeds. Religion cannot save, faith does.",
+      "author": "James 2:14-26 & Matthew 23:27-28"
+    },
+    {
+      "quote": "Life is not always about winning but rising every time you stumble and fall.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "Behind the cloudy sky is a silver lining.",
+      "author": "John Milton"
+    },
+    {
+      "quote": "2 eyes & 2 ears but 1 mouth & tongue, which means to look & listen more than talk. 2 hands & 1 stomach, which means to work more as much as we eat. 2 major brain parts the left & right, but 1 heart, which means to think twice but love only 1. It's amazing how our body parts remind us of who we truly are!",
+      "author": "Zeno of Citium"      
+    },
+    {
+      "quote": "Everybody commits mistakes and mistakes are lessons to be learned. It is the primary reason why pencils are created with erasers. And computer keyboards are created with backspace or delete keys.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "The greatest symbol of love is not the heart, but the cross. Why? Because the heart stops beating but the man on the cross never stops loving.",
+      "author": "John 3:16"
+    },
+    {
+      "quote": "There are no mistakes in life only lessons, and it will keep on repeating until learned.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "A person that overcame their rage and anger has conquered their enemies.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "Do not judge the book by its cover, for we will be judged by faith and deeds not by religion.",
+      "author": "Andre Niño"
+    },
+    {
+      "quote": "When you focus on problems, you will have more problems. When you focus on possibilities, you will gain more opportunities.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "quote": "Conquer anger by love, conquer evil by good.",
+      "author": "Buddha"
+    },
+    {
+      "quote": "Anybody can become angry, that is easy. But to be angry with the right person and to the right degree and at the right time and for the right purpose, and in the right way, that is not within everybodyʹs power and is not easy.",
+      "author": "Aristotle"
+    },
+    {
+      "quote": "Beneath the rule of men entirely great, the pen is mightier than the sword.",
+      "author": "Edward Bulwer-Lytton"
+    },
+    {
+      "quote": "For the word of God is alive and active. Sharper than any double-edged sword, it penetrates even to dividing soul and spirit, joints and marrow; it judges the thoughts and attitudes of the heart.",
+      "author": "Hebrews 4:12"
+    },
+    {
+      "quote": "To err is human; to learn and forgive, divine.",
+      "author": "Alexander Pope"
+    },
+    {
+      "quote": "No pain, no gain.",
+      "author": "Benjamin Franklin"
+    },
+    {
+      "quote": "Life isn’t about getting and having, it’s about giving and being.",
+      "author": "Kevin Kruse"
+    },
+    {
+      "quote": "Whatever the mind of man can conceive and believe, it can achieve.",
+      "author": "Napoleon Hill"
+    },
+    {
+      "quote": "Strive not to be a success, but rather to be of value.",
+      "author": "Albert Einstein"
+    },
+    {
+      "quote": "Two roads diverged in a wood, and I—I took the one less traveled by, And that has made all the difference.",
+      "author": "Robert Frost"
+    },
+    {
+      "quote": "I attribute my success to this: I never gave or took any excuse.",
+      "author": "Florence Nightingale"
+    },
+    {
+      "quote": "You miss 100% of the shots you don’t take.",
+      "author": "Wayne Gretzky"
+    },
+    {
+      "quote": "I’ve missed more than 9000 shots in my career. I’ve lost almost 300 games. 26 times I’ve been trusted to take the game winning shot and missed. I’ve failed over and over and over again in my life. And that is why I succeed.",
+      "author": "Michael Jordan"
+    },
+    {
+      "quote": "The most difficult thing is the decision to act, the rest is merely tenacity.",
+      "author": "Amelia Earhart"
+    },
+    {
+      "quote": "Every strike brings me closer to the next home run.",
+      "author": "Babe Ruth"
+    },
+    {
+      "quote": "Definiteness of purpose is the starting point of all achievement.",
+      "author": "W. Clement Stone"
+    },
+    {
+      "quote": "We must balance conspicuous consumption with conscious capitalism.",
+      "author": "Kevin Kruse"
+    },
+    {
+      "quote": "Life is what happens to you while you’re busy making other plans.",
+      "author": "John Lennon"
+    },
+    {
+      "quote": "We become what we think about.",
+      "author": "Earl Nightingale"
+    },
+    {
+      "quote": "Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.",
+      "author": "Mark Twain"
+    },
+    {
+      "quote": "Life is 10% what happens to me and 90% of how I react to it.",
+      "author": "Charles Swindoll"
+    },
+    {
+      "quote": "The most common way people give up their power is by thinking they don’t have any.",
+      "author": "Alice Walker"
+    },
+    {
+      "quote": "The mind is everything. What you think you become.",
+      "author": "Buddha"
+    },
+    {
+      "quote": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "quote": "An unexamined life is not worth living.",
+      "author": "Socrates"
+    },
+    {
+      "quote": "Eighty percent of success is showing up.",
+      "author": "Woody Allen"
+    },
+    {
+      "quote": "Your time is limited, so don’t waste it living someone else’s life.",
+      "author": "Steve Jobs"
+    },
+    {
+      "quote": "Winning isn’t everything, but wanting to win is.",
+      "author": "Vince Lombardi"
+    },
+    {
+      "quote": "I am not a product of my circumstances. I am a product of my decisions.",
+      "author": "Stephen Covey"
+    },
+    {
+      "quote": "Every child is an artist.  The problem is how to remain an artist once he grows up.",
+      "author": "Pablo Picasso"
+    },
+    {
+      "quote": "You can never cross the ocean until you have the courage to lose sight of the shore.",
+      "author": "Christopher Columbus"
+    },
+    {
+      "quote": "I’ve learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.",
+      "author": "Maya Angelou"
+    },
+    {
+      "quote": "Either you run the day, or the day runs you.",
+      "author": "Jim Rohn"
+    },
+    {
+      "quote": "Whether you think you can or you think you can’t, you’re right.",
+      "author": "Henry Ford"
+    },
+    {
+      "quote": "The two most important days in your life are the day you are born and the day you find out why.",
+      "author": "Mark Twain"
+    },
+    {
+      "quote": "Whatever you can do, or dream you can, begin it.  Boldness has genius, power and magic in it.",
+      "author": "Johann Wolfgang von Goethe"
+    },
+    {
+      "quote": "The best revenge is massive success.",
+      "author": "Frank Sinatra"
+    },
+    {
+      "quote": "People often say that motivation doesn’t last. Well, neither does bathing. That’s why we recommend it daily.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "quote": "Life shrinks or expands in proportion to one’s courage.",
+      "author": "Anais Nin"
+    },
+    {
+      "quote": "If you hear a voice within you say “you cannot paint,” then by all means paint and that voice will be silenced.",
+      "author": "Vincent Van Gogh"
+    },
+    {
+      "quote": "There is only one way to avoid criticism: do nothing, say nothing, and be nothing.",
+      "author": "Aristotle"
+    },
+    {
+      "quote": "Ask and it will be given to you; search, and you will find; knock and the door will be opened for you.",
+      "author": "Jesus Christ"
+    },
+    {
+      "quote": "The only person you are destined to become is the person you decide to be.",
+      "author": "Ralph Waldo Emerson"
+    },
+    {
+      "quote": "Go confidently in the direction of your dreams.  Live the life you have imagined.",
+      "author": "Henry David Thoreau"
+    },
+    {
+      "quote": "When I stand before God at the end of my life, I would hope that I would not have a single bit of talent left and could say, I used everything you gave me.",
+      "author": "Erma Bombeck"
+    },
+    {
+      "quote": "Few things can help an individual more than to place responsibility on him, and to let him know that you trust him.",
+      "author": "Booker T. Washington"
+    },
+    {
+      "quote": "Certain things catch your eye, but pursue only those that capture the heart.",
+      "author": " Ancient Indian Proverb"
+    },
+    {
+      "quote": "Believe you can and you’re halfway there.",
+      "author": "Theodore Roosevelt"
+    },
+    {
+      "quote": "Everything you’ve ever wanted is on the other side of fear.",
+      "author": "George Addair"
+    },
+    {
+      "quote": "We can easily forgive a child who is afraid of the dark; the real tragedy of life is when men are afraid of the light.",
+      "author": "Plato"
+    },
+    {
+      "quote": "Teach thy tongue to say, “I do not know,” and thous shalt progress.",
+      "author": "Maimonides"
+    },
+    {
+      "quote": "Start where you are. Use what you have.  Do what you can.",
+      "author": "Arthur Ashe"
+    },
+    {
+      "quote": "When I was 5 years old, my mother always told me that happiness was the key to life.  When I went to school, they asked me what I wanted to be when I grew up.  I wrote down ‘happy’.  They told me I didn’t understand the assignment, and I told them they didn’t understand life.",
+      "author": "John Lennon"
+    },
+    {
+      "quote": "Fall seven times and stand up eight.",
+      "author": "Japanese Proverb"
+    },
+    {
+      "quote": "When one door of happiness closes, another opens, but often we look so long at the closed door that we do not see the one that has been opened for us.",
+      "author": "Helen Keller"
+    },
+    {
+      "quote": "Everything has beauty, but not everyone can see.",
+      "author": "Confucius"
+    },
+    {
+      "quote": "How wonderful it is that nobody need wait a single moment before starting to improve the world.",
+      "author": "Anne Frank"
+    },
+    {
+      "quote": "When I let go of what I am, I become what I might be.",
+      "author": "Lao Tzu"
+    },
+    {
+      "quote": "Life is not measured by the number of breaths we take, but by the moments that take our breath away.",
+      "author": "Maya Angelou"
+    },
+    {
+      "quote": "Happiness is not something readymade.  It comes from your own actions.",
+      "author": "Dalai Lama"
+    },
+    {
+      "quote": "If you’re offered a seat on a rocket ship, don’t ask what seat! Just get on.",
+      "author": "Sheryl Sandberg"
+    },
+    {
+      "quote": "First, have a definite, clear practical ideal; a goal, an objective. Second, have the necessary means to achieve your ends; wisdom, money, materials, and methods. Third, adjust all your means to that end.",
+      "author": "Aristotle"
+    },
+    {
+      "quote": "If the wind will not serve, take to the oars.",
+      "author": "Latin Proverb"
+    },
+    {
+      "quote": "You can’t fall if you don’t climb.  But there’s no joy in living your whole life on the ground.",
+      "author": "Unknown"
+    },
+    {
+      "quote": "We must believe that we are gifted for something, and that this thing, at whatever cost, must be attained.",
+      "author": "Marie Curie"
+    },
+    {
+      "quote": "Too many of us are not living our dreams because we are living our fears.",
+      "author": "Les Brown"
+    },
+    {
+      "quote": "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
+      "author": "Joshua J. Marine"
+    },
+    {
+      "quote": "If you want to lift yourself up, lift up someone else.",
+      "author": "Booker T. Washington"
+    },
+    {
+      "quote": "I have been impressed with the urgency of doing. Knowing is not enough; we must apply. Being willing is not enough; we must do.",
+      "author": "Leonardo da Vinci"
+    },
+    {
+      "quote": "Limitations live only in our minds.  But if we use our imaginations, our possibilities become limitless.",
+      "author": "Jamie Paolinetti"
+    },
+    {
+      "quote": "You take your life in your own hands, and what happens? A terrible thing, no one to blame.",
+      "author": "Erica Jong"
+    },
+    {
+      "quote": "What’s money? A man is a success if he gets up in the morning and goes to bed at night and in between does what he wants to do.",
+      "author": "Bob Dylan"
+    },
+    {
+      "quote": "I didn’t fail the test. I just found 100 ways to do it wrong.",
+      "author": "Benjamin Franklin"
+    },
+    {
+      "quote": "In order to succeed, your desire for success should be greater than your fear of failure.",
+      "author": "Bill Cosby"
+    },
+    {
+      "quote": "A person who never made a mistake never tried anything new.",
+      "author": " Albert Einstein"
+    },
+    {
+      "quote": "The person who says it cannot be done should not interrupt the person who is doing it.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "quote": "There are no traffic jams along the extra mile.",
+      "author": "Roger Staubach"
+    },
+    {
+      "quote": "It is never too late to be what you might have been.",
+      "author": "George Eliot"
+    },
+    {
+      "quote": "You become what you believe.",
+      "author": "Oprah Winfrey"
+    },
+    {
+      "quote": "I would rather die of passion than of boredom.",
+      "author": "Vincent van Gogh"
+    },
+    {
+      "quote": "A truly rich man is one whose children run into his arms when his hands are empty.",
+      "author": "Unknown"
+    },
+    {
+      "quote": "It is not what you do for your children, but what you have taught them to do for themselves, that will make them successful human beings.",
+      "author": "Ann Landers"
+    },
+    {
+      "quote": "If you want your children to turn out well, spend twice as much time with them, and half as much money.",
+      "author": "Abigail Van Buren"
+    },
+    {
+      "quote": "Build your own dreams, or someone else will hire you to build theirs.",
+      "author": "Farrah Gray"
+    },
+    {
+      "quote": "The battles that count aren’t the ones for gold medals. The struggles within yourself–the invisible battles inside all of us–that’s where it’s at.",
+      "author": "Jesse Owens"
+    },
+    {
+      "quote": "Education costs money.  But then so does ignorance.",
+      "author": "Sir Claus Moser"
+    },
+    {
+      "quote": "I have learned over the years that when one’s mind is made up, this diminishes fear.",
+      "author": "Rosa Parks"
+    },
+    {
+      "quote": "It does not matter how slowly you go as long as you do not stop.",
+      "author": "Confucius"
+    },
+    {
+      "quote": "If you look at what you have in life, you’ll always have more. If you look at what you don’t have in life, you’ll never have enough.",
+      "author": "Oprah Winfrey"
+    },
+    {
+      "quote": "Remember that not getting what you want is sometimes a wonderful stroke of luck.",
+      "author": "Dalai Lama"
+    },
+    {
+      "quote": "You can’t use up creativity.  The more you use, the more you have.",
+      "author": "Maya Angelou"
+    },
+    {
+      "quote": "Dream big and dare to fail.",
+      "author": "Norman Vaughan"
+    },
+    {
+      "quote": "Our lives begin to end the day we become silent about things that matter.",
+      "author": "Martin Luther King Jr."
+    },
+    {
+      "quote": "Do what you can, where you are, with what you have.",
+      "author": "Teddy Roosevelt"
+    },
+    {
+      "quote": "If you do what you’ve always done, you’ll get what you’ve always gotten.",
+      "author": "Tony Robbins"
+    },
+    {
+      "quote": "Dreaming, after all, is a form of planning.",
+      "author": "Gloria Steinem"
+    },
+    {
+      "quote": "It’s your place in the world; it’s your life. Go on and do all you can with it, and make it the life you want to live.",
+      "author": "Mae Jemison"
+    },
+    {
+      "quote": "You may be disappointed if you fail, but you are doomed if you don’t try.",
+      "author": "Beverly Sills"
+    },
+    {
+      "quote": "Remember no one can make you feel inferior without your consent.",
+      "author": "Eleanor Roosevelt"
+    },
+    {
+      "quote": "Life is what we make it, always has been, always will be.",
+      "author": "Grandma Moses"
+    },
+    {
+      "quote": "The question isn’t who is going to let me; it’s who is going to stop me.",
+      "author": "Ayn Rand"
+    },
+    {
+      "quote": "When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.",
+      "author": "Henry Ford"
+    },
+    {
+      "quote": "It’s not the years in your life that count. It’s the life in your years.",
+      "author": "Abraham Lincoln"
+    },
+    {
+      "quote": "Change your thoughts and you change your world.",
+      "author": "Norman Vincent Peale"
+    },
+    {
+      "quote": "Either write something worth reading or do something worth writing.",
+      "author": "Benjamin Franklin"
+    },
+    {
+      "quote": "Nothing is impossible, the word itself says, “I’m possible!”",
+      "author": "–Audrey Hepburn"
+    },
+    {
+      "quote": "The only way to do great work is to love what you do.",
+      "author": "Steve Jobs"
+    },
+    {
+      "quote": "If you can dream it, you can achieve it.",
+      "author": "Zig Ziglar"
+    }
+  ]
+}
