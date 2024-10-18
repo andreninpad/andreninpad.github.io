@@ -1,63 +1,63 @@
 {
   "projects": [
     {
-      "url": "/FreeCodeCamp/HTML&CSS/05–SurveyForm.html",
+      "url": "projects/SurveyForm.html",
       "title": "Survey Form"
     },
     {
-      "url": "/FreeCodeCamp/HTML&CSS/10–TributePage.html",
+      "url": "projects/TributePage.html",
       "title": "Tribute Page"
     },
     {
-      "url": "/FreeCodeCamp/HTML&CSS/12–CatPainting.html",
+      "url": "projects/CatPainting.html",
       "title": "Cat Head Painting"
     },
     {
-      "url": "/FreeCodeCamp/HTML&CSS/13–Piano.html",
+      "url": "projects/Piano.html",
       "title": "Piano"
     },
     {
-      "url": "/FreeCodeCamp/HTML&CSS/14–TechDocPage.html",
+      "url": "projects/TechDocPage.html",
       "title": "Technical Documentation"
     },
     {
-      "url": "/FreeCodeCamp/HTML&CSS/15–CitySkyline.html",
+      "url": "projects/CitySkyline.html",
       "title": "Interactive City Skyline"
     },
     {
-      "url": "/FreeCodeCamp/HTML&CSS/18–FerrisWheel.html",
+      "url": "projects/FerrisWheel.html",
       "title": "Colorful Ferris Wheel"
     },
     {
-      "url": "/FreeCodeCamp/HTML&CSS/19–Penguin.html",
+      "url": "projects/Penguin.html",
       "title": "Happy Flappy Penguin"
     },
     {
-      "url": "/FreeCodeCamp/JavaScript/03–RPG_Basic_JS.html",
+      "url": "projects/RPG.html",
       "title": "Role Playing Game"
     },
     {
-      "url": "/FreeCodeCamp/HTML&CSS/YouTube-Clone/YouTube-Mimic.html",
+      "url": "projects/YouTube-Clone/YouTube-Mimic.html",
       "title": "YouTube Clone"
     },
     {
-      "url": "/FreeCodeCamp/JavaScript/06–RockPaperScissors.html",
+      "url": "projects/RockPaperScissors.html",
       "title": "Rock Paper Scissors"
     },
     {
-      "url": "/FreeCodeCamp/JavaScript/11–TodoApp.html",
+      "url": "projects/TodoApp.html",
       "title": "Todo App"
     },
     {
-      "url": "/FreeCodeCamp/JavaScript/19–ShoppingCart.html",
+      "url": "projects/ShoppingCart.html",
       "title": "Shopping Cart"
     },
     {
-      "url": "/FreeCodeCamp/JavaScript/20–PlatformerGame.html",
+      "url": "projects/PlatformerGame.html",
       "title": "Platformer Game"
     },
     {
-      "url": "/FreeCodeCamp/JavaScript/21–AdvancedDiceGame.html",
+      "url": "projects/AdvancedDiceGame.html",
       "title": "Advanced Dice Game"
     }
   ],
