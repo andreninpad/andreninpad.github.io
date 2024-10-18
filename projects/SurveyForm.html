@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="Images/anp.svg" type="image/x-icon">
+<title>Survey Form Project</title>
+<style>
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  background-color: #1B1B32;
+  color: #F5F6F7;
+  font-family: Tahoma,'Segoe UI', Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+h1, p {margin: 1em auto; text-align: center;}
+form {
+  margin: 0 auto;
+  max-width: 500px;
+  min-width: 300px;
+  width: 60vw;
+  padding: 2em 0;
+}
+fieldset {
+  border: none;
+  padding: 2rem 0;
+  border-bottom: 3px solid #3B3B4F;
+}
+legend:not(.tips) {font-weight: bold; color: aquamarine;}
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+input, textarea, select {
+  width: 100%;
+  margin: 10px 0 0 0;
+  min-height: 2em;
+}
+input, textarea {
+  background-color: #0A0A23;
+  border: solid 1px #0A0A23;
+  color: #FFFFFF;
+}
+.inline {
+  width: unset;
+  margin: 0 0.5em 0 0;
+  vertical-align: middle;
+}
+input[type="submit"] {
+  display: block;
+  width: 60%;
+  min-width: 300px;
+  margin: 1em auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #3B3B4F;
+  border-color: white;
+}
+fieldset p {text-align: left;}
+input[type="number"], input[type="radio"] {
+  display: inline-block;
+  width: auto ;
+}
+input[type="radio"] {min-height: 1em;}
+select[id="dropdown"], select[id="resources"] {
+  display: inline-block;
+  width: auto;
+}
+label[id="comments"] {font-weight: bold;}
+a {color: crimson;}
+a:hover {color: lightblue;}
+input:hover[type='submit'] {cursor: pointer; color: crimson;}
+</style>
+</head>
+<body>
+<h1 id="title">My Coding Survey Form</h1>
+<p id="description">Thank you for your participation in the survey to improve my coding skills</p>
+<form action="" id="survey-form">
+  <fieldset><legend>Personal Details</legend>
+    <label for="name" id="name-label">
+      Full Name: <input name="name" type="text" id="name" placeholder="Fill in your Full Name" required>
+    </label>
+    <label for="email" id="email-label">
+      E-mail:<input name="email" type="email" id="email" placeholder="Fill in your E-mail" required>
+    </label>
+    <label for="age" id="age">
+      Age (optional): <input name="age" type="number" id="age" min="15" max="100" placeholder="Age" title="You may input your age between 15 to 100 only">
+    </label>
+
+    <label for="education">What is your current profession?
+      <select name="education" id="education" title="Select one from the list">
+        <option value="" selected disabled>(Select one)</option>
+        <option value="uneducated" title="Uneducated">No Formal Education</option>
+        <option value="student" title="Student">Student</option>
+        <option value="primary" title="Primary Education">Primary Education</option>
+        <option value="lower" title="Lower Secondary Education">Lower Secondary Education</option>
+        <option value="upper" title="Upper Secondary Education">Upper Secondary Education</option>
+        <option value="postsec" title="Post-Secondary Non-Tertiary Education">Post-Secondary Non-Tertiary Education</option>
+        <option value="associate" title="Associate Degree">Associate Degree</option>
+        <option value="bachelor" title="Bachelor's Degree">Bachelor's Degree</option>
+        <option value="postgrad" title="Postgraduate Diploma/Certificate">Postgraduate Diploma/Certificate</option>
+        <option value="master" title="Master's Degree">Master's Degree</option>
+        <option value="doctorate" title="Doctorate (Ph.D.)">Doctorate (Ph.D.)</option>
+        <option value="profdeg" title="Professional Degree">Professional Degree</option>
+        <option value="postdoc" title="Post-Doctoral Education">Post-Doctoral Education</option>
+        <option value="nosay" title="If you prefer not to say">Prefer not to say</option>
+        <option value="specific" title="Please specify other education">Other Specific Education</option>
+      </select>
+      <p id="uneducated" hidden>Individuals who have not received any formal schooling.</p>
+      <p id="student" hidden>Still a student and studying.</p>
+      <p id="primary" hidden>Completion of elementary or primary school (typically grades 1-5 or 1-6).</p>
+      <p id="lower" hidden>Completion of middle school or junior high (typically grades 6-8 or 7-9).</p>
+      <p id="upper" hidden>Completion of high school (typically grades 9-12 or 10-12). This may also include vocational education or a technical high school diploma.</p>
+      <p id="postsec" hidden>Education that is more advanced than upper secondary but does not yet meet the qualifications of a bachelor`s degree. This can include vocational training, technical certificates, or diplomas.</p>
+      <p id="associate" hidden>A degree typically awarded after two years of post-secondary study, often from a community college or junior college.</p>
+      <p id="bachelor" hidden>A degree typically awarded after four years of undergraduate study at a college or university.</p>
+      <p id="postgrad" hidden>A specialized qualification obtained after completing a bachelor's degree, usually involving one year of study.</p>
+      <p id="master" hidden>An advanced degree awarded after one to two years of study beyond a bachelor`s degree. This may involve coursework, research, or a combination of both.</p>
+      <p id="doctorate" hidden>The highest academic degree awarded after several years of original research, typically requiring the completion of a dissertation.</p>
+      <p id="profdeg" hidden>A degree that prepares individuals for specific professions, such as law (J.D.), medicine (M.D.), or pharmacy (Pharm.D.). These degrees often require advanced study beyond a bachelor`s or master's degree.</p>
+      <p id="postdoc" hidden>Research or specialized study undertaken after the completion of a doctoral degree.</p>
+      <input type="text" id="specify" name="specify" title="Specify the educational details" placeholder="Input other education here..." hidden>
+    </label>
+  </fieldset>
+
+  <fieldset><legend>Complete the survey below:</legend>
+    <label><b>Would you help me improve my coding skills?</b>
+      <label title="Yes">
+        <input type="radio" title="Yes" id="yes" name="decide" value="yes" checked> Yes, definitely
+      </label>
+      <label title="No">
+        <input type="radio" title="No" id="no" name="decide" value="no"> No, I'm busy
+      </label>
+      <label title="Maybe">
+        <input type="radio" title="Maybe" id="maybe" name="decide" value="maybe"> Maybe, If I have the time
+      </label>
+      <label title="It depends">
+        <input type="radio" title="It depends" id="depends" name="decide" value="depends"> It Depends on my mood
+      </label>
+    </label><br>
+
+    <label for="resources"><b>Best resources for web development:</b>
+      <select name="resources" id="resources" title="Select one from the list">
+        <option value="" selected disabled>(select one)</option>
+        <option value="online">Online Learning Platform</option>
+        <option value="guides">Documentation and Official Guides</option>
+        <option value="books">Books</option>
+        <option value="youtube">YouTube Channels</option>
+        <option value="codingpractices">Coding Challenges and Practices</option>
+        <option value="devcom">Developer Communities</option>
+        <option value="newsblogs">News and Blogs</option>
+        <option value="tools">Specialized Tools</option>
+        <option value="all">All of the resources</option>
+        <option value="specific">Give specific or other resource</option>
+      </select>
+      <p id="online" hidden>
+        <a href="https://www.freecodecamp.org"><b>freeCodeCamp:</b></a> Offers a comprehensive, free curriculum covering HTML, CSS, JavaScript, front-end libraries, data visualization, APIs, and more. It's highly practical and project-based.<br><br>
+        <a href="https://www.codecademy.com"><b>Codecademy:</b></a> Interactive platform with both free and paid courses on various web development topics including HTML, CSS, JavaScript, and frameworks.<br><br>
+        <a href="https://www.udemy.com"><b>Udemy:</b></a> Offers a wide range of courses from beginner to advanced, including popular ones like "The Web Developer Bootcamp" by Colt Steele.<br><br>
+        <a href="https://www.coursera.org"><b>Coursera:</b></a> Features courses from universities and companies. Specializations like 'Web Design for Everybody' by the University of Michigan are popular.
+      </p>
+      <p id="guides" hidden>
+        <a href="https://developer.mozilla.org"><b>MDN Web Docs:</b></a> Mozilla's MDN is the go-to resource for web standards, including HTML, CSS, and JavaScript. It's comprehensive, up-to-date, and widely trusted.<br><br>
+        <a href="https://www.w3schools.com"><b>W3Schools:</b></a> A beginner-friendly resource with tutorials and references on web development topics. It's particularly useful for quick lookups and practice.<br><br>
+        <a href="https://devdocs.io/react"><b>React Documentation:</b></a> For learning React, the official documentation is one of the best resources available, with guides and examples.
+      </p>
+      <p id="books" hidden>
+        <a href="https://eloquentjavascript.net/"><b>"Eloquent JavaScript" by Marijn Haverbeke:</b></a> A well-regarded book for learning JavaScript from the ground up, suitable for beginners to intermediate developers.<br><br>
+        <a href="https://archive.org/details/kyle-simpson-all-6"><b>"You Don't Know JS" by Kyle Simpson:</b></a> A series of books that dive deep into JavaScript, great for developers who want to master the language.<br><br>
+        <a href="https://z-library.rs/book/2575952/5e531d/css-secrets-better-solutions-to-everyday-web-design-problems.html"><b>"CSS Secrets" by Lea Verou:</b></a> Offers valuable insights into advanced CSS techniques.
+      </p>
+      <p id="youtube" hidden>
+        <a href="https://www.youtube.com/@traversymedia"><b>Traversy Media:</b></a> Offers tutorials on a wide range of web development topics, from basics to advanced projects.<br><br>
+        <a href="https://www.youtube.com/@netninja"><b>The Net Ninja:</b></a> Provides extensive tutorials on various web development topics, including JavaScript, React, Node.js, and more.<br><br>
+        <a href="https://www.youtube.com/@academind"><b>Academind:</b></a> Focuses on web development with courses on JavaScript, React, Node.js, and more.
+      </p>
+        <p id="codingpractices" hidden>
+        <a href="https://leetcode.com"><b>LeetCode:</b></a> Great for practicing algorithms and data structures, which are essential for web developers, especially when preparing for technical interviews.<br><br>
+        <a href="https://www.hackerrank.com"><b>HackerRank:</b></a> Offers challenges in various programming languages, including those relevant to web development.<br><br>
+        <a href="https://codepen.io"><b>CodePen:</b></a> A social development environment for front-end designers and developers, where you can build, test, and showcase your projects.
+      </p>
+      <p id="devcom" hidden>
+        <a href="https://stackoverflow.com"><b>Stack Overflow:</b></a> The go-to place for getting help with coding problems. Most issues you'll face have already been discussed here.<br><br>
+        <a href="https://www.reddit.com"><b>Reddit (r/webdev):</b></a> A community for discussing all things web development, from newbie questions to advanced topics.<br><br>
+        <a href="https://github.com"><b>GitHub:</b></a> Explore open-source projects, contribute to repositories, and showcase your own work.
+      </p>
+      <p id="newsblogs" hidden>
+        <a href="https://www.smashingmagazine.com/"><b>Smashing Magazine:</b></a> Offers articles on web design and development, including UX, CSS, JavaScript, and more.<br><br>
+        <a href="https://css-tricks.com/"><b>CSS-Tricks:</b></a> A go-to blog for CSS, but it also covers a broad range of front-end development topics.<br><br>
+        <a href="https://alistapart.com/"><b>A List Apart:</b></a> Focuses on web standards and best practices in web design and development.
+      </p>
+      <p id="tools" hidden>
+        <a href="https://code.visualstudio.com"><b>Visual Studio Code:</b></a> A highly popular code editor with extensive extensions for web development.<br><br>
+        <a href="https://www.figma.com"><b>Figma:</b></a> An excellent tool for UI/UX design, which is increasingly important for web developers.<br><br>
+        <a href="https://www.postman.com/"><b>Postman:</b></a> Great for API development and testing, making it easier to work with back-end services.
+      </p>
+      <p id="all" hidden>
+        It's best to do all resources. Each of these resources is valuable depending on where you are in your web development journey. Start with a few that match your current needs and gradually expand to others as you advance.
+      </p><input type="text" id="specific" name="specific" title="Specify other resouce." placeholder="Input other resources here..." hidden>
+    </label><br>
+
+    <legend class="tips"><b>Give advices on best practices for web developement:</b></legend>
+    <label>
+      <input type="checkbox" name="practices" id="fundamentals" value="fundamentals" class="inline">Master the Fundamentals
+    </label>
+    <p id="fundamental" hidden>
+      <b>HTML/CSS/JavaScript:</b> These are the building blocks of web development. Understand how they work together to create responsive, interactive websites.<br><br>
+      <b>Responsive Design:</b> Learn how to make websites look good on all devices using media queries and frameworks like Bootstrap.<br><br>
+      <b>Version Control (Git):</b> Master Git for version control and collaboration with others. Learn to use platforms like GitHub for code management and sharing.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="technologies" value="technologies" class="inline">Stay Updated with Modern Technologies
+    </label>
+    <p id="tech" hidden>
+      <b>JavaScript Frameworks:</b> Get proficient with popular frameworks/libraries like React, Angular, or Vue.js.<br><br>
+      <b>Backend Development:</b> Understand server-side programming languages like Node.js, Python, Ruby, or PHP.<br><br>
+      <b>Databases:</b> Learn both SQL (e.g., MySQL, PostgreSQL) and NoSQL (e.g., MongoDB) databases.<br><br>
+      <b>APIs and Web Services:</b> Understand RESTful APIs, GraphQL, and how to integrate them into your applications.<br><br>
+      <b>Tooling and Automation:</b> Get familiar with tools like Webpack, Gulp, or Parcel to automate tasks and improve efficiency.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="focus" value="focus" class="inline">Focus on Performance
+    </label>
+    <p id="perform" hidden>
+      <b>Page Speed Optimization:</b> Learn techniques to improve load times (e.g., image optimization, lazy loading, and minimizing HTTP requests).<br><br>
+      <b>Efficient Code:</b> Write clean, modular, and DRY (Don't Repeat Yourself) code. Use code linters and formatters.<br><br>
+      <b>SEO Best Practices:</b> Understand how to make your website search engine-friendly by adhering to SEO principles.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="embrace" value="embrace" class="inline">Embrace Best Practices in Development
+    </label>
+    <p id="brace" hidden>
+      <b>Accessibility (a11y):</b> Ensure your websites are accessible to all users, including those with disabilities. Follow WCAG guidelines.<br><br>
+      <b>Security:</b> Learn about common security vulnerabilities like XSS, CSRF, SQL injection, and how to protect against them.<br><br>
+      <b>Cross-Browser Compatibility:</b> Test and ensure your websites work across different browsers and devices.<br><br>
+      <b>Testing:</b> Implement unit testing, integration testing, and end-to-end testing using tools like Jest, Mocha, or Cypress.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="mindset" value="mindset" class="inline">Develop a Problem-Solving Mindset
+    </label>
+    <p id="mind" hidden>
+      <b>Debugging:</b> Become proficient with debugging tools (e.g., Chrome DevTools) to identify and fix issues efficiently.<br><br>
+      <b>Algorithmic Thinking:</b> Practice coding challenges on platforms like LeetCode or HackerRank to improve your problem-solving skills.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="projects" value="projects" class="inline">Work on Real Projects
+    </label>
+    <p id="project" hidden>
+      <b>Build a Portfolio:</b> Create and maintain a portfolio of your projects. Include case studies explaining your approach, challenges, and solutions.<br><br>
+      <b>Contribute to Open Source:</b> Contributing to open-source projects can help you gain experience and visibility in the community.<br><br>
+      <b>Freelancing/Side Projects:</b> Take on freelance or side projects to gain practical experience and learn how to manage client expectations.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="growth" value="growth" class="inline">Adopt a Growth Mindset
+    </label>
+    <p id="grow" hidden>
+      <b>Continuous Learning:</b> Stay updated with the latest trends and technologies. Follow blogs, attend webinars, take online courses, and read books.<br><br>
+      <b>Feedback Loop:</b> Regularly seek feedback on your work from peers, mentors, or clients. Use it to improve.<br><br>
+      <b>Networking:</b> Join developer communities (online and offline), attend meetups, conferences, and participate in hackathons.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="skills" value="skills" class="inline">Focus on Soft Skills
+    </label>
+    <p id="skill" hidden>
+      <b>Communication:</b> Learn to explain complex concepts in simple terms. Clear communication is crucial when working with clients, team members, or stakeholders.<br><br>
+      <b>Collaboration:</b> Work well in teams, be open to others' ideas, and know how to resolve conflicts.<br><br>
+      <b>Time Management:</b> Prioritize tasks, set realistic deadlines, and manage your time efficiently.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="needs" value="needs" class="inline">Understand Business and User Needs
+    </label>
+    <p id="need" hidden>
+      <b>User-Centered Design:</b> Keep the user experience (UX) at the forefront of your development process.<br><br>
+      <b>Client Management:</b> Learn to understand and manage client expectations, write clear project briefs, and handle feedback constructively.
+    </p>
+    <label>
+      <input type="checkbox" name="practices" id="work" value="work" class="inline">Maintain Work-Life Balance
+    </label>
+    <p id="life" hidden>
+      <b>Avoid Burnout:</b> While it's essential to work hard, taking breaks and maintaining a healthy work-life balance is crucial for long-term success.<br><br>
+      <b>Mindfulness:</b> Practice mindfulness or other stress-relief techniques to stay focused and motivated.
+    </p>
+  </fieldset>
+
+  <label id="comments" for="comments">
+    Any comments or suggestions:<textarea name="comments" id="comments" placeholder="Your comments or suggestions here..." title="Input your comments or suggestions" rows="3" cols="30"></textarea>
+  </label><input type="submit" value="Submit" id="submit" title="Click to complete and submit the survey!">
+</form>
+<script>
+//This script shows the other input textbox once selected then hides it once deselected
+const education = document.getElementById('education');
+const uneducated = document.getElementById('uneducated');
+const student = document.getElementById('student');
+const primary = document.getElementById('primary');
+const lower = document.getElementById('lower');
+const upper = document.getElementById('upper');
+const postsec = document.getElementById('postsec');
+const associate = document.getElementById('associate');
+const bachelor = document.getElementById('bachelor');
+const postgrad = document.getElementById('postgrad');
+const master = document.getElementById('master');
+const doctorate = document.getElementById('doctorate');
+const profdeg = document.getElementById('profdeg');
+const postdoc = document.getElementById('postdoc');
+const specific = document.getElementById('specify');
+education.addEventListener('change', function() {
+  if (this.value === 'uneducated') {
+    uneducated.style.display = 'block'; //Shows the texts for Option 1, hides the rest
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';          
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'student') {
+    uneducated.style.display = 'none';
+    student.style.display = 'block'; //Shows the texts for Option 2, hides the rest
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'primary') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'block'; //Shows the texts for Option 3, hides the rest
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'lower') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'block'; //Shows the texts for Option 4, hides the rest
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'upper') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'block'; //Shows the texts for Option 5, hides the rest
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'postsec') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'block'; //Shows the texts for Option 6, hides the rest
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'associate') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'block'; //Shows the texts for Option 7, hides the rest
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'bachelor') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'block'; //Shows the texts for Option 8, hides the rest
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'postgrad') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'block'; //Shows the texts for Option 9, hides the rest
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'master') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'block'; //Shows the texts for Option 10, hides the rest
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'doctorate') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'block'; //Shows the texts for Option 11, hides the rest
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'profdeg') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none'
+    profdeg.style.display = 'block'; //Shows the texts for Option 12, hides the rest
+    postdoc.style.display = 'none';
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'postdoc') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none'
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'block';//Shows the texts for Option 13, hides the rest
+    specific.style.display = 'none';
+    specific.value = ''; //Clears the input's content
+  }
+  else if (this.value === 'specific') {
+    uneducated.style.display = 'none';
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    specific.style.display = 'block'; //Shows the input box for Option 15, hides the rest
+    specific.value = ''; //Clears the input's content
+  } 
+  else {
+    uneducated.style.display = 'none'
+    student.style.display = 'none';
+    primary.style.display = 'none';
+    lower.style.display = 'none';
+    upper.style.display = 'none';
+    postsec.style.display = 'none';
+    associate.style.display = 'none';
+    bachelor.style.display = 'none';
+    postgrad.style.display = 'none';
+    master.style.display = 'none';
+    doctorate.style.display = 'none';
+    profdeg.style.display = 'none';
+    postdoc.style.display = 'none';
+    otherEd.style.display = 'none';
+    otherEd.value = ''; //Clears the input's content and hides all texts
+    }
+  });
+
+//Best resources for web development
+const resources = document.getElementById('resources');
+const online = document.getElementById('online');
+const guides = document.getElementById('guides');
+const books = document.getElementById('books');
+const youtube = document.getElementById('youtube');
+const codingPractices = document.getElementById('codingpractices');
+const devCom = document.getElementById('devcom');
+const newsBlogs = document.getElementById('newsblogs');
+const tools = document.getElementById('tools');
+const all = document.getElementById('all');
+const specify = document.getElementById('specific');
+resources.addEventListener('change', function() {
+if (this.value === 'online') {
+  online.style.display = 'block'; //Shows the texts of Option 1, hides the rest
+  guides.style.display = 'none';
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none';
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'guides') {
+  online.style.display = 'none';
+  guides.style.display = 'block'; //Shows the texts of Option 2, hides the rest
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none';
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'books') {
+  online.style.display = 'none';
+  guides.style.display = 'none'
+  books.style.display = 'block'; //Shows the texts of Option 3, hides the rest
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none';
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'youtube') {
+  online.style.display = 'none';
+  guides.style.display = 'none'
+  books.style.display = 'none';
+  youtube.style.display = 'block'; //Shows the texts of Option 4, hides the rest
+  codingPractices.style.display = 'none';
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'codingpractices') {
+  online.style.display = 'none';
+  guides.style.display = 'none'
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'block'; //Shows the texts of Option 5, hides the rest
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'devcom') {
+  online.style.display = 'none';
+  guides.style.display = 'none'
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none'
+  devCom.style.display = 'block'; //Shows the texts of Option 6, hides the rest
+  newsBlogs.style.display = 'none';
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'newsblogs') {
+  online.style.display = 'none';
+  guides.style.display = 'none'
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none'
+  devCom.style.display = 'none'
+  newsBlogs.style.display = 'block'; //Shows the texts of Option 7, hides the rest
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'tools') {
+  online.style.display = 'none';
+  guides.style.display = 'none'
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none'
+  devCom.style.display = 'none'
+  newsBlogs.style.display = 'none'
+  tools.style.display = 'block'; //Shows the texts of Option 8, hides the rest
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'all') {
+  online.style.display = 'block';
+  guides.style.display = 'block'
+  books.style.display = 'block';
+  youtube.style.display = 'block';
+  codingPractices.style.display = 'block'
+  devCom.style.display = 'block'
+  newsBlogs.style.display = 'block'
+  tools.style.display = 'block'
+  all.style.display = 'block'; //Shows all the Options texts, hides the rest
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content
+}
+else if (this.value === 'specific') {
+  online.style.display = 'none';
+  guides.style.display = 'none';
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none'
+  devcom.style.display = 'none';
+  newsBlogs.style.display = 'none';
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'block'; //Shows the input of Option 10, hides the rest
+  specify.value = ''; //Clears the input box content
+}
+else {
+  online.style.display = 'none';
+  guides.style.display = 'none';
+  books.style.display = 'none';
+  youtube.style.display = 'none';
+  codingPractices.style.display = 'none'
+  devCom.style.display = 'none';
+  newsBlogs.style.display = 'none';
+  tools.style.display = 'none';
+  all.style.display = 'none';
+  specify.style.display = 'none';
+  specify.value = ''; //Clears the input box content and hides all texts
+}
+});
+// Array of checkbox-content pairs. Advices on best practices for web developement
+const practices = [
+{ checkbox:document.getElementById('fundamentals'), content:document.getElementById('fundamental') },
+{ checkbox:document.getElementById('technologies'), content:document.getElementById('tech') },
+{ checkbox:document.getElementById('focus'), content:document.getElementById('perform') },
+{ checkbox:document.getElementById('embrace'), content:document.getElementById('brace') },
+{ checkbox:document.getElementById('mindset'), content:document.getElementById('mind') },
+{ checkbox:document.getElementById('projects'), content:document.getElementById('project') },
+{ checkbox:document.getElementById('growth'), content:document.getElementById('grow') },
+{ checkbox:document.getElementById('skills'), content:document.getElementById('skill') },
+{ checkbox:document.getElementById('needs'), content:document.getElementById('need') },
+{ checkbox:document.getElementById('work'), content:document.getElementById('life') }
+];
+// Loop through each pair to add the event listener
+practices.forEach(pair => {
+pair.checkbox.addEventListener('change', function() {
+  if (pair.checkbox.checked) {pair.content.style.display = 'block';} // Show content when the checkbox is checked
+  else {pair.content.style.display = 'none';} // Hide content when the checkbox is unchecked
+  });
+});
+</script>
+</body>
+</html>
