@@ -390,7 +390,7 @@ window.addEventListener('load', window.scrollTo(0, 0));
 window.addEventListener('scroll', handleScroll);
 
 fetch('projects.json').then(respond => respond.json()).then(data => {
-  projectDataArr = data;
+  projectDataArr = data.projects;
   displayProjects(projectDataArr.slice(startingIndex, endingIndex), startingIndex);
 }).catch(err => projectsContainer.innerHTML = `<p class="error-msg">There was an error loading the projects</p>`);
 
