@@ -61,7 +61,7 @@
       "title": "Advanced Dice Game"
     }
   ],
-  "colors": ["#16a085", "#27ae60", "#f39c12", "#e74c3c", "#9b59b6", "#FB6964", "#342224", "#472E32", "#BDBB99", "#77B1A9", "#73A857", "#34495E", "#2C2C2C", "#616A6B", "#4A235A", "#2F4F4F", "#0E4B5A", "#36454F", "#2C3E50", "#800020"],
+  "colors": ["#472E32", "#BDBB99", "#77B1A9", "#73A857", "#34495E", "#616A6B", "#4A235A", "#2F4F4F", "#0E4B5A", "#36454F","#16a085", "#27ae60", "#f39c12", "#e74c3c", "#9b59b6", "#FB6964", "#342224", "#2C3E50", "#800020", "aqua", "aquamarine", "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgreen", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dodgerblue", "firebrick", "forestgreen", "fuchsia", "gold", "goldenrod", "gray", "green", "greenyellow", "hotpink", "indianred", "indigo", "khaki", "lawngreen", "lightblue", "lightcoral", "lightgreen", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray", "lightsteelblue", "lime", "limegreen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "moccasin", "navajowhite", "navy"],
   "quotes": [
     {
       "quote": "It’s only by descending into the abyss that we recuperate the abundance of life. Where we stumble and fall, there lies our treasure. The very cave we are afraid to enter turns out to be the source of what we seek.",
