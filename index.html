@@ -269,6 +269,62 @@
       border-top: 4px solid var(--color3);      
     }
     footer p {margin: 2rem;}
+
+    /*Styling for Quotes*/
+#previous-quote, #next-quote {
+  cursor: pointer;
+  -webkit-text-stroke-width: 0.05em;
+  -webkit-text-stroke-color: black;
+}
+#next-quote {
+  float: right;
+}
+#previous-quote:hover, #next-quote:hover {color: rgba(23, 180, 180, 0.8);}
+#quote-box {
+  position: relative;
+  top: 10px;
+  border-radius: 3px;
+  width: 450px;
+  padding: 40px 50px;
+  display: table;
+}
+#quote-box .quote-text {
+  text-align: center;
+  width: 450px;
+  height: auto;
+  clear: both;
+  font-weight: 500;
+  font-size: 1.75em;
+}
+#quote-box .quote-text i {
+  font-size: 1em;
+  margin-right: 0.4em;
+}
+#quote-box .quote-author {
+  width: 450px;
+  height: auto;
+  clear: both;
+  padding-top: 20px;
+  font-size: 1em;
+  text-align: right;
+  margin-bottom: 20px;
+}
+#quote-box .buttons .button {
+  height: 38px;
+  border: none;
+  border-radius: 3px;
+  padding: 8px;
+  color: blue;
+  outline: none;
+  font-size: 0.85em;
+  cursor: pointer;
+  background-color: transparent;
+}
+#quote-box .buttons .button:hover {
+  opacity: 0.5;
+  box-shadow: 0 0 10px 0 rgba(23, 180, 180, 0.8);
+}
+#quote-box .buttons .button#new-quote {float: right;}
   </style>
 </head>
 <body>
@@ -283,7 +339,23 @@
   <main>
     <section id="welcome-section">
       <h1>Greetings, I am Andre Niño</h1>
-      <p>web developer<br>data analyst</p>
+      <p>web developer, data analyst</p>
+      <div id="quote-box">
+        <a class="button" id="previous-quote" title="Previous quote"><i class="fa fa-chevron-left"></i></a>
+        <a class="button" id="next-quote" title="Next quote"><i class="fa fa-chevron-right"></i></a>
+        <div class="quote-text">
+          <i class="fa fa-quote-left"> </i><span id="text"></span>
+        </div>
+        <div class="quote-author">⫸ <span id="author"></span></div>
+        <div class="buttons">
+          <a class="button" id="facebook-quote" title="Share this quote on Facebook!" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <a class="button" id="linkedin-quote" title="Post this quote on LinkedIn!" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+          <a class="button" id="pinterest-quote" title="Share this quote on Pinterest!" target="_blank"><i class="fa-brands fa-pinterest"></i></a>
+          <a class="button" id="tweet-quote" title="Tweet this quote!" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+          <a class="button" id="tumblr-quote" title="Post this quote on tumblr!" target="_blank"><i class="fa-brands fa-tumblr"></i></a>
+          <button type="button" class="button" id="new-quote">Show Random Quote</button>
+        </div>
+      </div>
     </section>
     <section id="projects-section">
       <h2 class="projects-header">Some of my Projects</h2>
@@ -329,6 +401,8 @@
     </footer>
   </main>
 </body>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script>
 const navLinks = document.querySelectorAll('nav ul li a');
 const sections = document.querySelectorAll('section');
@@ -341,6 +415,7 @@ let projectDataArr = [];
 let displayedProjects = 3;
 let allProjectsLoaded = false;
 window.onload = initProjects;
+const anpArrUrl = 'anpArrays.json';
 
 function removeActiveClass() { 
   navLinks.forEach(link => link.classList.remove('active'));
@@ -385,11 +460,11 @@ function handleScroll() {
   };
 };
 
-if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';};
+if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';}; 
 window.addEventListener('load', window.scrollTo(0, 0));
 window.addEventListener('scroll', handleScroll);
 
-fetch('anpArrays.json').then(respond => respond.json()).then(data => {
+fetch(anpArrUrl).then(respond => respond.json()).then(data => {
   projectDataArr = data.projects;
   displayProjects(projectDataArr.slice(startingIndex, endingIndex), startingIndex);
 }).catch(err => projectsContainer.innerHTML = `<p class="error-msg">There was an error loading the projects</p>`);
@@ -433,7 +508,7 @@ function fetchProjects() {
 const appendProjects = projects => {
   try {
     projects.forEach(({ url, title }) => {
-      const projectElement = document.createElement('a');
+      const projectElement = document.createElement('a');      
       projectElement.classList.add('project-link');
       projectElement.href = url;
       projectElement.target = '_blank';
@@ -456,5 +531,179 @@ function displayProjects() {
   };
 };
 viewMoreBtn.onclick = fetchProjects;
+
+let quotesData;
+let colors = [];
+let currentIndex = 0;
+var currentQuote = '', currentAuthor = '';
+
+async function fetchColors() {
+  return fetch(anpArrUrl).then(response => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  }).then(data => {
+    console.log("Data fetched from JSON:", data);
+    if (data.colors) {
+      colors = data.colors;
+      return colors;
+    } else {
+      throw new Error("Colors array not found in JSON");
+    }
+  }).catch(err => {
+    console.error("Error fetching colors:", err);
+  })
+};
+
+function getQuotes() {
+  return $.ajax({
+    headers: {Accept: 'json'},
+    url: anpArrUrl,
+    success: function (jsonQuotes) {
+      if (typeof jsonQuotes === 'string') {
+        quotesData = JSON.parse(jsonQuotes);
+      } else {
+        quotesData = jsonQuotes;
+      };
+    }
+  });
+};
+
+function getRandomQuote() {
+  return quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
+};
+
+function getRandomColor() {
+  return colors[Math.floor(Math.random() * colors.length)];
+};
+
+function getQuote() {
+  let randomQuote = getRandomQuote();
+  currentQuote = randomQuote.quote;
+  currentAuthor = randomQuote.author;
+
+  let randomColor = getRandomColor();
+
+  $('#pinterest-quote').attr('href',
+    'https://pinterest.com/pin/create/button/?url=' +
+    encodeURIComponent(currentQuote + ' - ' + currentAuthor)
+  );
+
+  $('#tweet-quote').attr('href',
+    'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' +
+    encodeURIComponent('"' + currentQuote + '" ' + currentAuthor)
+  );
+
+  $('#tumblr-quote').attr('href',
+    'https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=' +
+    encodeURIComponent(currentAuthor) + '&content=' +
+    encodeURIComponent(currentQuote) +
+    '&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button'
+  );
+
+  $('.quote-text').animate({ opacity: 0 }, 500, function () {
+    $(this).animate({ opacity: 1 }, 500);
+    $('#text').text(randomQuote.quote);
+  });
+
+  $('.quote-author').animate({ opacity: 0 }, 500, function () {
+    $(this).animate({ opacity: 1 }, 500);
+    $('#author').html(randomQuote.author);
+  });
+  $('#welcome-section').animate({backgroundColor: randomColor, color: randomColor}, 1000);
+  $('#html').animate({ backgroundColor: randomColor, color: randomColor }, 1000);
+  $('.button').animate({color: randomColor}, 1000);
+};
+
+const displayQuote = index => {
+  if (!quotesData || !quotesData.quotes || index < 0 || index >= quotesData.quotes.length) {
+    console.error("Invalid index or quotes data not available");
+    return;
+  }
+
+  let quoteObj = quotesData.quotes[index];
+  currentQuote = quoteObj.quote;
+  currentAuthor = quoteObj.author;
+
+  let randomColor = getRandomColor();
+
+  $('#pinterest-quote').attr('href',
+    'https://pinterest.com/pin/create/button/?url=' +
+    encodeURIComponent(currentQuote + ' - ' + currentAuthor)
+  );
+
+  $('#tweet-quote').attr('href',
+    'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' +
+    encodeURIComponent('"' + currentQuote + '" ' + currentAuthor)
+  );
+
+  $('#tumblr-quote').attr('href',
+    'https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=' +
+    encodeURIComponent(currentAuthor) + '&content=' +
+    encodeURIComponent(currentQuote) +
+    '&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button'
+  );
+
+  $('.quote-text').animate({ opacity: 0 }, 500, function () {
+    $(this).animate({ opacity: 1 }, 500);
+    $('#text').text(currentQuote);
+  });
+
+  $('.quote-author').animate({ opacity: 0 }, 500, function () {
+    $(this).animate({ opacity: 1 }, 500);
+    $('#author').html(currentAuthor);
+  });
+
+  $('#welcome-section').animate({backgroundColor: randomColor, color: randomColor}, 1000);
+  $('html').animate({backgroundColor: randomColor, color: randomColor}, 1000);
+  $('.button').animate({color: randomColor}, 1000);
+};
+
+function showNextQuote() {
+  currentIndex = (currentIndex + 1) % quotesData.quotes.length;
+  displayQuote(currentIndex);
+};
+
+
+function showPreviousQuote() {
+  currentIndex = (currentIndex - 1 + quotesData.quotes.length) % quotesData.quotes.length;
+  displayQuote(currentIndex);
+};
+
+$(document).ready(function () {
+  Promise.all([getQuotes(), fetchColors()]).then(() => {
+    displayQuote(currentIndex);
+  });
+  $('#next-quote').on('click', showNextQuote);
+  $('#previous-quote').on('click', showPreviousQuote);
+});
+
+const fbBtn = document.getElementById('facebook-quote').onclick = function shareQuoteToFacebook() {
+  let textToCopy = '"' + currentQuote + '" - ' + currentAuthor;
+  navigator.clipboard.writeText(textToCopy).then(function() {
+    alert('Quote copied to clipboard! Now you can paste it in your Facebook post.');
+  }, function(err) {
+    console.error('Could not copy text: ', err);
+  });
+  window.open('https://www.facebook.com/sharer/sharer.php?u=https://andreninpad.github.io/portfolio', '_blank');
+};
+
+const linkedinBtn = document.getElementById('linkedin-quote').onclick = function shareQuoteToLinkedIn() {
+  let textToCopy = '"' + currentQuote + '" - ' + currentAuthor;
+  navigator.clipboard.writeText(textToCopy).then(function() {
+      alert('Quote copied to clipboard! Paste it in your LinkedIn post.');
+  }, function(err) {
+      console.error('Could not copy text: ', err);
+  });
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=https://andreninpad.github.io/portfolio', '_blank');
+};
+
+$(document).ready(function () {
+  Promise.all([getQuotes(), fetchColors()]).then(() => {
+    getQuote();
+  });
+  $('#new-quote').on('click', getQuote);
+});
 </script>
 </html>
