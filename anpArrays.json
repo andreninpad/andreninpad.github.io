@@ -1,6 +1,10 @@
 {
   "projects": [
     {
+      "url": "projects/RandomQuotes.html",
+      "title": "Random Quotes"
+    },
+    {
       "url": "projects/SurveyForm.html",
       "title": "Survey Form"
     },
