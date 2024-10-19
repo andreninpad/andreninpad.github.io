@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="shortcut icon" href="../HTML&CSS/Images/anp.svg" type="image/x-icon">
+  <title>Random Quote Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      vertical-align: baseline;
+    }
+    div {
+      position: relative;
+      z-index: 2;
+    }
+    body {
+      background-color: #333;
+      font-family: Raleway, sans-serif;
+      font-weight: 400;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #previous-quote, #next-quote {
+      cursor: pointer;
+      -webkit-text-stroke-width: 0.05em;
+      -webkit-text-stroke-color: black;
+    }
+    #next-quote {
+      float: right;
+    }
+    #previous-quote:hover, #next-quote:hover {color: rgba(23, 180, 180, 0.8);}
+    #quote-box {
+      border-radius: 3px;
+      position: relative;
+      width: 450px;
+      padding: 40px 50px;
+      display: table;
+      background-color: auto;
+      box-shadow: 0 0 40px 0 rgb(37, 26, 138, 0.8);
+    }
+    #quote-box .quote-text {
+      text-align: center;
+      width: 450px;
+      height: auto;
+      clear: both;
+      font-weight: 500;
+      font-size: 1.75em;
+    }
+    #quote-box .quote-text i {
+      font-size: 1em;
+      margin-right: 0.4em;
+    }
+    #quote-box .quote-author {
+      width: 450px;
+      height: auto;
+      clear: both;
+      padding-top: 20px;
+      font-size: 1em;
+      text-align: right;
+    }
+    .quote-text, .quote-author {
+      -webkit-text-stroke-width: 0.05em;
+      -webkit-text-stroke-color: black;
+    }
+    #quote-box .buttons {
+      width: 450px;
+      margin: auto;
+      display: block;
+    }
+    #quote-box .buttons .button {
+      height: 38px;
+      border: none;
+      border-radius: 3px;
+      color: #030e77;
+      background-color: auto;
+      outline: none;
+      font-size: 0.85em;
+      padding: 8px 18px 6px 18px;
+      margin-top: 30px;
+      opacity: 1;
+      cursor: pointer;
+      box-shadow: 0 0 10px 0 rgba(23, 180, 180, 0.8);
+    }
+    #quote-box .buttons .button:hover {
+      opacity: 0.5;
+    }
+    #quote-box .buttons .button#tweet-quote, #quote-box .buttons .button#facebook-quote, #quote-box .buttons .button#tumblr-quote, #quote-box .buttons .button#linkedin-quote, #quote-box .buttons .button#pinterest-quote {
+      float: left;
+      padding: 0px;
+      padding-top: 8px;
+      text-align: center;
+      font-size: 1.2em;
+      margin-right: 5px;
+      height: 30px;
+      width: 40px;
+    }
+    #quote-box .buttons .button#new-quote {
+      float: right;
+    }
+    .footer {
+      width: 450px;
+      text-align: center;
+      display: block;
+      margin: 15px auto 30px auto;
+      font-size: 0.8em;
+      color: black;
+    }
+    .footer a {
+      font-weight: 500;
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="quote-box">
+      <a class="button" id="previous-quote" title="Previous quote"><i class="fa fa-chevron-left"></i></a>
+      <a class="button" id="next-quote" title="Next quote"><i class="fa fa-chevron-right"></i></a>
+      <div class="quote-text">
+        <i class="fa fa-quote-left"> </i><span id="text"></span>
+      </div>
+      <div class="quote-author">⫸ <span id="author"></span></div>
+      <div class="buttons">
+        <a class="button" id="facebook-quote" title="Share this quote on Facebook!" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a class="button" id="linkedin-quote" title="Post this quote on LinkedIn!" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a class="button" id="pinterest-quote" title="Share this quote on Pinterest!" target="_blank"><i class="fab fa-pinterest"></i></a>
+        <a class="button" id="tweet-quote" title="Tweet this quote!" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a class="button" id="tumblr-quote" title="Post this quote on tumblr!" target="_blank"><i class="fab fa-tumblr"></i></a>
+        <button type="button" class="button" id="new-quote">Random Quote</button>
+      </div>
+    </div>
+    <div class="footer">by <a href="https://codepen.io/andreninpad">andreninpad</a></div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script>
+let quotesData;
+const anpArrUrl = '../anpArrays.json';
+let colors = []; //Will store colors after fetching
+let currentIndex = 0; //Keep track of the current quote index
+var currentQuote = '', currentAuthor = '';
+
+function fetchColors() {
+  return fetch(anpArrUrl).then(response => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  }).then(data => {
+    console.log("Data fetched from JSON:", data);
+    if (data.colors) {
+      colors = data.colors; //Save colors into a global variable
+      return colors;
+    } else {
+      throw new Error("Colors array not found in JSON");
+    }
+  }).catch(err => {
+    console.error("Error fetching colors:", err);
+  })
+}; //Function to fetch colors from JSON file
+
+function getQuotes() {
+  return $.ajax({
+    headers: {Accept: 'json'},
+    url: anpArrUrl, //Ensure this path is correct
+    success: function (jsonQuotes) {
+      if (typeof jsonQuotes === 'string') {
+        quotesData = JSON.parse(jsonQuotes);
+      } else {
+        quotesData = jsonQuotes;
+      };
+    }
+  });
+};
+
+function getRandomQuote() {
+  return quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
+};
+
+function getRandomColor() {
+  return colors[Math.floor(Math.random() * colors.length)];
+};
+
+function getQuote() {
+  let randomQuote = getRandomQuote();
+  currentQuote = randomQuote.quote;
+  currentAuthor = randomQuote.author;
+
+  let randomColor = getRandomColor(); //Apply random color
+
+  $('#pinterest-quote').attr('href',
+    'https://pinterest.com/pin/create/button/?url=' +
+    encodeURIComponent(currentQuote + ' - ' + currentAuthor)
+  );
+
+  $('#tweet-quote').attr('href',
+    'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' +
+    encodeURIComponent('"' + currentQuote + '" ' + currentAuthor)
+  );
+
+  $('#tumblr-quote').attr('href',
+    'https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=' +
+    encodeURIComponent(currentAuthor) + '&content=' +
+    encodeURIComponent(currentQuote) +
+    '&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button'
+  );
+
+  $('.quote-text').animate({ opacity: 0 }, 500, function () {
+    $(this).animate({ opacity: 1 }, 500);
+    $('#text').text(randomQuote.quote);
+  });
+
+  $('.quote-author').animate({ opacity: 0 }, 500, function () {
+    $(this).animate({ opacity: 1 }, 500);
+    $('#author').html(randomQuote.author);
+  });
+  //Change background color and text color
+  $('html body').animate({backgroundColor: randomColor, color: randomColor}, 1000);
+  $('.button').animate({backgroundColor: randomColor}, 1000);
+};
+
+//Function to display a quote based on index
+const displayQuote = index => {
+  if (!quotesData || !quotesData.quotes || index < 0 || index >= quotesData.quotes.length) {
+    console.error("Invalid index or quotes data not available");
+    return;
+  }
+
+  let quoteObj = quotesData.quotes[index];
+  currentQuote = quoteObj.quote;
+  currentAuthor = quoteObj.author;
+
+  let randomColor = getRandomColor(); // Apply random color
+
+  $('#pinterest-quote').attr('href',
+    'https://pinterest.com/pin/create/button/?url=' +
+    encodeURIComponent(currentQuote + ' - ' + currentAuthor)
+  );
+
+  $('#tweet-quote').attr('href',
+    'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' +
+    encodeURIComponent('"' + currentQuote + '" ' + currentAuthor)
+  );
+
+  $('#tumblr-quote').attr('href',
+    'https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=' +
+    encodeURIComponent(currentAuthor) + '&content=' +
+    encodeURIComponent(currentQuote) +
+    '&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button'
+  );
+
+  $('.quote-text').animate({ opacity: 0 }, 500, function () {
+    $(this).animate({ opacity: 1 }, 500);
+    $('#text').text(currentQuote);
+  });
+
+  $('.quote-author').animate({ opacity: 0 }, 500, function () {
+    $(this).animate({ opacity: 1 }, 500);
+    $('#author').html(currentAuthor);
+  });
+
+  //Change background color and text color
+  $('html body').animate({ backgroundColor: randomColor, color: randomColor }, 1000);
+  $('.button').animate({ backgroundColor: randomColor }, 1000);
+};
+
+function showNextQuote() {
+  currentIndex = (currentIndex + 1) % quotesData.quotes.length; // Increment index and loop
+  displayQuote(currentIndex);
+}; //Function to handle next quote
+
+
+function showPreviousQuote() {
+  currentIndex = (currentIndex - 1 + quotesData.quotes.length) % quotesData.quotes.length; // Decrement index and loop
+  displayQuote(currentIndex);
+}; //Function to handle previous quote
+
+//On document ready, load quotes and colors
+$(document).ready(function () {
+  Promise.all([getQuotes(), fetchColors()]).then(() => {
+    displayQuote(currentIndex); //Display the first quote
+  });
+  //Event listeners for next and previous buttons
+  $('#next-quote').on('click', showNextQuote);
+  $('#previous-quote').on('click', showPreviousQuote);
+});
+
+const fbBtn = document.getElementById('facebook-quote').onclick = function shareQuoteToFacebook() {
+  let textToCopy = '"' + currentQuote + '" - ' + currentAuthor;
+  navigator.clipboard.writeText(textToCopy).then(function() {
+    alert('Quote copied to clipboard! Now you can paste it in your Facebook post.');
+  }, function(err) {
+    console.error('Could not copy text: ', err);
+  });
+  window.open('https://www.facebook.com/sharer/sharer.php?u=https://andreninpad.github.io/portfolio', '_blank'); //Open the Facebook share dialog
+};
+
+const linkedinBtn = document.getElementById('linkedin-quote').onclick = function shareQuoteToLinkedIn() {
+  let textToCopy = '"' + currentQuote + '" - ' + currentAuthor;
+  navigator.clipboard.writeText(textToCopy).then(function() {
+      alert('Quote copied to clipboard! Paste it in your LinkedIn post.');
+  }, function(err) {
+      console.error('Could not copy text: ', err);
+  });
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=https://andreninpad.github.io/portfolio', '_blank'); //Open the LinkedIn share dialog
+};
+
+$(document).ready(function () {
+  Promise.all([getQuotes(), fetchColors()]).then(() => {
+    getQuote(); //Display the first quote and random color
+  }); //Fetch quotes and colors, then display the first quote
+  $('#new-quote').on('click', getQuote); //Event listener for "New Quote" button
+});
+</script>
+</html>
