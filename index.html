@@ -397,10 +397,10 @@
     <div id="da-projects">
       <h2 class="da-header">Data Analysis</h2>
       <div class="da-container">
-        <a class="da-link" href="https://drive.google.com/file/d/1QorGZuRK-IFSYhVttrIGGmkUUJvn4cGM/preview" target="_blank" title="Microsoft Excel Data Analysis">
+        <a class="da-link" href="https://drive.google.com/file/d/1QorGZuRK-IFSYhVttrIGGmkUUJvn4cGM/preview" target="_blank" title="Microsoft Excel Data Analysis" loading="lazy">
           <iframe class="da-project" src="https://drive.google.com/file/d/1l1nJiVqNF-yGXk7sVuKWaphDInMxtRyy/preview" alt="Microsoft Excel Data Analysis" title="Microsoft Excel Data Analysis"></iframe><br>Click here to view Microsoft Excel Data Analysis report
         </a>
-        <a class="da-link" href="https://drive.google.com/file/d/1N-943fnRO9TCDskVOki1y0yjB2TlLeMj/preview" target="_blank" title="Microsoft Power BI Dashboard">
+        <a class="da-link" href="https://drive.google.com/file/d/1N-943fnRO9TCDskVOki1y0yjB2TlLeMj/preview" target="_blank" title="Microsoft Power BI Dashboard" loading="lazy">
           <iframe class="da-project" src="https://drive.google.com/file/d/1MjXbTBoBnBW7z4C8gHZ5BVLzYTLOthTG/preview" alt="Microsoft Power BI Dashboard" title="Microsoft Power BI Dashboard"></iframe><br>Click here to view Microsoft Power BI Dashboard report
         </a>
       </div>
@@ -506,7 +506,7 @@ const appendProjects = projects => {
     projectElement.classList.add('project-link');
     projectElement.href = url;
     projectElement.target = '_blank';
-    projectElement.innerHTML = `<iframe class="project" src="${url}" alt="${title}" title="${title}"></iframe>
+    projectElement.innerHTML = `<iframe class="project" src="${url}" alt="${title}" title="${title}" loading="lazy"></iframe>
     <p><code>&lt;/</code>${title}<code>&gt;</code></p>`;
     projectsContainer.appendChild(projectElement);
   });
