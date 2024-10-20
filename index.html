@@ -24,13 +24,6 @@
       #welcome-section h1 {font-size: 3rem; /* Scale down the header */}
       .projects-grid {grid-template-columns: 1fr; /* Stack projects in one column */}
     }
-    @media screen and (max-width: 480px) {
-      nav {position: fixed;}
-      #welcome-section p {font-size: 1.4rem;}
-      .projects-grid {grid-template-columns: 1fr;}  /* Ensure projects stack vertically */
-      .da-container {flex-direction: column;} /* Stack videos vertically */
-      #quote-box {font-size: 1.4rem;}
-    }
     @media screen and (max-width: 540px) {
       nav {position: fixed;}
       nav ul a {font-size: 1.4rem;}
@@ -66,6 +59,13 @@
       body {font-size: 1.4rem; overflow-x: hidden;}
       .button {padding: 8px 12px; font-size: 1.2rem;}
       nav ul a {font-size: 1.6rem; padding: 1rem;}
+    }
+    @media screen and (max-width: 480px) {
+      nav {position: fixed;}
+      #welcome-section p {font-size: 1.4rem;}
+      .projects-grid {grid-template-columns: 1fr;}  /* Ensure projects stack vertically */
+      .da-container {flex-direction: column;} /* Stack videos vertically */
+      #quote-box {font-size: 1.4rem;}
     }
     body {
       font-family: 'Open Sans', 'Roboto Slab', Montserrat;
