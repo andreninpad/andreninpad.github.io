@@ -1,10 +1,6 @@
 {
   "projects": [
     {
-      "url": "projects/RandomQuotes.html",
-      "title": "Random Quotes"
-    },
-    {
       "url": "projects/SurveyForm.html",
       "title": "Survey Form"
     },
@@ -63,6 +59,10 @@
     {
       "url": "projects/AdvancedDiceGame.html",
       "title": "Advanced Dice Game"
+    },
+    {
+      "url": "projects/RandomQuotes.html",
+      "title": "Random Quotes"
     }
   ],
   "colors": ["#472E32", "#BDBB99", "#77B1A9", "#73A857", "#34495E", "#616A6B", "#4A235A", "#2F4F4F", "#0E4B5A", "#36454F","#16a085", "#27ae60", "#f39c12", "#e74c3c", "#9b59b6", "#FB6964", "#342224", "#2C3E50", "#800020", "aqua", "aquamarine", "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgreen", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dodgerblue", "firebrick", "forestgreen", "fuchsia", "gold", "goldenrod", "gray", "green", "greenyellow", "hotpink", "indianred", "indigo", "khaki", "lawngreen", "lightblue", "lightcoral", "lightgreen", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray", "lightsteelblue", "lime", "limegreen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "moccasin", "navajowhite", "navy"],
