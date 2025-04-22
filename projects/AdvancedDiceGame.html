@@ -1,9 +1,10 @@
+<!--Algorithmic Thinking by Building a Dice Game. Algorithmic thinking involves the ability to break down complex problems into a sequence of well-defined, step-by-step instructions. Learn how to manage game state, implement game logic for rolling dice, keeping score, and applying rules for various combinations.This covers concepts such as event handling, array manipulation, conditional logic, and updating the user interface dynamically based on game state.-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="shortcut icon" href="../Images/anp.svg" type="image/x-icon">
+  <link rel="shortcut icon" href="../HTML&CSS/Images/anp.svg" type="image/x-icon">
   <title>Advanced Dice Game</title>
   <style>
     *, *::before, *::after {
@@ -164,9 +165,9 @@
   </main>
 </body>
 <script>
-const listOfAllDice = document.querySelectorAll('.die');
-const scoreInputs = document.querySelectorAll('#score-options input');
-const scoreSpans = document.querySelectorAll('#score-options span');
+const listOfAllDice = document.querySelectorAll('.die'); //Get all of the .die elements.
+const scoreInputs = document.querySelectorAll('#score-options input'); //Get the score inputs (the input elements in the #score-options)
+const scoreSpans = document.querySelectorAll('#score-options span'); //Get the score spans (the input elements in the #score-options)
 const roundElement = document.getElementById('current-round');
 const rollsElement = document.getElementById('current-round-rolls');
 const totalScoreElement = document.getElementById('total-score');
@@ -175,127 +176,117 @@ const rollDiceBtn = document.getElementById('roll-dice-btn');
 const keepScoreBtn = document.getElementById('keep-score-btn');
 const rulesContainer = document.querySelector('.rules-container');
 const rulesBtn = document.getElementById('rules-btn');
-let diceValuesArr = [];
-let isModalShowing = false;
+let diceValuesArr = []; //To keep track of all of the dice values each time the dice is rolled.
+let isModalShowing = false; //When the user clicks on the Show rules button, it toggles between showing and hiding the game rules. To track the state of the game rules.
 let score = 0;
 let round = 1;
 let rolls = 0;
 
 function rollDice() {
-  diceValuesArr = [];
+  diceValuesArr = []; //Container of only five numbers from 1 to 6.
   for (let i = 0; i < 5; i++) {
     const randomDice = Math.floor(Math.random() * 6) + 1;
     diceValuesArr.push(randomDice);
-  };
+  }; //Generates five random numbers between 1 and 6 inclusive.
   listOfAllDice.forEach((dice, index) => {
     dice.textContent = diceValuesArr[index];
-  });
+  }); //Displays the numbers in order in the listOfAllDice elements.
 };
 
 function updateStats() {
   rollsElement.textContent = rolls;
   roundElement.textContent = round;
-};
+}; //To be able to update the rolls and the rounds.
 
 const updateRadioOption = (index, score) => {
   scoreInputs[index].disabled = false;
   scoreInputs[index].value = score;
   scoreSpans[index].textContent = `, score = ${score}`;
-};
+}; //Each time the dice rolled, could end up with a Three of a kind, Four of a kind, Full house, Straight or a random combination of numbers. Based on the outcome, can make a selection and add points to the score.
 
 const updateScore = (selectedValue, achieved) => {
-  score += parseInt(selectedValue);
-  totalScoreElement.textContent = score;
-  scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`;
-};
+  score += parseInt(selectedValue); //To add the user selected value to the score.
+  totalScoreElement.textContent = score; //To update the total score text.
+  scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`; //Add a new li element to the score history ul element, using the format ${achieved} : ${selectedValue} for the li element content.
+}; //When the dice is rolled and make a selection, the score selected will not be kept and move onto the next round. Create an updateScore function to add this functionality. The function will need two parameters for the user selected score option. The first parameter will be passed the value of the radio button, remember this is a string, and the second parameter will be passed the id value of the radio button, which is the type of score they achieved.
 
 const getHighestDuplicates = arr => {
   const counts = {};
   for (const num of arr) {
-    if (counts[num]) {
-      counts[num]++;
-    } else {
-      counts[num] = 1;
-    };
-  };
+    counts[num] = counts[num] ? counts[num] + 1 : 1;
+  } //The function will need to count how many times each number is found in the array.
   let highestCount = 0;
   for (const num of arr) {
     const count = counts[num];
     if (count >= 3 && count > highestCount) {
       highestCount = count;
-    };
-     if (count >= 4 && count > highestCount) {
+    }
+    if (count >= 4 && count > highestCount) {
       highestCount = count;
-    };
-  };
+    }
+  } //In both cases, the score value should be the sum of all five dice.
   const sumOfAllDice = arr.reduce((a, b) => a + b, 0);
   if (highestCount >= 4) {
-    updateRadioOption(1, sumOfAllDice);
-  };
+    updateRadioOption(1, sumOfAllDice); // Update "Four of a Kind" option
+  }
   if (highestCount >= 3) {
-    updateRadioOption(0, sumOfAllDice);
-  };
-  updateRadioOption(5, 0);
-};
+    updateRadioOption(0, sumOfAllDice); // Update "Three of a Kind" option
+  }
+}; //If the dice is rolled and get a Three of a kind or Four of a kind, then can get a score totalling the sum of all five dice values. To calculate this, create a getHighestDuplicates function which takes an array of numbers. If a number appears three or more times, will need to update the Three of a Kind option. If a number appears four or more times, will need to update the Four of a Kind option with the updateRadioOption function.
 
 const detectFullHouse = arr => {
   const counts = {};
   for (const num of arr) {
     counts[num] = counts[num] ? counts[num] + 1 : 1;
-  };
+  }
   const hasThreeOfAKind = Object.values(counts).includes(3);
   const hasPair = Object.values(counts).includes(2);
   if (hasThreeOfAKind && hasPair) {
-    updateRadioOption(2, 25);
-  };
-  updateRadioOption(5, 0);
-};
+    updateRadioOption(2, 25); // Update "Full House" option with a score of 25. If rolled three of one number and two of another number. If so, it should update the third radio button to display a score of 25, with the correct attributes.
+  }
+}; //If rolls three of one number, and two of another number, this is called a full house. Declare a detectFullHouse function that accepts a single argument. The function will be passed the diceValuesArr array when called.
 
 function resetRadioOptions() {
   scoreInputs.forEach(input => {
     input.disabled = true;
     input.checked = false;
-  });
-  scoreSpans.forEach(span => span.textContent = "");
-};
+  }); //The function should iterate through the scoreInputs to disable them and remove the checked attribute.
+  scoreSpans.forEach(span => span.textContent = ""); //The function should also remove the text from each of the scoreSpans.
+}; //Before each dice roll, will need to reset the values for the score inputs and spans so a new value can be displayed. Call the function before rolling the dice.
 
 function resetGame() {
-  diceValuesArr = [0, 0, 0, 0, 0];
-  score = 0;
-  round = 1;
-  rolls = 0;
+  diceValuesArr = [0, 0, 0, 0, 0]; //Reset all of the listOfAllDice elements to display 0
+  score = 0; //Reset score to 0
+  round = 1; //Reset round to 1
+  rolls = 0; //Reset rolls to 0
   listOfAllDice.forEach((dice, index) => {
     dice.textContent = diceValuesArr[index];
-  });
-  totalScoreElement.textContent = score;
-  scoreHistory.innerHTML = "";
-  rollsElement.textContent = rolls;
-  roundElement.textContent = round;
-  resetRadioOptions();
-};
+  }); //Reset all of the listOfAllDice elements to display 0
+  totalScoreElement.textContent = score; //Set the totalScoreElement text to the user's total score.
+  scoreHistory.innerHTML = ""; //Clear the score history by setting it to an empty string.
+  rollsElement.textContent = rolls; //Set the rollsElement text to the number of rolls.
+  roundElement.textContent = round; //Set the roundElement text to the current round.
+  resetRadioOptions(); //Reset all of the radio buttons to their initial states.
+}; //If gone through six rounds of the game, the alert shows up with the final score. But when dismissing the alert, still able to keep playing for more rounds past the original six. To fix this, will need to reset the game.
 
 function checkForStraights(diceValues) {
-  const sortedValues = [...new Set(diceValues)].sort((a, b) => a - b);
+  const sortedValues = [...new Set(diceValues)].sort((a, b) => a - b); // Remove duplicates and sort
   const smallStraightSequences = [
     [1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]
   ];
   if (sortedValues.join('') === '12345' || sortedValues.join('') === '23456') {
-    updateRadioOption(3, 30);
-    updateRadioOption(4, 40);
+    // Update both small straight and large straight
+    updateRadioOption(3, 30); // Enable 4th radio button for small straight with score 30
+    updateRadioOption(4, 40); // Enable 5th radio button for large straight with score 40
+  } else if (smallStraightSequences.some(seq => seq.every(num => sortedValues.includes(num)))) {
+    updateRadioOption(3, 30); // Update 4th radio button with score 30 for small straight
   }
-  else if (smallStraightSequences.some(seq => seq.every(num => sortedValues.includes(num)))) {
-    updateRadioOption(3, 30);
-    updateRadioOption(5, 0);
-  }
-  else {
-    updateRadioOption(5, 0);
-  };
-};
+} //Create an algorithm that checks for the presence of a straight. A small straight is when four of the dice have consecutive values in any order (Ex. 1234) resulting in a score of 30 points. A large straight is when all five dice have consecutive values in any order (Ex. 12345) resulting in a score of 40 points.
 
 rollDiceBtn.addEventListener("click", function() {
   if (rolls === 3) {
     alert('You have already made three rolls this round. Please select a score.');
-  }
+  } //For each round in the game, users are allowed to roll the dice a maximum of three times. If a user clicks the rollDiceBtn but has already made three rolls, the browser should show an alert() to indicate they must select a score.
   else {
     rolls++;
     resetRadioOptions();
@@ -304,14 +295,16 @@ rollDiceBtn.addEventListener("click", function() {
     getHighestDuplicates(diceValuesArr);
     detectFullHouse(diceValuesArr);
     checkForStraights(diceValuesArr);
-  };
-});
+    // Enable the final radio button ("None of the Above"), set its value to 0, and update the displayed text
+    updateRadioOption(5, 0); // Index 5 corresponds to the "None of the Above" option
+  } //Otherwise, it should roll the dice as it currently does and increment the rolls variable.
+}); //When Roll the dice button is clicked, five random die numbers will be generated and displayed on the screen.
 
 rulesBtn.addEventListener('click', function() {
   isModalShowing = !isModalShowing;
   rulesContainer.hidden = isModalShowing ? false : true;
   rulesBtn.textContent = isModalShowing ? 'Hide rules' : 'Show rules';
-});
+}); //When the user clicks on the Show rules button, the rules for the game should display on the screen. When they click on the button again, the rules should be hidden.
 
 keepScoreBtn.addEventListener('click', function() {
   let selectedValue;
@@ -322,7 +315,7 @@ keepScoreBtn.addEventListener('click', function() {
       achieved = radioButton.id;
       break;
     };
-  };
+  }; //When keepScoreBtn is clicked, we should find which radio option is checked and capture its value and id attributes.
   if (selectedValue) {
     rolls = 0;
     round++;
@@ -334,11 +327,11 @@ keepScoreBtn.addEventListener('click', function() {
         alert(`Game Over! Your total score is ${score}`);
         resetGame();
       }, 500);
-    };
-  }
+    }; //Check if 6 rounds have been played. If so, display an alert with the user's final score after 500 milliseconds.
+  } //If an option is selected, call the functions to update the score, reset the radio options, and add the value and id to the score history.
   else {
     alert("Please select an option or roll the dice.");
-  };
-});
+  }; //If no option selected, display an alert informing to do so.
+}); //After making a selection, it should be able to keep that score and move onto the next round by clicking the keepScoreBtn.
 </script>
 </html>
