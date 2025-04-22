@@ -27,7 +27,7 @@
     @media screen and (max-width: 540px) {
       nav {position: fixed;}
       nav ul a {font-size: 1.4rem;}
-      a img {
+      #logo {
         width: 20px;
         height: 20px;
         position: fixed;
@@ -82,7 +82,7 @@
       text-align: center;
     }
     p {font-size: 2rem;}
-    a img {
+    #logo {
       display: inline-block;
       position: fixed;
       width: 5%;
@@ -293,6 +293,7 @@
       color: midnightblue;
       transform: translateY(-8px);
     }
+    #info-links a:hover img {  filter: invert(85%) sepia(100%) saturate(500%) hue-rotate(240deg) brightness(95%) contrast(100%);}
     footer {
       font-size: 300;
       display: flex;
@@ -358,7 +359,7 @@
   </style>
 </head>
 <body>
-  <a href="https://andreninpad.github.io"><img src="Images/anp.svg" alt="My logo"></a>
+  <a href="https://andreninpad.github.io" id="logo"><img src="Images/anp.svg" alt="My logo"></a>
   <nav>
     <ul>
       <li><a href="#welcome-section" class="active">Main</a></li>
@@ -407,17 +408,23 @@
       <h2 class="info-header">We work together...</h2>
       <p><i>We grow together!</i></p>
       <div id="info-links">
-        <a href="https://www.facebook.com/andreninpad" rel="noopener" title="Facebook" target="_blank">
-          <i class="fab fa-facebook"></i>acebook
-        </a>
         <a href="https://www.linkedin.com/in/andreninpad" rel="noopener" title="LinkedIn" target="_blank">
           Linked<i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://www.freecodecamp.org/andreninpad" rel="noopener" title="freeCodeCamp" target="_blank">
+          freeC<img src="/HTML&CSS/Images/fcc_primary_small.svg" alt="freeCodeCamp Logo" style="width: 20px; height: 20px; vertical-align: middle;">deCamp
         </a>
         <a href="https://github.com/andreninpad" rel="noopener" title="Github" target="_blank">
           <i class="fab fa-github"></i>Github
         </a>
         <a href="https://codepen.io/andreninpad"rel="noopener" title="CodePen" target="_blank">
           C<i class="fab fa-codepen"></i>dePen
+        </a>
+        <a href="https://www.datacamp.com/portfolio/andreninpad" rel="noopener" title="DataCamp" target="_blank">
+          DataCamp<img src="/HTML&CSS/Images/datacamp-logo.svg" alt="DataCamp Logo" style="width: 20px; height: 20px; vertical-align: middle;">
+        </a>
+        <a href="https://www.facebook.com/andreninpad" rel="noopener" title="Facebook" target="_blank">
+          <i class="fab fa-facebook"></i>acebook
         </a>
         <a href="https://x.com/andreninpad" rel="noopener" title="x.com" target="_blank">
           <span class="fa-x">.com</span>
