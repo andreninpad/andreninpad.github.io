@@ -1,0 +1,344 @@
+:root {
+  --color1: white;
+  --color2: rgb(0, 204, 255);
+  --color3: dodgerblue;
+  --color4: darkolivegreen;
+  --color5: darkslategray;
+}
+*, *::before, *::after {box-sizing: border-box; margin: 0; border: 0; padding: 0;}
+html {font-size: 62.5%; scroll-behavior: smooth;}
+@media screen and (max-width: 768px) {
+  nav {position: fixed;}
+  h1, h2 {font-size: 2rem; /* Scale down the header */}
+  .projects-grid {grid-template-columns: 1fr; /* Stack projects in one column */}
+}
+@media screen and (max-width: 540px) {
+  nav {position: fixed;}
+  nav ul a {font-size: 1.4rem;}
+  #logo {
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+  }
+  h1, h2 {font-size: 2rem;}
+  #quote-box {
+    max-width: 40%;
+    padding: 10px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+  }
+  .projects-grid, .da-container {grid-template-columns: 1fr; padding: 0 0.5rem; grid-gap: 10px;}
+  .project-link {width: 100%; max-width: 100%;}
+  .da-link, .da-project {max-width: 36rem; height: fit-content;}    
+  #info-section {padding: 1.5rem 0.5rem; height: auto;}
+  .info-header p {font-size: 1.4rem;}
+  #info-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+  footer {flex-direction: column; padding: 1.5rem 0.5rem; text-align: center;}
+  footer p {font-size: 1.2rem;}
+  body {font-size: 1.4rem; overflow-x: hidden;}
+  .button {padding: 8px 12px; font-size: 1.2rem;}
+  nav ul a {font-size: 1.6rem; padding: 1rem;}
+}
+@media screen and (max-width: 480px) {
+  nav {position: fixed;}
+  h1, h2 {font-size: 2rem;}
+  #welcome-section p {font-size: 1.4rem;}
+  .projects-grid {grid-template-columns: 1fr;}  /* Ensure projects stack vertically */
+  .da-container {flex-direction: column;} /* Stack videos vertically */
+  #quote-box {font-size: 1.4rem;}
+}
+body {
+  font-family: 'Open Sans', 'Roboto Slab', Montserrat;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color1);
+}
+#logo {
+  display: inline-block;
+  position: fixed;
+  width: 5%;
+  max-width: 40px;
+  height: auto;
+  margin-left: 10px;
+  top: 10px;
+  right: 95%;
+  z-index: 1;
+}
+h1, h2 {
+  font-family: Raleway, sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+  text-align: center;
+}
+p {font-size: 2rem;}
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: auto;
+  z-index: 1;
+}
+nav ul li {position: relative;}
+nav ul {
+  list-style: none;
+  margin: 10px;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 2rem;
+}
+nav ul li a {
+  font-size: 2.2rem;
+  padding: 2rem;;
+}
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.4s ease-in-out;
+  transform: translateX(-50%);
+  background-color: white;
+}
+nav ul li a:hover::after {
+  width: 100%;
+  left: 0;
+  transform: translateX(0);
+}
+nav ul li a.hovering-active::after {width: 0;}
+nav ul li a.active::after {
+  width: 100%;
+  left: 0;
+  transform: translateX(0);
+}
+nav ul li a.active {color: white;}
+#welcome-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(62deg, rgb(53, 29, 29) 0, rgb(20, 13, 13) 100%);
+}
+#welcome-section p {
+  font-size: 3rem;
+  font-weight: 200;
+  font-style: italic;
+  color: var(--color2);
+}
+#projects-section {
+  height: auto;
+  text-align: center;
+  padding: 10rem 2rem;
+  background: var(--color3);
+}
+.projects-header {
+  max-width: 640px;
+  margin: 0 auto 6rem auto;
+  border-bottom: 0.2rem solid var(--color1);
+}
+.projects-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 4rem;
+  margin: 0 auto;
+  margin-bottom: 6rem;
+}
+.project-link {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+}
+.project-link:hover {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+.project {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  font-size: 2rem;
+  padding: 2rem 0.5rem;
+}
+.project-link p {transition: color 0.3s ease-out;}
+.project-link:hover p {color: paleturquoise;}
+code {
+  color: var(--color3);
+  transition: color 0.3s ease-out;
+}
+.project-link:hover code {color: orangered;}
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color1);
+}
+.show-more {
+  font-size: 2rem;
+  background: var(--color3);
+}
+.show-more:hover {color: var(--color2);}
+.show-more:hover i {
+  color: var(--color2);
+  transform: translateY(4px);
+}
+.show-more i {
+  margin-left: 10px;
+  transform: translateY(0);
+  transition: transform 0.3s ease-out;
+}
+.show-more.view-less {
+  font-size: 2rem;
+  background: var(--color3);
+  transition: 0.3s ease-out;
+}    
+.show-more.view-less:hover i {
+  color: var(--color2);
+  transform: translateY(-4px);
+}    
+.show-more.view-less i {
+  margin-left: 10px;
+  transform: translateY(0);
+  transition: transform 0.3s ease-out;
+}
+#da-projects {
+  height: auto;
+  text-align: center;
+  padding: 10rem 2rem;
+  background: var(--color5);
+}
+.da-header {
+  max-width: 640px;
+  margin: 0 auto 6rem auto;
+  border-bottom: 0.2rem solid var(--color1);
+}
+.da-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+}
+.da-link:hover {
+  box-shadow: -2px 2px rgba(85, 178, 201, 0.5);
+  color: var(--color2);
+  border-radius: 20px;
+}
+.da-project {
+  height: 35rem;
+  width: 60rem;
+  border-radius: 20px;
+}
+#info-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 80vh;
+  padding: 0 2rem;
+  background-color: var(--color4);
+}
+.info-header h2 {font-size: 2rem;}
+.info-header p {font-style: oblique;}
+#info-links {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  max-width: 980px;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+#info-links a {
+  margin-right: 5px;
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  font-size: 2.4rem;
+  text-shadow: 2px 2px 1px #1f1f1f;
+  transition: all 0.3s ease-out;
+}
+#info-links a:hover {
+  color: midnightblue;
+  transform: translateY(-8px);
+}
+#info-links a:hover img {  filter: invert(85%) sepia(100%) saturate(500%) hue-rotate(240deg) brightness(95%) contrast(100%);}
+footer {
+  font-size: 300;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
+  background: var(--color4);
+  border-top: 4px solid var(--color3);      
+}
+footer p {margin: 2rem;}
+
+/*Styling for Quotes*/
+#next-quote {
+  float: right;
+}
+.navbutton:hover {color: rgb(2, 183, 228);}
+#quote-box {
+  background-image: linear-gradient(62deg, rgb(53, 29, 29) 0, rgb(20, 13, 13) 100%);
+  position: relative;
+  top: 10px;
+  width: 100%;
+  max-width: 750px; /* Limit the width */
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 0 auto; /* Center it */
+  display: table;
+  box-shadow: 0 0 10px 0 rgba(23, 180, 180, 0.8);
+  font-size: 1.6rem;
+  box-sizing: border-box;
+}
+#quote-box .quote-text {
+  text-align: center;
+  clear: both;
+  font-weight: 500;
+  font-size: 1.75em;
+}
+#quote-box .quote-text i {
+  font-size: 1em;
+  margin-right: 0.4em;
+}
+#quote-box .quote-author {
+  clear: both;
+  padding-top: 20px;
+  font-size: 1em;
+  text-align: right;
+  margin-bottom: 20px;
+}
+#quote-box .buttons .button {
+  height: 38px;
+  border: none;
+  border-radius: 3px;
+  padding: 8px;
+  color: blue;
+  outline: none;
+  font-size: 0.85em;
+  cursor: pointer;
+  background-color: transparent;
+}
+#quote-box .buttons .button:hover {
+  opacity: 0.5;
+  box-shadow: 0 0 10px 0 rgba(23, 180, 180, 0.8);
+}
+#quote-box .buttons .button#new-quote {float: right;}
