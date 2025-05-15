@@ -279,7 +279,6 @@ a {
   color: midnightblue;
   transform: translateY(-8px);
 }
-#info-links a:hover img {filter: invert(85%) sepia(100%) saturate(1000%) hue-rotate(240deg) brightness(95%) contrast(100%);}
 footer {
   font-size: 300;
   display: flex;
