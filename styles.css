@@ -57,7 +57,7 @@ html {font-size: 62.5%; scroll-behavior: smooth;}
   #quote-box {font-size: 1.4rem;}
 }
 body {
-  font-family: 'Open Sans', 'Roboto Slab', Montserrat;
+  font-family: 'Open Sans', 'Roboto Slab', Montserrat, Helvetica, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
