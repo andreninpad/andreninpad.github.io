@@ -9,20 +9,16 @@ let allProjectsLoaded = false;
 const anpArrUrl = 'anpArrays.json';
 
 function removeActiveClass() { 
-  navLinks.forEach(link => link.classList.remove('active'));
+  navLinks.forEach(link => link.classList.remove('active'))
 }; //Function to remove the 'active' class from all links
 
 navLinks.forEach(link => { //Function to add hover and click behavior to the links.
   link.addEventListener('mouseenter', function() {
-    if (currentActiveLink && currentActiveLink !== this) {
-      currentActiveLink.classList.add('hovering-active');
-    };
+    if (currentActiveLink && currentActiveLink !== this) currentActiveLink.classList.add('hovering-active')
   });
 
   link.addEventListener('mouseleave', function() {
-    if (currentActiveLink && currentActiveLink !== this) {
-      currentActiveLink.classList.remove('hovering-active');
-    };
+    if (currentActiveLink && currentActiveLink !== this) currentActiveLink.classList.remove('hovering-active')
   });
 
   link.addEventListener('click', function() {
@@ -37,9 +33,7 @@ function handleScroll() {
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
-    if (window.scrollY >= sectionTop - sectionHeight / 3) {
-      currentSection = section;
-    };
+    if (window.scrollY >= sectionTop - sectionHeight / 3) currentSection = section
   });
   if (currentSection) {
     const currentLink = document.querySelector(`nav ul li a[href="#${currentSection.id}"]`);
@@ -75,9 +69,7 @@ const appendProjects = projects => {
 //Function to load more or fewer projects
 viewMoreBtn.addEventListener('click', function toggleProjects() {
   if (allProjectsLoaded) {
-    if (displayedProjects > 3) {
-      removeLastProjects(3);
-    }; //Remove 3 projects at a time, but stop when there are only 3 projects left.
+    if (displayedProjects > 3) removeLastProjects(3) //Remove 3 projects at a time, but stop when there are only 3 projects left.
     if (displayedProjects === 3) {
       allProjectsLoaded = false;
       viewMoreBtn.classList.remove('view-less');
@@ -111,21 +103,15 @@ var currentQuote = '', currentAuthor = '';
 
 async function fetchColors() {
   return fetch(anpArrUrl).then(response => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
+    if (!response.ok) throw new Error("Network response was not ok");
     return response.json();
   }).then(data => {
     console.log("Data fetched from JSON:", data);
     if (data.colors) {
       colors = data.colors; //Save colors into a global variable
       return colors;
-    } else {
-      throw new Error("Colors array not found in JSON");
-    }
-  }).catch(err => {
-    console.error("Error fetching colors:", err);
-  })
+    } else throw new Error("Colors array not found in JSON")
+  }).catch(err => console.error("Error fetching colors:", err))
 }; //Function to fetch colors from JSON file
 
 function getQuotes() {
@@ -133,11 +119,8 @@ function getQuotes() {
     headers: {Accept: 'json'},
     url: anpArrUrl,
     success: function (jsonQuotes) {
-      if (typeof jsonQuotes === 'string') {
-        quotesData = JSON.parse(jsonQuotes);
-      } else {
-        quotesData = jsonQuotes;
-      };
+      if (typeof jsonQuotes === 'string') quotesData = JSON.parse(jsonQuotes)
+      else quotesData = jsonQuotes;
     }
   });
 };
