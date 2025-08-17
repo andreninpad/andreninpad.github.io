@@ -7,32 +7,35 @@
   <title>Rock Paper Scissor Game</title>
   <style>
     *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
     }
+
     :root {
       --very-dark-blue: #0a0a23;
       --white: #ffffff;
       --yellow: #f1be32;
-      --golden-yellow: #feac32;
+      --golden-yellow: #feac32
     }
+
     body {
       background-color: var(--very-dark-blue);
       text-align: center;
-      color: var(--white);
+      color: var(--white)
     }
-    h1 {
-      margin: 15px 0 20px;
-    }
+
+    h1 { margin: 15px 0 20px }
+
     img, button {
       cursor: pointer;
       width: 100px;
       margin: 10px;
       color: var(--very-dark-blue);
       border-color: var(--golden-yellow);
-      border-width: 3px;
+      border-width: 3px
     }
+
     img:hover, button:hover {background: linear-gradient(var(--very-dark-blue), var(--white));}
     img:active, button:active {background: radial-gradient(var(--golden-yellow), var(--white));}
     .rules-container {
@@ -41,45 +44,40 @@
       border-radius: 15px;
       border: 5px solid var(--yellow);
       background-color: var(--white);
-      color: var(--very-dark-blue);
+      color: var(--very-dark-blue)
     }
-    .rules-container ul {
-      list-style-type: none;
-    }
-    .rules-container p {
-      margin: 10px 0;
-    }
-    @media (min-width: 760px) {
-      .rules-container {
-        width: 60%;
-      }
-    }
+
+    .rules-container ul { list-style-type: none }
+
+    .rules-container p { margin: 10px 0 }
+
+    @media (min-width: 760px) { .rules-container { width: 60% } }
+
     .score-container {
       display: flex;
       justify-content: space-around;
       margin: 30px 0;
-      font-size: 1.2rem;
+      font-size: 1.2rem
     }
-    span {
-      font-weight: 500;
-    }
+    
+    span { font-weight: 500 }
+
     .results-container {
       font-size: 1.3rem;
       margin: 15px 0;
     }
-    #winner-msg {
-      margin-top: 25px;
-    }
+
+    #winner-msg { margin-top: 25px }
+
     #reset-game-btn {
-      display: none;
       margin: 20px auto;
       width: 200px;
       height: 100px;
       font-size: xx-large;
       font-weight: bolder;
-      border-radius: 100%;
+      border-radius: 100%
     }
-    img {border-radius: 30% 30% 100% 100%;}
+    img { border-radius: 30% 30% 100% 100% }
   </style>
 </head>
 <body>
@@ -129,23 +127,20 @@ function getRandomComputerResult() {
 
 let playerScore = 0;
 let computerScore = 0;
-function hasPlayerWonTheRound(player, computer) {
-  return (
-    (player === 'rock' && computer === 'scissors') ||
+const hasPlayerWonTheRound = (player, computer) => {
+  return ((player === 'rock' && computer === 'scissors') ||
     (player === 'scissors' && computer === 'paper') ||
     (player === 'paper' && computer === 'rock')
   );
 };
 
-function getRoundResults(playerOption) {
+const getRoundResults = playerOption => {
   const computerResult = getRandomComputerResult();
-
   if (hasPlayerWonTheRound(playerOption, computerResult)) {
     playerScore++;
     return `Player wins! ${playerOption} beats ${computerResult}`;
-  } else if (computerResult === playerOption) {
-    return `It's a tie! Both chose ${playerOption}`;
-  } else {
+  } else if (computerResult === playerOption) return `It's a tie! Both chose ${playerOption}`;
+  else {
     computerScore++;
     return `Computer wins! ${computerResult} beats ${playerOption}`;
   };
@@ -158,39 +153,38 @@ const winnerMsgElement = document.getElementById("winner-msg");
 const optionsContainer = document.querySelector(".options-container");
 const resetGameBtn = document.getElementById("reset-game-btn");
 
-function showResults(playerOption) {
+const showResults = playerOption => {
   roundResultsMsg.innerText = getRoundResults(playerOption);
   computerScoreSpanElement.innerText = computerScore;
   playerScoreSpanElement.innerText = playerScore;
 
   if (playerScore === 3 || computerScore === 3) {
-    winnerMsgElement.innerText = `${playerScore === 3 ? "Player" : "Computer"} has won the game!`;
-    resetGameBtn.style.display = 'block';
-    optionsContainer.style.display = 'none';
+    winnerMsgElement.innerText = `${playerScore === 3 ? "You" : "Computer"} won the game!`;
+    resetGameBtn.hidden = false;
+    optionsContainer.hidden = true;
   };
 };
 
 function resetGame() {
-playerScore = 0;
-computerScore = 0;
-playerScoreSpanElement.innerText = playerScore;
-computerScoreSpanElement.innerText = computerScore;
-resetGameBtn.style.display = 'none';
-optionsContainer.style.display = 'block';
-winnerMsgElement.innerText = ``;
-roundResultsMsg.innerText = '';
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreSpanElement.innerText = playerScore;
+  computerScoreSpanElement.innerText = computerScore;
+  resetGameBtn.hidden = true;
+  optionsContainer.hidden = false;
+  winnerMsgElement.innerText = '';
+  roundResultsMsg.innerText = '';
 };
-
-resetGameBtn.addEventListener("click", resetGame);
-
-const rock = document.getElementById("rock-btn");
-const paper = document.getElementById("paper-btn");
-const scissors = document.getElementById("scissors-btn");
-
-rock.addEventListener("click", function () {showResults('rock');});
-
-paper.addEventListener("click", function () {showResults('paper');});
-
-scissors.addEventListener("click", function () {showResults('scissors');});
+resetGameBtn.onclick = resetGame;
+const rock = document.getElementById('rock-btn').onclick = function() {
+  showResults('rock');
+};
+const paper = document.getElementById('paper-btn').onclick = function() {
+  showResults('paper');
+};
+const scissors = document.getElementById('scissors-btn').onclick = function() {
+  showResults('scissors');
+};
 </script>
 </html>
+
