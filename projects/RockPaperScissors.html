@@ -138,7 +138,7 @@ const getRoundResults = playerOption => {
   const computerResult = getRandomComputerResult();
   if (hasPlayerWonTheRound(playerOption, computerResult)) {
     playerScore++;
-    return `Player wins! ${playerOption} beats ${computerResult}`;
+    return `You won! ${playerOption} beats ${computerResult}`;
   }
   else if (computerResult === playerOption) return `It's a tie! Both chose ${playerOption}`;
   else {
@@ -187,4 +187,5 @@ const scissorsBtn = document.getElementById('scissors-btn').onclick = function()
 };
 </script>
 </html>
+
 
